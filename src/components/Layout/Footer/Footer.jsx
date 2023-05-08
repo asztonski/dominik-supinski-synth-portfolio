@@ -1,20 +1,39 @@
-const { default: styled } = require("@emotion/styled")
+import styled from "@emotion/styled";
+import NavBar from "@/components/UI/NavBar/NavBar";
 
 const Footer = () => {
-    return (
-        <StyledFooter>
-            <p>webdread © 2020r.</p>
-            <p>version 1.0</p>
-        </StyledFooter>
-    )
-}
+  return (
+    <StyledFooter>
+      <div className="footer-item">
+        <p>webdread © 2020r.</p>
+      </div>
+      <NavBar />
+      <div className="footer-item">
+        <p>version 1.0</p>
+      </div>
+    </StyledFooter>
+  );
+};
 
-export default Footer
+export default Footer;
 
 const StyledFooter = styled.footer`
+  display: flex;
+  justify-content: space-between;
+  text-transform: uppercase;
+  width: 100%;
+  padding: 0 2rem;
+  z-index: 1;
+  .footer-item {
+    flex: 1;
     display: flex;
-    justify-content: space-between;
-    width: 100%;
-    flex-shrink: 0;
-    text-transform: uppercase;
-`
+    :first-child {
+      margin-left: auto;
+      justify-content: flex-start;
+    }
+    :last-child {
+      margin-right: auto;
+      justify-content: flex-end;
+    }
+  }
+`;
