@@ -3,7 +3,10 @@ import ArrowBtn from "@/components/UI/Button/ArrowBtn";
 import { theme } from "@/api/theme";
 import Section from "@/components/Layout/Section/Section";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 const carouselItems = [
   {
@@ -12,6 +15,7 @@ const carouselItems = [
     about:
       "[BETA] Runicat is a react web app created for people who want to understand the present and the future through runes. Type your birthdate and let universe works for you!",
     asset: "/images/portfolio/runicat.jpg",
+    alt: "Runicat Project Image",
   },
   {
     name: "luna-arte",
@@ -19,49 +23,86 @@ const carouselItems = [
     about:
       "Pixel Perfect website for tattoo & piercing studio in Warsaw, Poland made with UX/UI graphic designer. Pure vanilla project.",
     asset: "/images/portfolio/luna-arte.jpg",
+    alt: "Luna-Arte Project Image",
   },
   {
     name: "ainpiracje",
     address: "https://www.ainspiracje.com/",
     about: "Website made for a Austrian Travel Guide. Pure vanilla project.",
     asset: "/images/portfolio/ainspiracje.jpg",
+    alt: "Ainspiracje Project Image",
   },
   {
-    name: "ainpiracje",
-    address: "https://www.ainspiracje.com/",
-    about: "Website made for a Austrian Travel Guide. Pure vanilla project.",
-    asset: "/images/portfolio/ainspiracje.jpg",
+    name: "atlanca",
+    address: "https://www.atlanca.com/",
+    about: "Website made for a Canary Islands boat rental.",
+    asset: "/images/portfolio/atlanca.jpg",
+    alt: "Atlanca Project Image",
   },
 ];
 
 const Portfolio = () => {
-  const [slide, setSlide] = useState(1);
-
-  const leftBtnHandler = () => {
-    if (slide > 1) {
-      setSlide(slide - 1);
-    } else setSlide(carouselItems.length);
+  const PrevArrow = (props) => {
+    const { onClick } = props;
+    return (
+      <ArrowBtn leftBtn onClick={onClick}>
+        Previous
+      </ArrowBtn>
+    );
   };
 
-  const rightBtnHandler = () => {
-    if (slide < carouselItems.length) {
-      setSlide(slide + 1);
-    } else setSlide(1);
+  const NextArrow = (props) => {
+    const { onClick } = props;
+    return (
+      <ArrowBtn rightBtn onClick={onClick}>
+        Previous
+      </ArrowBtn>
+    );
+  };
+
+  var settings = {
+    slidesToShow: 3,
+    slidesToScroll: 1,
+    prevArrow: <PrevArrow />,
+    nextArrow: <NextArrow />,
+    infinite: true,
+    initialSlide: 0,
+    centerMode: true,
+    centerPadding: "0",
+    autoplay: true,
+    speed: 2000,
+    autoplaySpeed: 3000,
+    pauseOnHover: true,
+    cssEase: "ease-in-out",
+    responsive: [
+      {
+        breakpoint: 1400,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 1000,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+    ],
   };
 
   return (
     <PortfolioContainer withHeight>
-      <ArrowBtn onClick={leftBtnHandler} leftBtn />
       <CarouselWrapper>
-        <Carousel style={{ transform: `translateX(${(slide - 1) * -27.5}%)` }}>
+        <Slider {...settings}>
           {carouselItems.map((item, id) => (
-            <CarouselItem href={item.address} key={id} target="_blank">
-              <Image fill src={item.asset} />
+            <CarouselItem className="carousel-item" key={id} target="_blank">
+              <Image fill alt={item.alt} src={item.asset} />
             </CarouselItem>
           ))}
-        </Carousel>
+        </Slider>
       </CarouselWrapper>
-      <ArrowBtn onClick={rightBtnHandler} rightBtn />
     </PortfolioContainer>
   );
 };
@@ -73,25 +114,41 @@ const PortfolioContainer = styled(Section)``;
 const CarouselWrapper = styled.div`
   position: relative;
   width: 100%;
-  overflow: hidden;
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  align-self: center;
+  margin: 0 auto;
+  .slick-slider {
+    display: flex;
+    gap: 3rem;
+    .slick-list {
+      display: inherit;
+      flex-direction: column;
+      .slick-track {
+        display: inherit;
+        gap: 0.1px;
+      }
+    }
+  }
 `;
 
-const Carousel = styled.div`
-  display: flex;
-  margin: 0 5rem;
-  overflow: hidden;
-  position: absolute;
-  gap: 10rem;
-  transition: transform 0.34s ease-in;
-`;
+// const Carousel = styled.div`
+//   display: flex;
+//   margin: 0 5rem;
+//   overflow: hidden;
+//   position: absolute;
+//   gap: 10rem;
+//   transition: transform 0.34s ease-in;
+// `;
 
-const CarouselItem = styled.a`
-  width: 320px;
+const CarouselItem = styled.div`
+  /* width: 320px; */
+  width: 80% !important;
   aspect-ratio: 1 / 1;
   position: relative;
   overflow: hidden;
+  display: flex !important;
+  margin: auto;
   img {
     transition: 2s ease-out;
   }
