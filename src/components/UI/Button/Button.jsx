@@ -14,7 +14,8 @@ const StyledButton = styled.button`
   width: max-content;
   transition: 1s;
   &:hover {
-    box-shadow: 0 0 10px ${theme.colors.accent}, 0 0 40px ${theme.colors.accent}, 0 0 80px ${theme.colors.accent};
+    box-shadow: 0 0 10px ${theme.colors.accent}, 0 0 40px ${theme.colors.accent},
+      0 0 80px ${theme.colors.accent};
     background: ${theme.colors.accent};
   }
 `;

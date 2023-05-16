@@ -12,7 +12,12 @@ const Main = () => {
   const { stage } = useContext(AppContext);
 
   return (
-    <StyledMain style={{ transform: `translateX(${(stage - 1) * -25}%)` }}>
+    <StyledMain
+      style={{
+        transform: `translateX(${(stage - 1) * -25}%)`,
+        zIndex: `${stage === 3 ? "3" : "1"}`,
+      }}
+    >
       <Home withHeight />
       <About />
       <Portfolio />

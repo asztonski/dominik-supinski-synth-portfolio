@@ -1,10 +1,12 @@
 import { createContext, useState, useEffect } from "react";
+import ArrowBtn from "@/components/UI/Button/ArrowBtn";
 
 export const AppContext = createContext();
 
 const AppContextProvider = ({ children }) => {
   const [stage, setStage] = useState(1);
   const stages = [1, 2, 3, 4];
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   // Home logo handler
 
@@ -72,8 +74,52 @@ const AppContextProvider = ({ children }) => {
     window.onwheel = handleWheel;
   });
 
+  // PORTFOLIO
+
+  const sliderSettings = {
+    slidesToShow: 3,
+    slidesToScroll: 1,
+    prevArrow: <ArrowBtn leftBtn />,
+    nextArrow: <ArrowBtn rightBtn />,
+    infinite: isModalOpen ? false : true,
+    initialSlide: 0,
+    centerMode: true,
+    centerPadding: "0",
+    autoplay: true,
+    speed: 2000,
+    autoplaySpeed: 3000,
+    pauseOnHover: true,
+    cssEase: "ease-in-out",
+    responsive: [
+      {
+        breakpoint: 1400,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 1000,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+    ],
+  };
+
   return (
-    <AppContext.Provider value={{ mouseCoord, stage, setStage, stages }}>
+    <AppContext.Provider
+      value={{
+        mouseCoord,
+        stage,
+        setStage,
+        stages,
+        sliderSettings,
+        isModalOpen,
+        setIsModalOpen,
+      }}
+    >
       {children}
     </AppContext.Provider>
   );
