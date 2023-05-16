@@ -2,13 +2,13 @@ import styled from "@emotion/styled";
 import { theme } from "@/api/theme";
 import Section from "@/components/Layout/Section/Section";
 import Image from "next/image";
-import CloseBtn from "@/components/UI/Button/CloseBtn";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { carouselItems } from "@/api/portfolio";
 import { AppContext } from "@/api/AppContext";
 import { useContext, useState } from "react";
+import Modal from "@/components/UI/Modal/Modal";
 
 const Portfolio = () => {
   const { sliderSettings, isModalOpen, setIsModalOpen } =
@@ -38,23 +38,7 @@ const Portfolio = () => {
         </Slider>
       </CarouselWrapper>
 
-      {isModalOpen && selectedItem && (
-        <ItemModal>
-          <ModalWindow>
-            <CloseBtn onClick={() => setIsModalOpen(false)} />
-            <ModalContent>
-              <h3>{selectedItem.name}</h3>
-              <p>{selectedItem.about}</p>
-              <Image
-                alt={selectedItem.alt + "modal"}
-                src={selectedItem.asset}
-                width={300}
-                height={300}
-              />
-            </ModalContent>
-          </ModalWindow>
-        </ItemModal>
-      )}
+      {isModalOpen && selectedItem && <Modal selectedItem={selectedItem} />}
     </PortfolioContainer>
   );
 };
@@ -112,61 +96,5 @@ const CarouselItem = styled.div`
       transform: scale(1.1);
       transition: 8s ease-in;
     }
-  }
-`;
-
-const ItemModal = styled.div`
-  width: 100vw;
-  height: 100vh;
-  position: absolute;
-  margin: auto;
-  right: -9%;
-  bottom: 0;
-  top: 0;
-  padding: 2rem;
-  z-index: 10;
-  backdrop-filter: blur(3px);
-`;
-
-const ModalWindow = styled.div`
-  position: absolute;
-  inset: 0;
-  margin: auto;
-  width: 60%;
-  height: 75%;
-  padding: 4rem;
-  button {
-    right: 3.5%;
-    top: 3.5%;
-  }
-  &::after {
-    width: 100%;
-    height: 100%;
-    content: "";
-    background: ${theme.colors.other};
-    position: absolute;
-    inset: 0;
-    margin: auto;
-    opacity: 0.9;
-    z-index: -1;
-  }
-`;
-
-const ModalContent = styled.div`
-  padding: 3rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  h3 {
-    font-size: 2rem;
-    margin: 0 0 2rem;
-  }
-  p {
-    margin: 0 0 4rem;
-  }
-  img {
-    width: auto;
-    height: 100%;
   }
 `;

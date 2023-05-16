@@ -14,19 +14,21 @@ export default CloseBtn;
 
 const StyledCloseBtn = styled.button`
   height: 30px;
-  display: flex;
-  justify-content: space-between;
+  aspect-ratio: 1 / 1;
   position: absolute;
   span {
     width: 4px;
     height: 100%;
     background: ${theme.colors.extra};
     border-radius: 5px;
+    position: absolute;
+    inset: 0;
+    margin: auto;
     &:first-of-type {
-      transform: rotate(45deg) translateX(75%);
+      transform: rotate(45deg);
     }
     &:last-of-type {
-      transform: rotate(-45deg) translateX(-75%);
+      transform: rotate(-45deg);
     }
   }
 `;

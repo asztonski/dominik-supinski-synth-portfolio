@@ -34,17 +34,19 @@ const AppContextProvider = ({ children }) => {
 
   useEffect(() => {
     const keyHandler = (e) => {
-      switch (e.keyCode) {
-        case 37:
-          if (stage > 1) {
-            setStage(stage - 1);
-          }
-          break;
-        case 39:
-          if (stage < stages.length) {
-            setStage(stage + 1);
-          }
-          break;
+      if (!isModalOpen) {
+        switch (e.keyCode) {
+          case 37:
+            if (stage > 1) {
+              setStage(stage - 1);
+            }
+            break;
+          case 39:
+            if (stage < stages.length) {
+              setStage(stage + 1);
+            }
+            break;
+        }
       }
     };
 
@@ -65,12 +67,15 @@ const AppContextProvider = ({ children }) => {
     const handleWheel = debounce((e) => {
       const deltaY = e.deltaY;
 
-      if (deltaY < 0 && stage > 1) {
-        setStage(stage - 1);
-      } else if (deltaY > 0 && stage < stages.length) {
-        setStage(stage + 1);
+      if (!isModalOpen) {
+        if (deltaY < 0 && stage > 1) {
+          setStage(stage - 1);
+        } else if (deltaY > 0 && stage < stages.length) {
+          setStage(stage + 1);
+        }
       }
     }, 100);
+
     window.onwheel = handleWheel;
   });
 
