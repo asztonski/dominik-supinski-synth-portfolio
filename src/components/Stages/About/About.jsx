@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import Button from "@/components/UI/Button/Button";
+import CustomButton from "@/components/UI/Button/Button";
 import { theme } from "@/api/theme";
 import img from "../../../../public/images/about/dominik.png";
 import Image from "next/image";
@@ -45,16 +45,19 @@ const About = () => {
         <SkillsBox>
           <Skills>
             {SKILLS.map((skill, id) => (
-              <SkillRow>
-                <div key={id} className="skill-title">
+              <SkillRow key={id}>
+                <div className="skill-title">
                   <span>{skill[0]}</span>
                 </div>
-                <IconBox key={id}>{renderHandler(skill[1], id)}</IconBox>
+                <IconBox>{renderHandler(skill[1], id)}</IconBox>
               </SkillRow>
             ))}
           </Skills>
         </SkillsBox>
-        <Button onClick={() => setStage(stage + 1)} content="SEE PORTFOLIO" />
+        <CustomButton
+          onClick={() => setStage(stage + 1)}
+          content="SEE PORTFOLIO"
+        />
       </InfoBox>
       <PhotoBox>
         <Image src={img} alt="Photo of Dominik Supinski" />

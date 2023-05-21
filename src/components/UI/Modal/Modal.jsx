@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import styled from "@emotion/styled";
 import { theme } from "@/api/theme";
 import CloseBtn from "../Button/CloseBtn";
@@ -15,22 +15,33 @@ to {
 }
 `;
 
-const Modal = ({ selectedItem }) => {
-  const { setIsModalOpen } = useContext(AppContext);
+const Modal = ({ selectedItem, style, setIsModalOpen }) => {
+  const { setIsModalRendered } = useContext(AppContext);
+
+  const closeBtnHandler = () => {
+    setIsModalOpen(false);
+    setTimeout(() => {
+      setIsModalRendered(false);
+    }, 300);
+  };
 
   return (
-    <ItemModal>
+    <ItemModal style={style}>
       <ModalWindow>
-        <CloseBtn onClick={() => setIsModalOpen(false)} />
+        <CloseBtn onClick={closeBtnHandler} />
         <ModalContent>
           <h3>{selectedItem.name}</h3>
           <p>{selectedItem.about}</p>
-          <Image
-            alt={selectedItem.alt + "modal"}
-            src={selectedItem.asset}
-            width={300}
-            height={300}
-          />
+          <ImageContainer>
+            <Image
+              alt={selectedItem.alt + "modal"}
+              src={selectedItem.asset}
+              fill
+            />
+          </ImageContainer>
+          <a target="_blank" href={selectedItem.address}>
+            Live version
+          </a>
         </ModalContent>
       </ModalWindow>
     </ItemModal>
@@ -51,6 +62,7 @@ const ItemModal = styled.div`
   z-index: 10;
   backdrop-filter: blur(0);
   animation: ${blurAnim} 0.3s ease-in forwards;
+  transition: 0.2s ease-in-out;
 `;
 
 const ModalWindow = styled.div`
@@ -58,12 +70,14 @@ const ModalWindow = styled.div`
   inset: 0;
   margin: auto;
   width: 60%;
-  height: 75%;
+  max-height: 85%;
+  min-height: 50%;
+  height: max-content;
   padding: 4rem;
   button {
     right: 3.5%;
     top: 3.5%;
-    transition: 0.34s ease;
+    transition: 1s cubic-bezier(0.54, -0.01, 0.48, 1);
     &:hover {
       transform: rotate(-180deg);
     }
@@ -94,11 +108,30 @@ const ModalContent = styled.div`
     margin: 0 0 2rem;
   }
   p {
-    margin: 0 auto 4rem;
     max-width: 75%;
+  }
+  a {
+    color: ${theme.colors.extra};
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    padding: 0.5rem 1rem;
+    /* border: 1px solid ${theme.colors.extra}; */
   }
   img {
     width: auto;
     height: 100%;
+    margin: 4rem 0;
+  }
+`;
+
+const ImageContainer = styled.div`
+  width: 50%;
+  aspect-ratio: 1 / 1;
+  position: relative;
+  margin: 2rem 0 1rem;
+  img {
+    object-fit: cover;
+    inset: 0;
+    margin: auto;
   }
 `;

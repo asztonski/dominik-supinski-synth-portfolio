@@ -11,14 +11,18 @@ import { useContext, useState } from "react";
 import Modal from "@/components/UI/Modal/Modal";
 
 const Portfolio = () => {
-  const { sliderSettings, isModalOpen, setIsModalOpen } =
+  const { sliderSettings, isModalRendered, setIsModalRendered } =
     useContext(AppContext);
 
   const [selectedItem, setSelectedItem] = useState();
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const modalHandler = (item) => {
     setSelectedItem(item);
-    setIsModalOpen(true);
+    setIsModalRendered(true);
+    setTimeout(() => {
+      setIsModalOpen(true);
+    }, 200);
   };
 
   return (
@@ -38,7 +42,13 @@ const Portfolio = () => {
         </Slider>
       </CarouselWrapper>
 
-      {isModalOpen && selectedItem && <Modal selectedItem={selectedItem} />}
+      {isModalRendered && selectedItem && (
+        <Modal
+          style={{ opacity: `${isModalOpen ? "1" : "0"}` }}
+          selectedItem={selectedItem}
+          setIsModalOpen={setIsModalOpen}
+        />
+      )}
     </PortfolioContainer>
   );
 };

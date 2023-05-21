@@ -44,8 +44,10 @@ h2,
 h3,
 h4,
 h5,
-p {
-  cursor: url("../assets/cursors/text.png"), auto;
+p,
+input,
+label {
+  cursor: url("../assets/cursors/text.png"), auto !important;
 }
 
 h1,
@@ -70,10 +72,20 @@ a {
 
 button {
   background: none;
-  cursor: url("../assets/cursors/pointer.png"), auto;
+  cursor: url("../assets/cursors/pointer.png"), auto !important;
   border: none;
 }
 
 nav button {
   font-size: 1rem;
+}
+
+input,
+textarea {
+  padding: 0.5rem;
+  text-transform: uppercase;
+}
+
+textarea {
+  font-family: "Roboto";
 }

@@ -6,7 +6,7 @@ export const AppContext = createContext();
 const AppContextProvider = ({ children }) => {
   const [stage, setStage] = useState(1);
   const stages = [1, 2, 3, 4];
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isModalRendered, setIsModalRendered] = useState(false);
 
   // Home logo handler
 
@@ -34,7 +34,7 @@ const AppContextProvider = ({ children }) => {
 
   useEffect(() => {
     const keyHandler = (e) => {
-      if (!isModalOpen) {
+      if (!isModalRendered) {
         switch (e.keyCode) {
           case 37:
             if (stage > 1) {
@@ -67,7 +67,7 @@ const AppContextProvider = ({ children }) => {
     const handleWheel = debounce((e) => {
       const deltaY = e.deltaY;
 
-      if (!isModalOpen) {
+      if (!isModalRendered) {
         if (deltaY < 0 && stage > 1) {
           setStage(stage - 1);
         } else if (deltaY > 0 && stage < stages.length) {
@@ -86,11 +86,11 @@ const AppContextProvider = ({ children }) => {
     slidesToScroll: 1,
     prevArrow: <ArrowBtn leftBtn />,
     nextArrow: <ArrowBtn rightBtn />,
-    infinite: isModalOpen ? false : true,
+    infinite: true,
     initialSlide: 0,
     centerMode: true,
     centerPadding: "0",
-    autoplay: true,
+    autoplay: isModalRendered ? false : true,
     speed: 2000,
     autoplaySpeed: 3000,
     pauseOnHover: true,
@@ -121,8 +121,8 @@ const AppContextProvider = ({ children }) => {
         setStage,
         stages,
         sliderSettings,
-        isModalOpen,
-        setIsModalOpen,
+        isModalRendered,
+        setIsModalRendered,
       }}
     >
       {children}

@@ -7,6 +7,7 @@ import { theme } from "@/api/theme";
 import Home from "@/components/Stages/Home/Home";
 import About from "@/components/Stages/About/About";
 import Portfolio from "@/components/Stages/Portfolio/Portfolio";
+import Contact from "@/components/Stages/Contact/Contact";
 
 const Main = () => {
   const { stage } = useContext(AppContext);
@@ -21,7 +22,7 @@ const Main = () => {
       <Home withHeight />
       <About />
       <Portfolio />
-      <About />
+      <Contact />
     </StyledMain>
   );
 };
