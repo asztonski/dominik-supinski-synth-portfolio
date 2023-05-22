@@ -11,6 +11,7 @@ import {
 } from "@/helpers/checkValidation";
 import { useContext } from "react";
 import { AppContext } from "@/api/AppContext";
+import FormHelperText from "@mui/material";
 
 const Form = () => {
   const [inputValue, setInputValue] = useState({
@@ -19,7 +20,7 @@ const Form = () => {
     message: "",
   });
 
-  const { isFocused, setIsFocused } = useContext(AppContext);
+  const { setIsFocused } = useContext(AppContext);
 
   const [isFormValid, setIsFormValid] = useState(false);
 
@@ -54,10 +55,6 @@ const Form = () => {
     validateForm();
   }, [inputValue]);
 
-  useEffect(() => {
-    console.log(isFocused);
-  }, [isFocused]);
-
   const handleSubmit = (e) => {
     const { name, email, message } = inputValue;
     const dataArr = [
@@ -71,6 +68,12 @@ const Form = () => {
 
     window.location.href = mailtoLink;
   };
+
+  // const errorHandler = (element) => {
+  //   if (element.helperText && validateMessage(element.target.value)) {
+  //     return true;
+  //   } else return false;
+  // };
 
   return (
     <FormContainer>
@@ -88,6 +91,7 @@ const Form = () => {
           rows={input.rows}
           onClick={() => setIsFocused(true)}
           onBlur={() => setIsFocused(false)}
+          // helperText={errorHandler(input)}
           sx={{
             border: `1px solid ${theme.colors.squares}`,
           }}

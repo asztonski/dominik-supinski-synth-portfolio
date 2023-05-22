@@ -69,7 +69,7 @@ const InfoBox = styled.div`
   display: flex;
   flex-direction: column;
   /* justify-content: space-between; */
-  gap: 3rem;
+  gap: 5rem;
   width: 100%;
   p {
     width: 75%;

@@ -46,7 +46,8 @@ h4,
 h5,
 p,
 input,
-label {
+label,
+span {
   cursor: url("../assets/cursors/text.png"), auto !important;
 }
 
@@ -67,15 +68,21 @@ nav button {
 a {
   color: inherit;
   text-decoration: none;
-  cursor: url("../assets/cursors/pointer.png"), auto;
 }
 
 button {
   background: none;
-  cursor: url("../assets/cursors/pointer.png"), auto !important;
   border: none;
 }
 
+a,
+button,
+.carousel-item {
+  cursor: url("../assets/cursors/pointer.png"), auto !important;
+}
+
+a,
+button,
 nav button {
   font-size: 1rem;
 }

@@ -9,11 +9,11 @@ export const contactItems = [
   },
   {
     name: "linkedin",
-    link: '<a target="_blank" href="https://www.linkedin.com/in/dominik-supi%C5%84ski-094ba3210/">linkedin.com/in/dominik-supinski</a>',
+    link: '<a target="_blank" href="https://www.linkedin.com/in/dominik-supi%C5%84ski-094ba3210/">/dominik-supinski</a>',
   },
   {
     name: "github",
-    link: '<a target="_blank" href="https://www.github.com/asztonski/">github/asztonski</a>',
+    link: '<a target="_blank" href="https://www.github.com/asztonski/">/asztonski</a>',
   },
 ];
 
@@ -26,6 +26,7 @@ export const formItems = [
     isMultiline: false,
     rows: "",
     maxRows: "",
+    helperText: "",
   },
   {
     label: "e-mail",
@@ -35,6 +36,7 @@ export const formItems = [
     isMultiline: false,
     rows: "",
     maxRows: "",
+    helperText: "",
   },
   {
     label: "message",
@@ -44,5 +46,6 @@ export const formItems = [
     isMultiline: true,
     rows: 4,
     maxRows: 16,
+    helperText: "Message cannot be shorter than 100 characters.",
   },
 ];

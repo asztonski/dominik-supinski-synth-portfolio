@@ -5,7 +5,7 @@ const Footer = () => {
   return (
     <StyledFooter>
       <div className="footer-item">
-        <p>webdread © 2020r.</p>
+        <p>webdread © 2023r.</p>
       </div>
       <NavBar />
       <div className="footer-item">

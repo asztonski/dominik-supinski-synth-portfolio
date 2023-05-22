@@ -10,5 +10,5 @@ export const validateEmail = (email) => {
 };
 
 export const validateMessage = (message) => {
-  return message.length > 5;
+  return message.length > 100;
 };
