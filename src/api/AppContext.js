@@ -7,6 +7,7 @@ const AppContextProvider = ({ children }) => {
   const [stage, setStage] = useState(1);
   const stages = [1, 2, 3, 4];
   const [isModalRendered, setIsModalRendered] = useState(false);
+  const [isFocused, setIsFocused] = useState(false);
 
   // Home logo handler
 
@@ -34,24 +35,30 @@ const AppContextProvider = ({ children }) => {
 
   useEffect(() => {
     const keyHandler = (e) => {
-      if (!isModalRendered) {
-        switch (e.keyCode) {
-          case 37:
-            if (stage > 1) {
-              setStage(stage - 1);
-            }
-            break;
-          case 39:
-            if (stage < stages.length) {
-              setStage(stage + 1);
-            }
-            break;
-        }
+      if (isModalRendered === true || isFocused === true) {
+        return;
+      }
+
+      switch (e.keyCode) {
+        case 37:
+          if (stage > 1) {
+            setStage(stage - 1);
+          }
+          break;
+        case 39:
+          if (stage < stages.length) {
+            setStage(stage + 1);
+          }
+          break;
       }
     };
 
     window.onkeydown = keyHandler;
-  });
+
+    return () => {
+      window.onkeydown = null;
+    };
+  }, [isModalRendered, isFocused, stage, stages]);
 
   function debounce(func, delay) {
     let timer;
@@ -123,6 +130,8 @@ const AppContextProvider = ({ children }) => {
         sliderSettings,
         isModalRendered,
         setIsModalRendered,
+        isFocused,
+        setIsFocused,
       }}
     >
       {children}

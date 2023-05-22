@@ -4,12 +4,14 @@ import Header from "@/components/Layout/Header/Header";
 import Main from "@/components/Layout/Main/Main";
 import Footer from "@/components/Layout/Footer/Footer";
 import AppContextProvider from "@/api/AppContext";
+import { customTheme } from "@/api/theme";
+import { ThemeProvider } from "@mui/material";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
   return (
-    <>
+    <ThemeProvider theme={customTheme}>
       <Head>
         <title>Dominik Supinski Front End Developer</title>
         <meta name="description" content="Dominik Supinski's Portfolio" />
@@ -21,6 +23,6 @@ export default function Home() {
         <Main />
         <Footer />
       </AppContextProvider>
-    </>
+    </ThemeProvider>
   );
 }

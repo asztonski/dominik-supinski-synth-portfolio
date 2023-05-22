@@ -19,9 +19,9 @@ const Contact = () => {
             <ContactInfo>
               {contactItems.map((item, id) => (
                 <ContactLink key={id}>
-                  <span className="info-item">{item.name}</span>
+                  <span>{item.name}</span>
                   <div
-                    className="info-item link-item"
+                    className="link-item"
                     dangerouslySetInnerHTML={{ __html: item.link }}
                   />
                 </ContactLink>
@@ -32,7 +32,7 @@ const Contact = () => {
         </ContentWrapper>
       </ContactInfoWrapper>
       <PhotoBox>
-        <Image src={img} alt="Photo of Dominik Supinski" />
+        <Image src={img} alt="Drawnings of Dominik Supinski" />
       </PhotoBox>
     </AboutContainer>
   );
@@ -79,7 +79,7 @@ const InfoBox = styled.div`
 const ContactInfo = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 1.5rem;
   width: 100%;
 `;
 
@@ -88,7 +88,7 @@ const ContactLink = styled.div`
   width: inherit;
   justify-content: space-between;
   text-transform: uppercase;
-  gap: 2rem;
+  gap: 2.5rem;
   span {
     min-width: 4rem;
   }

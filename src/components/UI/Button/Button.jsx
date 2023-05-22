@@ -4,7 +4,19 @@ import { Button } from "@mui/material";
 
 const CustomButton = ({ content, onClick, disabled }) => {
   return (
-    <StyledButton disabled={disabled} onClick={onClick}>
+    <StyledButton
+      sx={{
+        "&.Mui-disabled": {
+          // background: `${theme.colors.other}`,
+          // color: `${theme.colors.other}`,
+          // borderColor: `${theme.colors.other}`,
+          // backdropFilter: "blur(30px)",
+          opacity: 0,
+        },
+      }}
+      disabled={disabled}
+      onClick={onClick}
+    >
       {content}
     </StyledButton>
   );

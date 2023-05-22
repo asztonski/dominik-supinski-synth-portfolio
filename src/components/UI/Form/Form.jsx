@@ -1,9 +1,16 @@
 import styled from "@emotion/styled";
 import { TextField } from "@mui/material";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import CustomButton from "../Button/Button";
 import { formItems } from "@/api/contact";
 import { theme } from "@/api/theme";
+import {
+  validateName,
+  validateEmail,
+  validateMessage,
+} from "@/helpers/checkValidation";
+import { useContext } from "react";
+import { AppContext } from "@/api/AppContext";
 
 const Form = () => {
   const [inputValue, setInputValue] = useState({
@@ -12,12 +19,44 @@ const Form = () => {
     message: "",
   });
 
+  const { isFocused, setIsFocused } = useContext(AppContext);
+
+  const [isFormValid, setIsFormValid] = useState(false);
+
   const handleInputChange = (e) => {
+    const { name, value } = e.target;
+
+    let isValid;
+
+    if (name === "name") {
+      isValid = validateName(value);
+    } else if (name === "email") {
+      isValid = validateEmail(value);
+    } else if (name === "message") {
+      isValid = validateMessage(value);
+    }
+
     setInputValue((prevInputValue) => ({
       ...prevInputValue,
-      [e.target.name]: e.target.value,
+      [name]: value,
     }));
   };
+
+  const validateForm = () => {
+    const isAllInputsValid =
+      validateName(inputValue.name) &&
+      validateEmail(inputValue.email) &&
+      validateMessage(inputValue.message);
+    setIsFormValid(isAllInputsValid);
+  };
+
+  useEffect(() => {
+    validateForm();
+  }, [inputValue]);
+
+  useEffect(() => {
+    console.log(isFocused);
+  }, [isFocused]);
 
   const handleSubmit = (e) => {
     const { name, email, message } = inputValue;
@@ -33,10 +72,6 @@ const Form = () => {
     window.location.href = mailtoLink;
   };
 
-  const isDisabled = Object.values(inputValue).some(
-    (value) => value.trim() === ""
-  );
-
   return (
     <FormContainer>
       {formItems.map((input) => (
@@ -51,10 +86,10 @@ const Form = () => {
           value={inputValue[input.id]}
           multiline={input.isMultiline}
           rows={input.rows}
-          maxRows={input.maxRows}
+          onClick={() => setIsFocused(true)}
+          onBlur={() => setIsFocused(false)}
           sx={{
             border: `1px solid ${theme.colors.squares}`,
-            textTransform: "uppercase",
           }}
           InputProps={{
             style: {
@@ -69,7 +104,11 @@ const Form = () => {
           }}
         />
       ))}
-      <CustomButton disabled onClick={handleSubmit} content="Send message" />
+      <CustomButton
+        disabled={!isFormValid}
+        onClick={handleSubmit}
+        content="Send message"
+      />
     </FormContainer>
   );
 };
@@ -83,10 +122,11 @@ const FormContainer = styled.form`
   width: 100%;
   div {
     background: transparent !important;
-    &:last-of-type {
-      input {
-        text-transform: none !important;
-      }
+    label {
+      text-transform: uppercase;
+    }
+    input {
+      text-transform: none;
     }
   }
   button {

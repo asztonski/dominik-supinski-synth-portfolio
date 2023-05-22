@@ -19,27 +19,27 @@ const Header = () => {
             {menuListArr.map((link, id) => (
               <li key={id}>
                 <button
-                css={css`
-                  position: relative;
-                  &:after {
-                    content: '${link}';
-                    position: absolute;
-                    bottom: 0;
-                    left: 0;
-                    right: 0;
-                    top: 0;
-                    transition: .34s ease-in-out;
-                    color: ${theme.colors.hover};
-                    opacity: 0;
-                    z-index: 1;
-                    mix-blend-mode: overlay;
-                  }
-                  &:hover {
+                  css={css`
+                    position: relative;
                     &:after {
-                      opacity: 1;
+                      content: "${link}";
+                      position: absolute;
+                      bottom: 0;
+                      left: 0;
+                      right: 0;
+                      top: 0;
+                      transition: 0.34s ease-in-out;
+                      color: ${theme.colors.hover};
+                      opacity: 0;
+                      z-index: 1;
+                      mix-blend-mode: overlay;
                     }
-                  }
-                `}
+                    &:hover {
+                      &:after {
+                        opacity: 1;
+                      }
+                    }
+                  `}
                   className={stage === id + 1 ? "active" : ""}
                   onClick={() => setStage(id + 1)}
                 >
@@ -48,7 +48,7 @@ const Header = () => {
               </li>
             ))}
             <li>
-              <button>
+              <a href="mailto:supinski.dev@gmail.com">
                 <svg
                   className="msg-icon"
                   id="Layer_2"
@@ -80,7 +80,7 @@ const Header = () => {
                     </g>
                   </g>
                 </svg>
-              </button>
+              </a>
             </li>
           </ul>
           <div className={`absolute-element ${`stage-` + stage}`}>
@@ -116,7 +116,8 @@ const StyledHeader = styled.header`
       align-items: center;
       li {
         list-style: none;
-        button {
+        button,
+        a {
           border: none;
           text-transform: uppercase;
           transition: 0.34s ease-in-out;
