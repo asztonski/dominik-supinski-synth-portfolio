@@ -5,7 +5,8 @@ export const AppContext = createContext();
 
 const AppContextProvider = ({ children }) => {
   const [stage, setStage] = useState(1);
-  const stages = [1, 2, 3, 4];
+  const stages = 4;
+  const stageItems = Array.from({ length: stages }, (_, index) => index + 1);
   const [isModalRendered, setIsModalRendered] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
 
@@ -46,7 +47,7 @@ const AppContextProvider = ({ children }) => {
           }
           break;
         case 39:
-          if (stage < stages.length) {
+          if (stage < stages) {
             setStage(stage + 1);
           }
           break;
@@ -77,7 +78,7 @@ const AppContextProvider = ({ children }) => {
       if (!isModalRendered) {
         if (deltaY < 0 && stage > 1) {
           setStage(stage - 1);
-        } else if (deltaY > 0 && stage < stages.length) {
+        } else if (deltaY > 0 && stage < stages) {
           setStage(stage + 1);
         }
       }
@@ -127,6 +128,7 @@ const AppContextProvider = ({ children }) => {
         stage,
         setStage,
         stages,
+        stageItems,
         sliderSettings,
         isModalRendered,
         setIsModalRendered,

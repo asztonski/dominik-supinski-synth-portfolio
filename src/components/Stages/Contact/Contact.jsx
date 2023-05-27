@@ -15,7 +15,7 @@ const Contact = () => {
         </TitleBox>
         <ContentWrapper>
           <InfoBox>
-            <p>Contact me and let's create something amazing together.</p>
+            <p>Contact me. Let's create something amazing together!</p>
             <ContactInfo>
               {contactItems.map((item, id) => (
                 <ContactLink key={id}>
@@ -99,12 +99,14 @@ const ContactLink = styled.div`
   .link-item {
     color: ${theme.colors.accent};
     font-weight: bold;
-    transition: 0.2s ease;
     letter-spacing: 1px;
     width: 80%;
     white-space: nowrap;
-    &:hover {
-      color: ${theme.colors.hover};
+    * {
+      transition: 0.2s ease;
+      &:hover {
+        color: ${theme.colors.hover};
+      }
     }
   }
 `;

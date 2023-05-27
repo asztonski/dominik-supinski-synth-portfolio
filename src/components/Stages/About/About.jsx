@@ -86,7 +86,7 @@ const InfoBox = styled.div`
 `;
 
 const SkillsBox = styled.div`
-  width: 100%;
+  width: 75%;
   margin-bottom: 4rem;
 `;
 

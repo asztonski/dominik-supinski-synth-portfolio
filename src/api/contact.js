@@ -26,7 +26,7 @@ export const formItems = [
     isMultiline: false,
     rows: "",
     maxRows: "",
-    helperText: "",
+    helperText: "Please provide correct name and surname",
   },
   {
     label: "e-mail",
@@ -36,7 +36,7 @@ export const formItems = [
     isMultiline: false,
     rows: "",
     maxRows: "",
-    helperText: "",
+    helperText: "Please provide correct e-mail address",
   },
   {
     label: "message",
@@ -46,6 +46,6 @@ export const formItems = [
     isMultiline: true,
     rows: 4,
     maxRows: 16,
-    helperText: "Message cannot be shorter than 100 characters.",
+    helperText: "Ohh C'mon! Message is way too short.",
   },
 ];

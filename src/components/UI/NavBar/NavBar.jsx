@@ -7,8 +7,7 @@ import { theme } from "@/api/theme";
 import { css } from "@emotion/react";
 
 const NavBar = () => {
-  const { stage, setStage, stages } = useContext(AppContext);
-  const stagesNumber = stages.length;
+  const { stage, setStage, stages, stageItems } = useContext(AppContext);
   // const [direction, setDirection] = useState(null);
 
   // useEffect(() => {
@@ -26,22 +25,25 @@ const NavBar = () => {
   const leftBtnHandler = () => {
     if (stage > 1) {
       setStage(stage - 1);
-    } else return false
+    } else return false;
   };
 
   const rightBtnHandler = () => {
-    if (stage < stagesNumber) {
+    if (stage < stages) {
       setStage(stage + 1);
-    } else return false
+    } else return false;
   };
 
   return (
     <NavBarWrapper>
-      <button onClick={leftBtnHandler} className="arrow-btn">
+      <button
+        onClick={leftBtnHandler}
+        className={`${stage === 1 ? "disabled" : ""} arrow-btn`}
+      >
         <img className="arrow-left" src="images/svg/arrow_left.png" alt="" />
       </button>
       <MiddleBar className="footer-item">
-        {stages.map((id) => (
+        {stageItems.map((id) => (
           <NavSquare
             className={`nav-btn ${stage === id ? "active" : ""}`}
             key={id}
@@ -49,7 +51,10 @@ const NavBar = () => {
           />
         ))}
       </MiddleBar>
-      <button onClick={rightBtnHandler} className="arrow-btn">
+      <button
+        onClick={rightBtnHandler}
+        className={`${stage === stages ? "disabled" : ""} arrow-btn`}
+      >
         <img className="arrow-right" src="images/svg/arrow_right.png" alt="" />
       </button>
     </NavBarWrapper>
@@ -94,6 +99,9 @@ const NavBarWrapper = styled.div`
       left: 0;
     }
   }
+  .disabled {
+    pointer-events: none;
+  }
 `;
 
 const MiddleBar = styled.div`
@@ -111,6 +119,7 @@ const MiddleBar = styled.div`
   }
   .nav-btn.active {
     transform: rotate(0deg);
+    pointer-events: none;
   }
 `;
 
@@ -124,7 +133,8 @@ const NavSquare = styled.button`
   transition: ${`${theme.transitionTime}s`} ease;
   position: relative;
   overflow: hidden;
-  :before, :after {
+  :before,
+  :after {
     content: "";
     position: absolute;
     width: 100%;
