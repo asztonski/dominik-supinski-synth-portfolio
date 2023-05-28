@@ -22,11 +22,13 @@ export default Header;
 
 const StyledHeader = styled.header`
   width: 100%;
+  padding: 0 2rem;
   @media (max-width: ${theme.breakpoints.md}) {
     position: fixed;
     background: black;
     z-index: 10;
     width: 100%;
+    padding: 0;
   }
 `;
 
