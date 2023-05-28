@@ -1,14 +1,42 @@
 import { createContext, useState, useEffect } from "react";
 import ArrowBtn from "@/components/UI/Button/ArrowBtn";
+import { theme } from "./theme";
+import Container from "@/components/Layout/Container/Container";
 
 export const AppContext = createContext();
 
 const AppContextProvider = ({ children }) => {
+  const [isMobile, setIsMobile] = useState(true);
   const [stage, setStage] = useState(1);
   const stages = 4;
   const stageItems = Array.from({ length: stages }, (_, index) => index + 1);
   const [isModalRendered, setIsModalRendered] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
+
+  // Detect screen size
+
+  useEffect(() => {
+    const breakpoint = parseInt(theme.breakpoints.md, 10);
+
+    const handleResize = () => {
+      if (window.innerWidth < breakpoint) {
+        setIsMobile(true);
+      } else {
+        setIsMobile(false);
+      }
+    };
+
+    // Initial screen size check
+    handleResize();
+
+    // Event listener for window resize
+    window.addEventListener("resize", handleResize);
+
+    // Cleanup function
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, [theme.breakpoints.md]);
 
   // Home logo handler
 
@@ -124,6 +152,7 @@ const AppContextProvider = ({ children }) => {
   return (
     <AppContext.Provider
       value={{
+        isMobile,
         mouseCoord,
         stage,
         setStage,
@@ -136,7 +165,7 @@ const AppContextProvider = ({ children }) => {
         setIsFocused,
       }}
     >
-      {children}
+      <Container>{children}</Container>
     </AppContext.Provider>
   );
 };

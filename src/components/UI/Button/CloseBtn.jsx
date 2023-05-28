@@ -24,6 +24,7 @@ const StyledCloseBtn = styled.button`
     position: absolute;
     inset: 0;
     margin: auto;
+    pointer-events: none;
     &:first-of-type {
       transform: rotate(45deg);
     }

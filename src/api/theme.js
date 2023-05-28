@@ -11,6 +11,13 @@ export const theme = {
     transparent: "rgba(0,0,0,0)",
   },
   transitionTime: 0.84,
+  breakpoints: {
+    xl: "1536px",
+    lg: "1200px",
+    md: "900px",
+    sm: "600px",
+    xs: "400px",
+  },
 };
 
 export const customTheme = createTheme({

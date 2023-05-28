@@ -32,6 +32,7 @@ const Modal = ({ selectedItem, style, setIsModalOpen }) => {
         <ModalContent>
           <h3>{selectedItem.name}</h3>
           <p>{selectedItem.about}</p>
+          <h5>Technologies: {selectedItem.technologies}</h5>
           <ImageContainer>
             <Image
               alt={selectedItem.alt + "modal"}
@@ -73,7 +74,7 @@ const ModalWindow = styled.div`
   max-height: 85%;
   min-height: 50%;
   height: max-content;
-  padding: 4rem;
+  padding: 2rem;
   button {
     right: 3.5%;
     top: 3.5%;
@@ -105,10 +106,15 @@ const ModalContent = styled.div`
   justify-content: center;
   h3 {
     font-size: 2rem;
-    margin: 0 0 2rem;
   }
   p {
     max-width: 75%;
+    margin: 2rem 0;
+  }
+  img {
+    width: auto;
+    height: 100%;
+    /* margin: 2rem 0; */
   }
   a {
     color: ${theme.colors.extra};
@@ -117,15 +123,10 @@ const ModalContent = styled.div`
     padding: 0.5rem 1rem;
     /* border: 1px solid ${theme.colors.extra}; */
   }
-  img {
-    width: auto;
-    height: 100%;
-    margin: 4rem 0;
-  }
 `;
 
 const ImageContainer = styled.div`
-  width: 50%;
+  width: 45%;
   aspect-ratio: 1 / 1;
   position: relative;
   margin: 2rem 0 1rem;

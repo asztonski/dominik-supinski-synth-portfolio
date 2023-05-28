@@ -1,7 +1,12 @@
 import styled from "@emotion/styled";
 import Wrapper from "../Wrapper/Wrapper";
+import { theme } from "@/api/theme";
+import { useContext } from "react";
+import { AppContext } from "@/api/AppContext";
 
 const Section = ({ children, withHeight, column }) => {
+  const { isMobile } = useContext(AppContext);
+
   return (
     <StyledSection
       style={{
@@ -10,7 +15,7 @@ const Section = ({ children, withHeight, column }) => {
     >
       <Wrapper
         style={{
-          height: `${withHeight ? "50%" : "auto"}`,
+          height: `${!isMobile ? `${withHeight ? "50%" : "auto"}` : "75%"} `,
           flexDirection: `${column ? "column" : "row"}`,
         }}
       >
@@ -52,5 +57,10 @@ const StyledSection = styled.section`
     &:hover {
       transform: translateX(20%);
     }
+  }
+  @media (max-width: ${theme.breakpoints.md}) {
+    width: 100%;
+    height: 25% !important;
+    padding: 0 0.5rem;
   }
 `;

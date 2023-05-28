@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { theme } from "@/api/theme";
 
 const Wrapper = ({ children, style }) => {
   return (
@@ -15,4 +16,8 @@ const StyledWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   position: relative;
+  @media (max-width: ${theme.breakpoints.md}) {
+    overflow: hidden;
+    width: 100%;
+  }
 `;

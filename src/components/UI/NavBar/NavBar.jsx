@@ -67,6 +67,7 @@ const NavBarWrapper = styled.div`
   display: flex;
   gap: 1rem;
   align-items: center;
+  z-index: 3;
   .arrow-btn {
     width: 30px;
     height: 1px;
@@ -102,6 +103,19 @@ const NavBarWrapper = styled.div`
   .disabled {
     pointer-events: none;
   }
+  @media (max-width: ${theme.breakpoints.md}) {
+    position: absolute;
+    right: 1rem;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    flex-direction: column;
+    height: 350px;
+    gap: 2rem;
+    .arrow-btn {
+      transform: rotate(90deg);
+    }
+  }
 `;
 
 const MiddleBar = styled.div`
@@ -112,6 +126,16 @@ const MiddleBar = styled.div`
   justify-content: space-between;
   align-items: center;
   overflow: visible;
+  flex: 1;
+  display: flex;
+  :first-child {
+    margin-left: auto;
+    justify-content: flex-start;
+  }
+  :last-child {
+    margin-right: auto;
+    justify-content: flex-end;
+  }
   .active {
     :after {
       transform: translateY(100%);
@@ -120,6 +144,10 @@ const MiddleBar = styled.div`
   .nav-btn.active {
     transform: rotate(0deg);
     pointer-events: none;
+  }
+  @media (max-width: ${theme.breakpoints.md}) {
+    width: 1px;
+    flex-direction: column;
   }
 `;
 

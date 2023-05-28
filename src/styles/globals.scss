@@ -1,3 +1,7 @@
+// Variables
+
+$sm: 600px;
+
 /* Fonts */
 
 @font-face {
@@ -27,6 +31,7 @@ body {
   font-family: "Roboto";
   font-weight: 300;
   overflow: hidden;
+  position: relative;
 }
 
 #__next {
@@ -34,7 +39,6 @@ body {
   display: flex;
   flex-direction: column;
   position: relative;
-  padding: 3rem 0;
   overflow: hidden;
   cursor: url("../assets/cursors/cursor.png"), auto;
 }

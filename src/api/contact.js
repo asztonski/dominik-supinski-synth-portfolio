@@ -5,7 +5,7 @@ export const contactItems = [
   },
   {
     name: "phone",
-    link: "<span>07949694746</span>",
+    link: "<span>(+44) 07949694746</span>",
   },
   {
     name: "linkedin",

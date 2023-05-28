@@ -1,13 +1,18 @@
 import styled from "@emotion/styled";
 import NavBar from "@/components/UI/NavBar/NavBar";
+import { theme } from "@/api/theme";
+import { useContext } from "react";
+import { AppContext } from "@/api/AppContext";
 
 const Footer = () => {
+  const { isMobile } = useContext(AppContext);
+
   return (
     <StyledFooter>
       <div className="footer-item">
-        <p>webdread © 2023r.</p>
+        <p onClick={() => console.log(isMobile)}>webdread © 2023r.</p>
       </div>
-      <NavBar />
+      {!isMobile ? <NavBar className="nav-bar" /> : null}
       <div className="footer-item">
         <p>version 1.0</p>
       </div>
@@ -24,16 +29,8 @@ const StyledFooter = styled.footer`
   width: 100%;
   padding: 0 2rem;
   z-index: 1;
-  .footer-item {
-    flex: 1;
-    display: flex;
-    :first-child {
-      margin-left: auto;
-      justify-content: flex-start;
-    }
-    :last-child {
-      margin-right: auto;
-      justify-content: flex-end;
-    }
+  @media (max-width: ${theme.breakpoints.md}) {
+    position: absolute;
+    bottom: 1.5rem;
   }
 `;

@@ -5,6 +5,7 @@ import Image from "next/image";
 import { AppContext } from "@/api/AppContext";
 import { useContext } from "react";
 import { keyframes, css } from "@emotion/react";
+import { theme } from "@/api/theme";
 
 const Home = () => {
   const { mouseCoord } = useContext(AppContext);
@@ -61,7 +62,7 @@ const Home = () => {
         <Image
           fill
           style={{ objectFit: "contain" }}
-          className="relative"
+          className="below relative"
           src="/images/home/lastname_3.png"
           alt="Last name third layer"
         />
@@ -119,5 +120,15 @@ const TextImagesContainer = styled.div`
     position: relative;
     top: 2.5%;
     left: 0.25%;
+  }
+  @media (max-width: ${theme.breakpoints.md}) {
+    img.above {
+      width: 12.5rem !important;
+      top: -10rem !important;
+      height: auto;
+    }
+    img.below {
+      width: 17.5rem !important;
+    }
   }
 `;
