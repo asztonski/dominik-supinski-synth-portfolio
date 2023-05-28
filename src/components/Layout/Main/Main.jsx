@@ -8,7 +8,6 @@ import Home from "@/components/Stages/Home/Home";
 import About from "@/components/Stages/About/About";
 import Portfolio from "@/components/Stages/Portfolio/Portfolio";
 import Contact from "@/components/Stages/Contact/Contact";
-import NavBar from "@/components/UI/NavBar/NavBar";
 
 const Main = () => {
   const { stage, isMobile } = useContext(AppContext);
@@ -16,11 +15,7 @@ const Main = () => {
   return (
     <StyledMain
       style={{
-        transform: `${
-          isMobile
-            ? `translateY(${(stage - 1) * -25}%)`
-            : `translateX(${(stage - 1) * -25}%)`
-        }`,
+        transform: `${isMobile ? `none` : `translateX(${(stage - 1) * -25}%)`}`,
         zIndex: `${stage === 3 ? "3" : "1"}`,
       }}
     >
@@ -42,7 +37,22 @@ const StyledMain = styled.main`
   height: 75vh;
   @media (max-width: ${theme.breakpoints.md}) {
     width: 100%;
-    height: 400vh;
+    height: auto;
     flex-direction: column;
+    padding: 0 0.5rem;
+    .home,
+    .portfolio {
+      height: 100vh !important;
+    }
+    .home {
+      .wrapper {
+        height: 30%;
+        max-height: 200px;
+      }
+    }
+    .contact {
+      padding: 0 0 4rem;
+      overflow: hidden;
+    }
   }
 `;

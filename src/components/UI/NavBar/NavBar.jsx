@@ -6,7 +6,7 @@ import { useContext } from "react";
 import { theme } from "@/api/theme";
 import { css } from "@emotion/react";
 
-const NavBar = () => {
+const NavBar = ({ style }) => {
   const { stage, setStage, stages, stageItems } = useContext(AppContext);
   // const [direction, setDirection] = useState(null);
 
@@ -35,7 +35,7 @@ const NavBar = () => {
   };
 
   return (
-    <NavBarWrapper>
+    <NavBarWrapper style={style}>
       <button
         onClick={leftBtnHandler}
         className={`${stage === 1 ? "disabled" : ""} arrow-btn`}

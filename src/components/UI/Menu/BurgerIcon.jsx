@@ -15,13 +15,13 @@ export default BurgerIcon;
 
 const StyledButton = styled.button`
   position: relative;
-  width: 2rem;
+  width: 1.75rem;
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 0.4rem;
   span {
     background-color: ${theme.colors.accent};
     width: 100%;
-    height: 3px;
+    height: 2px;
   }
 `;

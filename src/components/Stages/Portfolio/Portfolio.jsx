@@ -26,7 +26,7 @@ const Portfolio = () => {
   };
 
   return (
-    <PortfolioContainer withHeight>
+    <PortfolioContainer className="portfolio" withHeight>
       <CarouselWrapper>
         <Slider {...sliderSettings}>
           {carouselItems.map((item, id) => (

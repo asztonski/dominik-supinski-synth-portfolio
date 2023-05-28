@@ -8,7 +8,7 @@ import Form from "@/components/UI/Form/Form";
 
 const Contact = () => {
   return (
-    <AboutContainer className="bottom">
+    <ContactContainer className="bottom contact">
       <ContactInfoWrapper>
         <TitleBox>
           <h2>Contact</h2>
@@ -34,13 +34,13 @@ const Contact = () => {
       <PhotoBox>
         <Image src={img} alt="Drawnings of Dominik Supinski" />
       </PhotoBox>
-    </AboutContainer>
+    </ContactContainer>
   );
 };
 
 export default Contact;
 
-const AboutContainer = styled(Section)`
+const ContactContainer = styled(Section)`
   width: 100%;
 `;
 
@@ -63,6 +63,9 @@ const ContentWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   gap: 4rem;
+  @media (max-width: ${theme.breakpoints.md}) {
+    flex-direction: column;
+  }
 `;
 
 const InfoBox = styled.div`

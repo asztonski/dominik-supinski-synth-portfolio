@@ -4,18 +4,19 @@ import { theme } from "@/api/theme";
 import { useContext } from "react";
 import { AppContext } from "@/api/AppContext";
 
-const Section = ({ children, withHeight, column }) => {
+const Section = ({ children, withHeight, column, className }) => {
   const { isMobile } = useContext(AppContext);
 
   return (
     <StyledSection
+      className={className}
       style={{
         height: `${withHeight ? "100%" : "auto"}`,
       }}
     >
       <Wrapper
         style={{
-          height: `${!isMobile ? `${withHeight ? "50%" : "auto"}` : "75%"} `,
+          height: `${!isMobile ? `${withHeight ? "50%" : "auto"}` : ""} `,
           flexDirection: `${column ? "column" : "row"}`,
         }}
       >
@@ -60,7 +61,9 @@ const StyledSection = styled.section`
   }
   @media (max-width: ${theme.breakpoints.md}) {
     width: 100%;
-    height: 25% !important;
-    padding: 0 0.5rem;
+    padding: 0.5rem;
+    .pulse-title {
+      font-size: 1rem;
+    }
   }
 `;

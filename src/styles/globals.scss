@@ -1,9 +1,9 @@
 // Variables
 
 $sm: 600px;
+$md: 900px;
 
 /* Fonts */
-
 @font-face {
   font-family: Montserrat;
   src: url("/fonts/Montserrat-SemiBold.ttf");
@@ -32,15 +32,21 @@ body {
   font-weight: 300;
   overflow: hidden;
   position: relative;
+  @media (max-width: $md) {
+    overflow: scroll;
+  }
 }
 
 #__next {
   height: 100%;
-  display: flex;
-  flex-direction: column;
+  // display: flex;
+  // flex-direction: column;
   position: relative;
   overflow: hidden;
   cursor: url("../assets/cursors/cursor.png"), auto;
+  @media (max-width: $md) {
+    overflow: scroll;
+  }
 }
 
 h1,

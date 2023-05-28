@@ -17,7 +17,7 @@ const StyledWrapper = styled.div`
   justify-content: space-between;
   position: relative;
   @media (max-width: ${theme.breakpoints.md}) {
-    overflow: hidden;
+    /* overflow: hidden; */
     width: 100%;
   }
 `;

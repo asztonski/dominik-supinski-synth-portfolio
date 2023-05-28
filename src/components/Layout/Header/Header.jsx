@@ -10,8 +10,10 @@ const Header = () => {
 
   return (
     <StyledHeader>
-      <img src="images/logo.png" alt="Dominik Supinski's Logo" />
-      {!isMobile ? <HeaderNav className="header-nav" /> : <BurgerIcon />}
+      <HeaderWrapper>
+        <img src="images/logo.png" alt="Dominik Supinski's Logo" />
+        {!isMobile ? <HeaderNav className="header-nav" /> : <BurgerIcon />}
+      </HeaderWrapper>
     </StyledHeader>
   );
 };
@@ -19,12 +21,23 @@ const Header = () => {
 export default Header;
 
 const StyledHeader = styled.header`
+  width: 100%;
+  @media (max-width: ${theme.breakpoints.md}) {
+    position: fixed;
+    background: black;
+    z-index: 10;
+    width: 100%;
+  }
+`;
+
+const HeaderWrapper = styled.div`
+  width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
   overflow: hidden;
   width: 100%;
-  padding: 0 2rem;
+  padding: 1rem;
   img {
     z-index: 2;
   }
@@ -43,8 +56,6 @@ const StyledHeader = styled.header`
     }
   }
   @media (max-width: ${theme.breakpoints.md}) {
-    position: absolute;
-    padding: 0 1rem;
     img {
       width: 35%;
     }

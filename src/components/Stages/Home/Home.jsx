@@ -23,7 +23,7 @@ const Home = () => {
 `;
 
   return (
-    <HomeContainer withHeight column>
+    <HomeContainer className="home" withHeight column>
       <TextImagesContainer>
         <Image
           fill
