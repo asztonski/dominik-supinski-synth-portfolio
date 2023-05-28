@@ -27,11 +27,13 @@ export default Footer;
 const StyledFooter = styled.footer`
   width: 100%;
   z-index: 10;
+  padding: 1rem;
   @media (max-width: ${theme.breakpoints.md}) {
     background: black;
     bottom: 0;
     flex-shrink: 0;
     margin-top: 0.5rem;
+    padding: 0;
   }
 `;
 
@@ -40,6 +42,8 @@ const FooterWrapper = styled.div`
   justify-content: space-between;
   text-transform: uppercase;
   width: 100%;
-  padding: 1rem;
   z-index: 1;
+  @media (max-width: ${theme.breakpoints.md}) {
+    padding: 1rem;
+  }
 `;
