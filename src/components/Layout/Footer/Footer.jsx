@@ -27,7 +27,7 @@ export default Footer;
 const StyledFooter = styled.footer`
   width: 100%;
   z-index: 10;
-  padding: 1rem;
+  padding: 0 2rem;
   @media (max-width: ${theme.breakpoints.md}) {
     background: black;
     bottom: 0;
