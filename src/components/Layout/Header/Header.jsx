@@ -39,7 +39,6 @@ const HeaderWrapper = styled.div`
   align-items: center;
   overflow: hidden;
   width: 100%;
-  padding: 1rem;
   img {
     z-index: 2;
   }
@@ -58,6 +57,7 @@ const HeaderWrapper = styled.div`
     }
   }
   @media (max-width: ${theme.breakpoints.md}) {
+    padding: 1rem;
     img {
       width: 35%;
     }
