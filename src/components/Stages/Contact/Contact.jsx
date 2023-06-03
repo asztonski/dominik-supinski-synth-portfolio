@@ -2,47 +2,47 @@ import styled from "@emotion/styled";
 import { theme } from "@/api/theme";
 import img from "../../../../public/images/contact/dominik_vector.png";
 import Image from "next/image";
-import Section from "@/components/Layout/Section/Section";
+import Wrapper from "@/components/Layout/Wrapper/Wrapper";
 import { contactItems } from "@/api/contact";
 import Form from "@/components/UI/Form/Form";
 
 const Contact = () => {
   return (
-    <ContactContainer className="bottom contact">
-      <ContactInfoWrapper>
-        <TitleBox>
-          <h2>Contact</h2>
-        </TitleBox>
-        <ContentWrapper>
-          <InfoBox>
-            <p>Contact me. Let's create something amazing together!</p>
-            <ContactInfo>
-              {contactItems.map((item, id) => (
-                <ContactLink key={id}>
-                  <span>{item.name}</span>
-                  <div
-                    className="link-item"
-                    dangerouslySetInnerHTML={{ __html: item.link }}
-                  />
-                </ContactLink>
-              ))}
-            </ContactInfo>
-          </InfoBox>
-          <Form />
-        </ContentWrapper>
-      </ContactInfoWrapper>
-      <PhotoBox>
-        <Image src={img} alt="Drawnings of Dominik Supinski" />
-      </PhotoBox>
-    </ContactContainer>
+    <ContactSection className="bottom contact">
+      <Wrapper>
+        <ContactInfoWrapper>
+          <TitleBox>
+            <h2>Contact</h2>
+          </TitleBox>
+          <ContentWrapper>
+            <InfoBox>
+              <p>Contact me. Let's create something amazing together!</p>
+              <ContactInfo>
+                {contactItems.map((item, id) => (
+                  <ContactLink key={id}>
+                    <span>{item.name}</span>
+                    <div
+                      className="link-item"
+                      dangerouslySetInnerHTML={{ __html: item.link }}
+                    />
+                  </ContactLink>
+                ))}
+              </ContactInfo>
+            </InfoBox>
+            <Form />
+          </ContentWrapper>
+        </ContactInfoWrapper>
+        <PhotoBox>
+          <Image src={img} alt="Drawnings of Dominik Supinski" />
+        </PhotoBox>
+      </Wrapper>
+    </ContactSection>
   );
 };
 
 export default Contact;
 
-const ContactContainer = styled(Section)`
-  width: 100%;
-`;
+const ContactSection = styled.section``;
 
 const ContactInfoWrapper = styled.div`
   display: flex;
@@ -121,8 +121,8 @@ const PhotoBox = styled.div`
   max-width: 816px;
   img {
     position: absolute;
-    bottom: -35%;
-    right: 0;
+    inset: 0 0 -10% auto;
+    margin: auto 0;
     height: auto;
     width: 60vh;
     max-width: 625px;

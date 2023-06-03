@@ -19,7 +19,7 @@ const Main = () => {
         zIndex: `${stage === 3 ? "3" : "1"}`,
       }}
     >
-      <Home withHeight />
+      <Home />
       <About />
       <Portfolio />
       <Contact />
@@ -35,14 +35,49 @@ const StyledMain = styled.main`
   width: 400vw;
   transition: transform ${`${theme.transitionTime}s`} ease-in;
   height: 75vh;
+  /* overflow: hidden; */
+  section {
+    display: flex;
+    width: 25%;
+    width: 25%;
+    max-width: 2400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+    position: relative;
+    h2 {
+      font-size: clamp(3rem, 6vw, 9rem);
+    }
+    p {
+      line-height: 1.6;
+    }
+  }
+  .bottom {
+    justify-content: flex-end;
+  }
   @media (max-width: ${theme.breakpoints.md}) {
     width: 100%;
     height: auto;
     flex-direction: column;
-    padding: 0 0.5rem;
+    padding: 0 1rem;
+    overflow: auto;
+    section {
+      width: 100%;
+      height: auto;
+      /* padding: 0.5rem; */
+      min-height: 100vh;
+      /* max-height: 800px; */
+      /* padding: 1rem 0; */
+    }
+    div {
+      width: 100%;
+      max-width: 550px;
+    }
     .home,
     .portfolio {
-      height: 100vh !important;
+      /* height: 100vh !important; */
     }
     .home {
       .wrapper {
@@ -50,9 +85,18 @@ const StyledMain = styled.main`
         max-height: 200px;
       }
     }
+    .about,
+    .contact {
+      .wrapper {
+        width: auto !important;
+      }
+    }
     .contact {
       padding: 0 0 4rem;
       overflow: hidden;
+    }
+    .bottom {
+      justify-content: flex-start;
     }
   }
 `;

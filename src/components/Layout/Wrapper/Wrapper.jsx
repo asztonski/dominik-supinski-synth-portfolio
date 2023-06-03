@@ -1,9 +1,15 @@
 import styled from "@emotion/styled";
 import { theme } from "@/api/theme";
 
-const Wrapper = ({ children, style }) => {
+const Wrapper = ({ children, isMobile, withHeight, column }) => {
   return (
-    <StyledWrapper style={style} className="wrapper">
+    <StyledWrapper
+      style={{
+        height: `${!isMobile ? `${withHeight ? "50%" : "auto"}` : ""} `,
+        flexDirection: `${column && !isMobile ? "column" : "row"}`,
+      }}
+      className="wrapper"
+    >
       {children}
     </StyledWrapper>
   );
@@ -17,7 +23,6 @@ const StyledWrapper = styled.div`
   justify-content: space-between;
   position: relative;
   @media (max-width: ${theme.breakpoints.md}) {
-    /* overflow: hidden; */
-    width: 100%;
+    justify-content: center;
   }
 `;
