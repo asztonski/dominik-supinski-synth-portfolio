@@ -107,6 +107,10 @@ const InfoBox = styled.div`
 const SkillsBox = styled.div`
   width: 75%;
   margin-bottom: 4rem;
+  @media (max-width: ${theme.breakpoints.md}) {
+    width: 100% !important;
+    margin: 0 auto 4rem;
+  }
 `;
 
 const Skills = styled.ul`
@@ -116,6 +120,7 @@ const Skills = styled.ul`
   width: 90%;
   @media (max-width: ${theme.breakpoints.md}) {
     align-items: center;
+    /* width: auto; */
   }
 `;
 
@@ -133,6 +138,9 @@ const IconBox = styled.div`
   .colored {
     background: ${theme.colors.extra};
   }
+  @media (max-width: ${theme.breakpoints.md}) {
+    gap: 1.25rem;
+  }
 `;
 
 const SkillRow = styled.li`
@@ -146,7 +154,8 @@ const SkillRow = styled.li`
     }
   }
   @media (max-width: ${theme.breakpoints.md}) {
-    max-width: 360px;
+    /* max-width: 360px; */
+    width: 100%;
   }
 `;
 

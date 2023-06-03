@@ -48,7 +48,7 @@ const StyledMain = styled.main`
     margin: auto;
     position: relative;
     h2 {
-      font-size: clamp(3rem, 6vw, 9rem);
+      font-size: clamp(2.5rem, 8vw, 9rem);
     }
     p {
       line-height: 1.6;
@@ -66,18 +66,11 @@ const StyledMain = styled.main`
     section {
       width: 100%;
       height: auto;
-      /* padding: 0.5rem; */
       min-height: 100vh;
-      /* max-height: 800px; */
-      /* padding: 1rem 0; */
     }
     div {
       width: 100%;
       max-width: 550px;
-    }
-    .home,
-    .portfolio {
-      /* height: 100vh !important; */
     }
     .home {
       .wrapper {
@@ -85,14 +78,7 @@ const StyledMain = styled.main`
         max-height: 200px;
       }
     }
-    .about,
     .contact {
-      .wrapper {
-        width: auto !important;
-      }
-    }
-    .contact {
-      padding: 0 0 4rem;
       overflow: hidden;
     }
     .bottom {

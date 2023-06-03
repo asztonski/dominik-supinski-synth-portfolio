@@ -42,7 +42,13 @@ const Contact = () => {
 
 export default Contact;
 
-const ContactSection = styled.section``;
+const ContactSection = styled.section`
+  @media (max-width: ${theme.breakpoints.md}) {
+    .wrapper {
+      flex-direction: column !important;
+    }
+  }
+`;
 
 const ContactInfoWrapper = styled.div`
   display: flex;
@@ -112,6 +118,12 @@ const ContactLink = styled.div`
       }
     }
   }
+  @media (max-width: ${theme.breakpoints.md}) {
+    gap: 0;
+    .link-item {
+      width: auto;
+    }
+  }
 `;
 
 const PhotoBox = styled.div`
@@ -126,5 +138,15 @@ const PhotoBox = styled.div`
     height: auto;
     width: 60vh;
     max-width: 625px;
+  }
+  @media (max-width: ${theme.breakpoints.md}) {
+    align-self: center;
+    width: 75% !important;
+    margin: 1rem 0 3rem;
+    img {
+      position: unset;
+      width: 100%;
+      inset: 0;
+    }
   }
 `;

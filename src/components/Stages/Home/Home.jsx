@@ -135,12 +135,15 @@ const TextImagesContainer = styled.div`
   }
   @media (max-width: ${theme.breakpoints.md}) {
     img.above {
-      width: 12.5rem !important;
-      top: -10rem !important;
+      width: 60% !important;
+      max-width: 600px;
+      /* top !important; */
+      bottom: -45% !important;
       height: auto;
     }
     img.below {
-      width: 17.5rem !important;
+      width: 80% !important;
+      max-width: 600px;
     }
   }
 `;

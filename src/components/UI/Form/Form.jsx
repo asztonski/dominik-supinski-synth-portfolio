@@ -181,4 +181,11 @@ const FormContainer = styled.form`
   button {
     align-self: flex-start;
   }
+  @media (max-width: ${theme.breakpoints.md}) {
+    width: 95%;
+    margin: auto;
+    .error {
+      white-space: nowrap;
+    }
+  }
 `;

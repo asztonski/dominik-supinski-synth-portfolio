@@ -37,6 +37,9 @@ const StyledButton = styled(Button)`
     background: ${theme.colors.accent};
   }
   @media (max-width: ${theme.breakpoints.md}) {
-    align-self: center;
+    align-self: center !important;
+    padding: 0.85rem 1rem;
+    width: 100%;
+    max-width: 250px;
   }
 `;
