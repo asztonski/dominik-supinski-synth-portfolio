@@ -9,6 +9,8 @@ import Home from "@/components/Stages/Home/Home";
 import About from "@/components/Stages/About/About";
 import Portfolio from "@/components/Stages/Portfolio/Portfolio";
 import Contact from "@/components/Stages/Contact/Contact";
+// UI
+import Separator from "@/components/UI/Separator/Separator";
 
 const Main = () => {
   const { stage, setStage, isMobile } = useContext(AppContext);
@@ -27,27 +29,21 @@ const Main = () => {
   });
 
   useEffect(() => {
-    if (isHomeInView) {
-      setStage(1);
-    }
-    if (isAboutInView) {
-      setStage(2);
-    }
-    if (isPortfolioInView) {
-      setStage(3);
-    }
-    if (isContactInView) {
-      setStage(4);
+    if (isMobile) {
+      if (isHomeInView) {
+        setStage(1);
+      }
+      if (isAboutInView) {
+        setStage(2);
+      }
+      if (isPortfolioInView) {
+        setStage(3);
+      }
+      if (isContactInView) {
+        setStage(4);
+      }
     }
   });
-
-  const Separator = () => {
-    return <StyledSeparator />;
-  };
-
-  useEffect(() => {
-    console.log(stage);
-  }, [stage]);
 
   return (
     <StyledMain
@@ -57,12 +53,12 @@ const Main = () => {
       }}
     >
       <Home observer={home} id="home" />
-      <Separator />
-      <About observer={about} id="about" />
-      <Separator />
-      <Portfolio observer={portfolio} id="portfolio" />
-      <Separator />
-      <Contact observer={contact} id="contact" />
+      <Separator margin={3} id="about" />
+      <About observer={about} />
+      <Separator margin={0} id="portfolio" />
+      <Portfolio observer={portfolio} />
+      <Separator margin={3} id="contact" />
+      <Contact observer={contact} />
     </StyledMain>
   );
 };
@@ -124,14 +120,5 @@ const StyledMain = styled.main`
     .bottom {
       justify-content: flex-start;
     }
-  }
-`;
-
-const StyledSeparator = styled.div`
-  width: 100%;
-  height: 1rem;
-  display: none;
-  @media (max-width: ${theme.breakpoints.md}) {
-    display: block;
   }
 `;
