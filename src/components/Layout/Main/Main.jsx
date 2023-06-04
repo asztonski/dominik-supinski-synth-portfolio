@@ -13,10 +13,18 @@ import Contact from "@/components/Stages/Contact/Contact";
 const Main = () => {
   const { stage, setStage, isMobile } = useContext(AppContext);
 
-  const [home, isHomeInView] = useInView();
-  const [about, isAboutInView] = useInView();
-  const [portfolio, isPortfolioInView] = useInView();
-  const [contact, isContactInView] = useInView();
+  const [home, isHomeInView] = useInView({
+    threshold: 0.5,
+  });
+  const [about, isAboutInView] = useInView({
+    threshold: 0.5,
+  });
+  const [portfolio, isPortfolioInView] = useInView({
+    threshold: 0.5,
+  });
+  const [contact, isContactInView] = useInView({
+    threshold: 0.25,
+  });
 
   useEffect(() => {
     if (isHomeInView) {
