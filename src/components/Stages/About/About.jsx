@@ -4,8 +4,9 @@ import { theme } from "@/api/theme";
 import img from "../../../../public/images/about/dominik.png";
 import Image from "next/image";
 import { AppContext } from "@/api/AppContext";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import Wrapper from "@/components/Layout/Wrapper/Wrapper";
+import { useInView } from "react-intersection-observer";
 
 const SKILLS = [
   ["HTML", 4],
@@ -30,11 +31,18 @@ const renderHandler = (colorIcons, id) => {
   ];
 };
 
-const About = () => {
+const About = ({ id }) => {
   const { stage, setStage, isMobile } = useContext(AppContext);
+  const { ref, inView } = useInView({
+    threshold: 0,
+  });
+
+  useEffect(() => {
+    isMobile && inView && setStage(2);
+  }, [inView]);
 
   return (
-    <AboutSection className="bottom">
+    <AboutSection ref={ref} id={id} className="bottom">
       <Wrapper>
         <InfoBox>
           <h2>About me</h2>
@@ -96,16 +104,18 @@ const InfoBox = styled.div`
   }
   p {
     margin: 2rem 0 4rem;
+    width: 85%;
   }
   @media (max-width: ${theme.breakpoints.md}) {
     p {
       margin: 2rem 0 0;
+      width: auto;
     }
   }
 `;
 
 const SkillsBox = styled.div`
-  width: 75%;
+  width: 50%;
   margin-bottom: 4rem;
   @media (max-width: ${theme.breakpoints.md}) {
     width: 100% !important;

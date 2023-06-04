@@ -103,7 +103,7 @@ const AppContextProvider = ({ children }) => {
     const handleWheel = debounce((e) => {
       const deltaY = e.deltaY;
 
-      if (!isModalRendered) {
+      if (!isModalRendered && !isMobile) {
         if (deltaY < 0 && stage > 1) {
           setStage(stage - 1);
         } else if (deltaY > 0 && stage < stages) {

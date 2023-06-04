@@ -7,20 +7,8 @@ import { theme } from "@/api/theme";
 import { css } from "@emotion/react";
 
 const NavBar = ({ style }) => {
-  const { stage, setStage, stages, stageItems } = useContext(AppContext);
-  // const [direction, setDirection] = useState(null);
-
-  // useEffect(() => {
-  //   setPrevStage(stage);
-  //   if (stage > prevStage) {
-  //     setDirection("increasing");
-  //   } else if (stage < prevStage) {
-  //     setDirection("decreasing");
-  //   }
-  //   console.log(direction);
-  // }, [stage, prevStage]);
-
-  // Button handlers
+  const { stage, setStage, stages, stageItems, isMobile } =
+    useContext(AppContext);
 
   const leftBtnHandler = () => {
     if (stage > 1) {

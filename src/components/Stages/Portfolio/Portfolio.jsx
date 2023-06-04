@@ -7,12 +7,22 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { carouselItems } from "@/api/portfolio";
 import { AppContext } from "@/api/AppContext";
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import Modal from "@/components/UI/Modal/Modal";
+import { useInView } from "react-intersection-observer";
 
-const Portfolio = () => {
-  const { sliderSettings, isModalRendered, setIsModalRendered, isMobile } =
-    useContext(AppContext);
+const Portfolio = ({ id }) => {
+  const {
+    sliderSettings,
+    isModalRendered,
+    setIsModalRendered,
+    isMobile,
+    setStage,
+  } = useContext(AppContext);
+
+  const { ref, inView } = useInView({
+    threshold: 0,
+  });
 
   const [selectedItem, setSelectedItem] = useState();
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -25,8 +35,12 @@ const Portfolio = () => {
     }, 200);
   };
 
+  useEffect(() => {
+    isMobile && inView && setStage(3);
+  }, [inView]);
+
   return (
-    <PortfolioSection className="portfolio">
+    <PortfolioSection ref={ref} id={id} className="portfolio">
       <Wrapper withHeight>
         {isMobile && <h2>Portfolio</h2>}
         <CarouselWrapper>

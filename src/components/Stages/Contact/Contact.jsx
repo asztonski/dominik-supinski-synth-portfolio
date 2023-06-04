@@ -5,10 +5,23 @@ import Image from "next/image";
 import Wrapper from "@/components/Layout/Wrapper/Wrapper";
 import { contactItems } from "@/api/contact";
 import Form from "@/components/UI/Form/Form";
+import { useInView } from "react-intersection-observer";
+import { useEffect, useContext } from "react";
+import { AppContext } from "@/api/AppContext";
 
-const Contact = () => {
+const Contact = ({ id }) => {
+  const { setStage, isMobile } = useContext(AppContext);
+
+  const { ref, inView } = useInView({
+    threshold: 0,
+  });
+
+  useEffect(() => {
+    isMobile && inView && setStage(4);
+  }, [inView]);
+
   return (
-    <ContactSection className="bottom contact">
+    <ContactSection ref={ref} id={id} className="bottom contact">
       <Wrapper>
         <ContactInfoWrapper>
           <TitleBox>
@@ -142,7 +155,7 @@ const PhotoBox = styled.div`
   @media (max-width: ${theme.breakpoints.md}) {
     align-self: center;
     width: 75% !important;
-    margin: 1rem 0 3rem;
+    margin: 2rem 0 0;
     img {
       position: unset;
       width: 100%;

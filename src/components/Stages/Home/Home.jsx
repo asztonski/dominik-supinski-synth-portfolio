@@ -2,15 +2,20 @@
 import styled from "@emotion/styled";
 import Image from "next/image";
 import { AppContext } from "@/api/AppContext";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { keyframes, css } from "@emotion/react";
 import { theme } from "@/api/theme";
 import Wrapper from "@/components/Layout/Wrapper/Wrapper";
+import { useInView } from "react-intersection-observer";
 
-const Home = () => {
-  const { mouseCoord } = useContext(AppContext);
+const Home = ({ id }) => {
+  const { mouseCoord, setStage, isMobile } = useContext(AppContext);
   let mouseX = mouseCoord.x / 150;
   let mouseY = mouseCoord.y / 150;
+
+  const { ref, inView } = useInView({
+    threshold: 0,
+  });
 
   const pulse = keyframes`
   0%, 100% {
@@ -22,8 +27,12 @@ const Home = () => {
   }
 `;
 
+  useEffect(() => {
+    isMobile && inView && setStage(1);
+  }, [inView]);
+
   return (
-    <HomeSection>
+    <HomeSection ref={ref} id={id}>
       <Wrapper column withHeight>
         <TextImagesContainer>
           <Image

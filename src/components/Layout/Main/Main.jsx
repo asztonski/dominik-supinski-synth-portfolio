@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import styled from "@emotion/styled";
 import { AppContext } from "@/api/AppContext";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { theme } from "@/api/theme";
 // STAGES
 import Home from "@/components/Stages/Home/Home";
@@ -12,6 +12,10 @@ import Contact from "@/components/Stages/Contact/Contact";
 const Main = () => {
   const { stage, isMobile } = useContext(AppContext);
 
+  useEffect(() => {
+    console.log(stage);
+  }, [stage]);
+
   return (
     <StyledMain
       style={{
@@ -19,10 +23,10 @@ const Main = () => {
         zIndex: `${stage === 3 ? "3" : "1"}`,
       }}
     >
-      <Home />
-      <About />
-      <Portfolio />
-      <Contact />
+      <Home id="home" />
+      <About id="about" />
+      <Portfolio id="portfolio" />
+      <Contact id="contact" />
     </StyledMain>
   );
 };
