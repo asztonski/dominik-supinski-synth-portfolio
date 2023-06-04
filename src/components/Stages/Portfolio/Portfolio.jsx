@@ -74,9 +74,12 @@ const PortfolioSection = styled.section`
     }
   }
   @media (max-width: ${theme.breakpoints.md}) {
+    margin: 4rem 0 !important;
+    min-height: unset !important;
+    justify-content: flex-start !important;
     .wrapper {
       flex-direction: column !important;
-      height: 100% !important;
+      height: auto !important;
     }
   }
 `;

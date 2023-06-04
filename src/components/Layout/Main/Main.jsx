@@ -55,7 +55,7 @@ const Main = () => {
       <Home observer={home} id="home" />
       <Separator margin={3} id="about" />
       <About observer={about} />
-      <Separator margin={-4} id="portfolio" />
+      <Separator margin={2} id="portfolio" />
       <Portfolio observer={portfolio} />
       <Separator margin={3} id="contact" />
       <Contact observer={contact} />

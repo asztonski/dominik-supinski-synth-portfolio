@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import CustomButton from "@/components/UI/Button/Button";
+import CustomLink from "@/components/UI/Link/StyledLink";
 import { theme } from "@/api/theme";
 import img from "../../../../public/images/about/dominik.png";
 import Image from "next/image";
@@ -60,10 +61,13 @@ const About = ({ id, observer }) => {
               ))}
             </Skills>
           </SkillsBox>
-          <CustomButton
-            onClick={() => setStage(stage + 1)}
-            content="SEE PORTFOLIO"
-          />
+          {!isMobile && (
+            <CustomButton
+              onClick={() => setStage(stage + 1)}
+              content="see portfolio"
+            />
+          )}
+          {isMobile && <CustomLink content="see portfolio" href="#portfolio" />}
         </InfoBox>
         {!isMobile && (
           <PhotoBox>
