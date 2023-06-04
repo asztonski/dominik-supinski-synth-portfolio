@@ -9,20 +9,10 @@ import { carouselItems } from "@/api/portfolio";
 import { AppContext } from "@/api/AppContext";
 import { useContext, useState, useEffect } from "react";
 import Modal from "@/components/UI/Modal/Modal";
-import { useInView } from "react-intersection-observer";
 
-const Portfolio = ({ id }) => {
-  const {
-    sliderSettings,
-    isModalRendered,
-    setIsModalRendered,
-    isMobile,
-    setStage,
-  } = useContext(AppContext);
-
-  const { ref, inView } = useInView({
-    threshold: 0,
-  });
+const Portfolio = ({ id, observer }) => {
+  const { sliderSettings, isModalRendered, setIsModalRendered, isMobile } =
+    useContext(AppContext);
 
   const [selectedItem, setSelectedItem] = useState();
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -35,12 +25,8 @@ const Portfolio = ({ id }) => {
     }, 200);
   };
 
-  useEffect(() => {
-    isMobile && inView && setStage(3);
-  }, [inView]);
-
   return (
-    <PortfolioSection ref={ref} id={id} className="portfolio">
+    <PortfolioSection ref={observer} id={id} className="portfolio">
       <Wrapper withHeight>
         {isMobile && <h2>Portfolio</h2>}
         <CarouselWrapper>

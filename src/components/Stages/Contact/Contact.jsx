@@ -5,23 +5,10 @@ import Image from "next/image";
 import Wrapper from "@/components/Layout/Wrapper/Wrapper";
 import { contactItems } from "@/api/contact";
 import Form from "@/components/UI/Form/Form";
-import { useInView } from "react-intersection-observer";
-import { useEffect, useContext } from "react";
-import { AppContext } from "@/api/AppContext";
 
-const Contact = ({ id }) => {
-  const { setStage, isMobile } = useContext(AppContext);
-
-  const { ref, inView } = useInView({
-    threshold: 0,
-  });
-
-  useEffect(() => {
-    isMobile && inView && setStage(4);
-  }, [inView]);
-
+const Contact = ({ id, observer }) => {
   return (
-    <ContactSection ref={ref} id={id} className="bottom contact">
+    <ContactSection ref={observer} id={id} className="bottom contact">
       <Wrapper>
         <ContactInfoWrapper>
           <TitleBox>
