@@ -19,6 +19,7 @@ const StyledButton = styled.button`
   display: flex;
   flex-direction: column;
   gap: 0.4rem;
+  display: none;
   span {
     background-color: ${theme.colors.accent};
     width: 100%;

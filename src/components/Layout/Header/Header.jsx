@@ -58,6 +58,7 @@ const HeaderWrapper = styled.div`
   }
   @media (max-width: ${theme.breakpoints.md}) {
     padding: 1rem;
+    justify-content: center;
     img {
       width: 12.5rem;
     }
