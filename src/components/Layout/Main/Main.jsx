@@ -13,7 +13,7 @@ import Contact from "@/components/Stages/Contact/Contact";
 import Separator from "@/components/UI/Separator/Separator";
 
 const Main = () => {
-  const { stage, setStage, isMobile } = useContext(AppContext);
+  const { stage, setStage, isMobile, isModalRendered } = useContext(AppContext);
 
   const [home, isHomeInView] = useInView({
     threshold: 0.5,

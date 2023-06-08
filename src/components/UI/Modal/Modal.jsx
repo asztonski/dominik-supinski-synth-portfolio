@@ -16,13 +16,14 @@ to {
 `;
 
 const Modal = ({ selectedItem, style, setIsModalOpen }) => {
-  const { setIsModalRendered } = useContext(AppContext);
+  const { setIsModalRendered, isModalRendered } = useContext(AppContext);
 
   const closeBtnHandler = () => {
     setIsModalOpen(false);
     setTimeout(() => {
       setIsModalRendered(false);
     }, 300);
+    console.log(isModalRendered);
   };
 
   return (
@@ -67,6 +68,13 @@ const ItemModal = styled.div`
   animation: ${blurAnim} 0.3s ease-in forwards;
   transition: opacity 0.2s ease-in-out;
   overflow: hidden;
+  @media (max-width: ${theme.breakpoints.md}) {
+    position: fixed;
+    width: 90% !important;
+    height: 90%;
+    inset: 0;
+    margin: auto;
+  }
 `;
 
 const ModalWindow = styled.div`
@@ -80,7 +88,7 @@ const ModalWindow = styled.div`
   /* overflow: hidden; */
   border: solid ${theme.colors.accent};
   border-width: 3rem 0.5rem 0.5rem;
-  padding: 0.1rem 0;
+  padding: 0.25rem 0 1rem;
   button {
     right: 0;
     top: -5%;
@@ -102,6 +110,9 @@ const ModalWindow = styled.div`
     margin: auto;
     opacity: 0.9;
     z-index: -1;
+  }
+  @media (max-width: ${theme.breakpoints.md}) {
+    border-width: 2rem 0.25rem 0.25rem;
   }
 `;
 
@@ -135,6 +146,9 @@ const ModalContent = styled.div`
     padding: 0.5rem 1rem;
     font-weight: bold;
     /* border: 1px solid ${theme.colors.extra}; */
+  }
+  @media (max-width: ${theme.breakpoints.md}) {
+    padding: 0.5rem;
   }
 `;
 
