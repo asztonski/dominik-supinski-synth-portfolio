@@ -19,7 +19,7 @@ const StyledCloseBtn = styled.button`
   span {
     width: 4px;
     height: 100%;
-    background: ${theme.colors.extra};
+    background: ${theme.colors.primary};
     border-radius: 5px;
     position: absolute;
     inset: 0;
@@ -30,6 +30,12 @@ const StyledCloseBtn = styled.button`
     }
     &:last-of-type {
       transform: rotate(-45deg);
+    }
+  }
+  @media (max-width: ${theme.breakpoints.md}) {
+    height: 25px;
+    span {
+      width: 3px;
     }
   }
 `;

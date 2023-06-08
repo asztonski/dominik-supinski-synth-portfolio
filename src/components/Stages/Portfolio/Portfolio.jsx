@@ -91,7 +91,7 @@ const CarouselWrapper = styled.div`
   align-self: center;
   margin: 0 auto;
   max-width: none !important;
-  width: 90vw !important;
+  width: 90%;
   div {
     max-width: inherit;
   }
