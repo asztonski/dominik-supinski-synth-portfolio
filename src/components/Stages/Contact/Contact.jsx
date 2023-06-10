@@ -5,6 +5,7 @@ import Image from "next/image";
 import Wrapper from "@/components/Layout/Wrapper/Wrapper";
 import { contactItems } from "@/api/contact";
 import Form from "@/components/UI/Form/Form";
+import ContactSvg from "@/assets/svg/ContactSvg";
 
 const Contact = ({ id, observer }) => {
   return (
@@ -33,7 +34,8 @@ const Contact = ({ id, observer }) => {
           </ContentWrapper>
         </ContactInfoWrapper>
         <PhotoBox>
-          <Image src={img} alt="Drawnings of Dominik Supinski" />
+          {/* <Image src={img} alt="Drawnings of Dominik Supinski" /> */}
+          <ContactSvg />
         </PhotoBox>
       </Wrapper>
     </ContactSection>
@@ -131,9 +133,10 @@ const PhotoBox = styled.div`
   pointer-events: none;
   width: 50%;
   max-width: 816px;
-  img {
+  img,
+  svg {
     position: absolute;
-    inset: 0 0 -10% auto;
+    inset: 0 0 -20% auto;
     margin: auto 0;
     height: auto;
     width: 60vh;
