@@ -1,11 +1,12 @@
 import styled from "@emotion/styled";
 import CustomButton from "@/components/UI/Button/Button";
+import CustomLink from "@/components/UI/Link/StyledLink";
 import { theme } from "@/api/theme";
 import img from "../../../../public/images/about/dominik.png";
 import Image from "next/image";
 import { AppContext } from "@/api/AppContext";
 import { useContext } from "react";
-import Section from "@/components/Layout/Section/Section";
+import Wrapper from "@/components/Layout/Wrapper/Wrapper";
 
 const SKILLS = [
   ["HTML", 4],
@@ -30,46 +31,63 @@ const renderHandler = (colorIcons, id) => {
   ];
 };
 
-const About = () => {
-  const { stage, setStage } = useContext(AppContext);
+const About = ({ id, observer }) => {
+  const { stage, setStage, isMobile } = useContext(AppContext);
 
   return (
-    <AboutContainer className="bottom">
-      <InfoBox>
-        <h2>About me</h2>
-        <p>
-          My name is Dominik Supiński. I create websites and web applications. I
-          love exploring new digital horizons. Get to know me through my work.
-          Let's create something amazing together!
-        </p>
-        <SkillsBox>
-          <Skills>
-            {SKILLS.map((skill, id) => (
-              <SkillRow key={id}>
-                <div className="skill-title">
-                  <span>{skill[0]}</span>
-                </div>
-                <IconBox>{renderHandler(skill[1], id)}</IconBox>
-              </SkillRow>
-            ))}
-          </Skills>
-        </SkillsBox>
-        <CustomButton
-          onClick={() => setStage(stage + 1)}
-          content="SEE PORTFOLIO"
-        />
-      </InfoBox>
-      <PhotoBox>
-        <Image src={img} alt="Photo of Dominik Supinski" />
-      </PhotoBox>
-    </AboutContainer>
+    <AboutSection ref={observer} id={id} className="bottom">
+      <Wrapper>
+        <InfoBox>
+          <h2>About me</h2>
+          <p>
+            My name is Dominik and I like to create websites and web apps. I
+            love exploring new digital horizons. Get to know me through my work.
+            Let's create something amazing together!
+          </p>
+          {isMobile && (
+            <PhotoBox>
+              <Image src={img} alt="Photo of Dominik Supinski" />
+            </PhotoBox>
+          )}
+          <SkillsBox>
+            <Skills>
+              {SKILLS.map((skill, id) => (
+                <SkillRow key={id}>
+                  <div className="skill-title">
+                    <span>{skill[0]}</span>
+                  </div>
+                  <IconBox>{renderHandler(skill[1], id)}</IconBox>
+                </SkillRow>
+              ))}
+            </Skills>
+          </SkillsBox>
+          {!isMobile && (
+            <CustomButton
+              onClick={() => setStage(stage + 1)}
+              content="see portfolio"
+            />
+          )}
+          {isMobile && <CustomLink content="see portfolio" href="#portfolio" />}
+        </InfoBox>
+        {!isMobile && (
+          <PhotoBox>
+            <Image src={img} alt="Photo of Dominik Supinski" />
+          </PhotoBox>
+        )}
+      </Wrapper>
+    </AboutSection>
   );
 };
 
 export default About;
 
-const AboutContainer = styled(Section)`
+const AboutSection = styled.section`
   width: 100%;
+  @media (max-width: ${theme.breakpoints.md}) {
+    .wrapper {
+      flex-direction: column;
+    }
+  }
 `;
 
 const InfoBox = styled.div`
@@ -82,12 +100,23 @@ const InfoBox = styled.div`
   }
   p {
     margin: 2rem 0 4rem;
+    width: 85%;
+  }
+  @media (max-width: ${theme.breakpoints.md}) {
+    p {
+      margin: 2rem 0 0;
+      width: auto;
+    }
   }
 `;
 
 const SkillsBox = styled.div`
-  width: 75%;
+  width: 50%;
   margin-bottom: 4rem;
+  @media (max-width: ${theme.breakpoints.md}) {
+    width: 100% !important;
+    margin: 0 auto 4rem;
+  }
 `;
 
 const Skills = styled.ul`
@@ -95,6 +124,10 @@ const Skills = styled.ul`
   flex-direction: column;
   gap: 1rem;
   width: 90%;
+  @media (max-width: ${theme.breakpoints.md}) {
+    align-items: center;
+    /* width: auto; */
+  }
 `;
 
 const IconBox = styled.div`
@@ -111,6 +144,9 @@ const IconBox = styled.div`
   .colored {
     background: ${theme.colors.extra};
   }
+  @media (max-width: ${theme.breakpoints.md}) {
+    gap: 1.25rem;
+  }
 `;
 
 const SkillRow = styled.li`
@@ -118,7 +154,14 @@ const SkillRow = styled.li`
   display: flex;
   justify-content: space-between;
   .skill-title {
-    width: 8rem;
+    span {
+      width: 5rem;
+      display: block;
+    }
+  }
+  @media (max-width: ${theme.breakpoints.md}) {
+    /* max-width: 360px; */
+    width: 100%;
   }
 `;
 
@@ -129,10 +172,20 @@ const PhotoBox = styled.div`
   max-width: 816px;
   img {
     position: absolute;
-    bottom: -35%;
-    right: 0;
+    inset: 0 0 -10% auto;
+    margin: auto 0;
     height: auto;
     width: 60vh;
     max-width: 625px;
+  }
+  @media (max-width: ${theme.breakpoints.md}) {
+    align-self: center;
+    width: 75% !important;
+    margin: 1rem 0 3rem;
+    img {
+      position: unset;
+      width: 100%;
+      inset: 0;
+    }
   }
 `;

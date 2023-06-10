@@ -2,46 +2,52 @@ import styled from "@emotion/styled";
 import { theme } from "@/api/theme";
 import img from "../../../../public/images/contact/dominik_vector.png";
 import Image from "next/image";
-import Section from "@/components/Layout/Section/Section";
+import Wrapper from "@/components/Layout/Wrapper/Wrapper";
 import { contactItems } from "@/api/contact";
 import Form from "@/components/UI/Form/Form";
 
-const Contact = () => {
+const Contact = ({ id, observer }) => {
   return (
-    <AboutContainer className="bottom">
-      <ContactInfoWrapper>
-        <TitleBox>
-          <h2>Contact</h2>
-        </TitleBox>
-        <ContentWrapper>
-          <InfoBox>
-            <p>Contact me. Let's create something amazing together!</p>
-            <ContactInfo>
-              {contactItems.map((item, id) => (
-                <ContactLink key={id}>
-                  <span>{item.name}</span>
-                  <div
-                    className="link-item"
-                    dangerouslySetInnerHTML={{ __html: item.link }}
-                  />
-                </ContactLink>
-              ))}
-            </ContactInfo>
-          </InfoBox>
-          <Form />
-        </ContentWrapper>
-      </ContactInfoWrapper>
-      <PhotoBox>
-        <Image src={img} alt="Drawnings of Dominik Supinski" />
-      </PhotoBox>
-    </AboutContainer>
+    <ContactSection ref={observer} id={id} className="bottom contact">
+      <Wrapper>
+        <ContactInfoWrapper>
+          <TitleBox>
+            <h2>Contact</h2>
+          </TitleBox>
+          <ContentWrapper>
+            <InfoBox>
+              <p>Contact me. Let's create something amazing together!</p>
+              <ContactInfo>
+                {contactItems.map((item, id) => (
+                  <ContactLink key={id}>
+                    <span>{item.name}</span>
+                    <div
+                      className="link-item"
+                      dangerouslySetInnerHTML={{ __html: item.link }}
+                    />
+                  </ContactLink>
+                ))}
+              </ContactInfo>
+            </InfoBox>
+            <Form />
+          </ContentWrapper>
+        </ContactInfoWrapper>
+        <PhotoBox>
+          <Image src={img} alt="Drawnings of Dominik Supinski" />
+        </PhotoBox>
+      </Wrapper>
+    </ContactSection>
   );
 };
 
 export default Contact;
 
-const AboutContainer = styled(Section)`
-  width: 100%;
+const ContactSection = styled.section`
+  @media (max-width: ${theme.breakpoints.md}) {
+    .wrapper {
+      flex-direction: column !important;
+    }
+  }
 `;
 
 const ContactInfoWrapper = styled.div`
@@ -63,6 +69,9 @@ const ContentWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   gap: 4rem;
+  @media (max-width: ${theme.breakpoints.md}) {
+    flex-direction: column;
+  }
 `;
 
 const InfoBox = styled.div`
@@ -109,6 +118,12 @@ const ContactLink = styled.div`
       }
     }
   }
+  @media (max-width: ${theme.breakpoints.md}) {
+    gap: 0;
+    .link-item {
+      width: auto;
+    }
+  }
 `;
 
 const PhotoBox = styled.div`
@@ -118,10 +133,20 @@ const PhotoBox = styled.div`
   max-width: 816px;
   img {
     position: absolute;
-    bottom: -35%;
-    right: 0;
+    inset: 0 0 -10% auto;
+    margin: auto 0;
     height: auto;
     width: 60vh;
     max-width: 625px;
+  }
+  @media (max-width: ${theme.breakpoints.md}) {
+    align-self: center;
+    width: 75% !important;
+    margin: 2rem 0 0;
+    img {
+      position: unset;
+      width: 100%;
+      inset: 0;
+    }
   }
 `;

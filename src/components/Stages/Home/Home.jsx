@@ -1,13 +1,13 @@
 /** @jsxImportSource @emotion/react */
 import styled from "@emotion/styled";
-import Section from "@/components/Layout/Section/Section";
 import Image from "next/image";
 import { AppContext } from "@/api/AppContext";
 import { useContext } from "react";
 import { keyframes, css } from "@emotion/react";
 import { theme } from "@/api/theme";
+import Wrapper from "@/components/Layout/Wrapper/Wrapper";
 
-const Home = () => {
+const Home = ({ id, observer }) => {
   const { mouseCoord } = useContext(AppContext);
   let mouseX = mouseCoord.x / 150;
   let mouseY = mouseCoord.y / 150;
@@ -23,62 +23,64 @@ const Home = () => {
 `;
 
   return (
-    <HomeContainer withHeight column>
-      <TextImagesContainer>
-        <Image
-          fill
-          style={{ objectFit: "contain" }}
-          className="above"
-          src="/images/home/name_1.png"
-          alt="First name first layer"
-        />
-        <Image
-          fill
-          style={{ objectFit: "contain" }}
-          className="above"
-          src="/images/home/name_2.png"
-          alt="First name first layer"
-        />
-        <Image
-          fill
-          style={{
-            objectFit: "contain",
-            transform: `translate(${mouseX}px, ${mouseY}px)`,
-          }}
-          className="below"
-          src="/images/home/lastname_1.png"
-          alt="Last name first layer"
-        />
-        <Image
-          fill
-          style={{
-            objectFit: "contain",
-            transform: `translate(${-mouseX}px, ${-mouseY}px)`,
-          }}
-          className="below second"
-          src="/images/home/lastname_2.png"
-          alt="Last name second layer"
-        />
-        <Image
-          fill
-          style={{ objectFit: "contain" }}
-          className="below relative"
-          src="/images/home/lastname_3.png"
-          alt="Last name third layer"
-        />
-      </TextImagesContainer>
-      <h2
-        css={css`
-          animation: ${pulse} 2s ease infinite;
-          pointer-events: none;
-          width: max-content;
-          margin: auto;
-        `}
-        className="pulse-title"
-      >
-        front end developer
-      </h2>
-    </HomeContainer>
+    <HomeSection ref={observer} id={id}>
+      <Wrapper column withHeight>
+        <TextImagesContainer>
+          <Image
+            fill
+            style={{ objectFit: "contain" }}
+            className="above"
+            src="/images/home/name_1.png"
+            alt="First name first layer"
+          />
+          <Image
+            fill
+            style={{ objectFit: "contain" }}
+            className="above"
+            src="/images/home/name_2.png"
+            alt="First name first layer"
+          />
+          <Image
+            fill
+            style={{
+              objectFit: "contain",
+              transform: `translate(${mouseX}px, ${mouseY}px)`,
+            }}
+            className="below"
+            src="/images/home/lastname_1.png"
+            alt="Last name first layer"
+          />
+          <Image
+            fill
+            style={{
+              objectFit: "contain",
+              transform: `translate(${-mouseX}px, ${-mouseY}px)`,
+            }}
+            className="below second"
+            src="/images/home/lastname_2.png"
+            alt="Last name second layer"
+          />
+          <Image
+            fill
+            style={{ objectFit: "contain" }}
+            className="below relative"
+            src="/images/home/lastname_3.png"
+            alt="Last name third layer"
+          />
+        </TextImagesContainer>
+        <h2
+          css={css`
+            animation: ${pulse} 2s ease infinite;
+            pointer-events: none;
+            width: max-content;
+            margin: auto;
+          `}
+          className="pulse-title"
+        >
+          front end developer
+        </h2>
+      </Wrapper>
+    </HomeSection>
   );
 };
 
@@ -86,7 +88,17 @@ export default Home;
 
 // STYLES
 
-const HomeContainer = styled(Section)``;
+const HomeSection = styled.section`
+  height: 100%;
+  .pulse-title {
+    font-size: 2rem;
+  }
+  @media (max-width: ${theme.breakpoints.md}) {
+    .pulse-title {
+      font-size: 1rem;
+    }
+  }
+`;
 
 const TextImagesContainer = styled.div`
   width: inherit;
@@ -123,12 +135,15 @@ const TextImagesContainer = styled.div`
   }
   @media (max-width: ${theme.breakpoints.md}) {
     img.above {
-      width: 12.5rem !important;
-      top: -10rem !important;
+      width: 60% !important;
+      max-width: 600px;
+      /* top !important; */
+      bottom: -45% !important;
       height: auto;
     }
     img.below {
-      width: 17.5rem !important;
+      width: 80% !important;
+      max-width: 600px;
     }
   }
 `;

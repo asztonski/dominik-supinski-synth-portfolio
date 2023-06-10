@@ -10,8 +10,11 @@ const Header = () => {
 
   return (
     <StyledHeader>
-      <img src="images/logo.png" alt="Dominik Supinski's Logo" />
-      {!isMobile ? <HeaderNav className="header-nav" /> : <BurgerIcon />}
+      <HeaderWrapper>
+        <img src="images/logo.png" alt="Dominik Supinski's Logo" />
+        {/* {!isMobile ? <HeaderNav className="header-nav" /> : <BurgerIcon />} */}
+        <HeaderNav className="header-nav" />
+      </HeaderWrapper>
     </StyledHeader>
   );
 };
@@ -19,12 +22,24 @@ const Header = () => {
 export default Header;
 
 const StyledHeader = styled.header`
+  width: 100%;
+  padding: 0 2rem;
+  @media (max-width: ${theme.breakpoints.md}) {
+    position: fixed;
+    background: black;
+    z-index: 10;
+    width: 100%;
+    padding: 0;
+  }
+`;
+
+const HeaderWrapper = styled.div`
+  width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
   overflow: hidden;
   width: 100%;
-  padding: 0 2rem;
   img {
     z-index: 2;
   }
@@ -36,17 +51,17 @@ const StyledHeader = styled.header`
       transform: translateX(-29%);
     }
     .stage-3 {
-      transform: translateX(-15%);
+      transform: translateX(-16%);
     }
     .stage-4 {
-      transform: translateX(0);
+      transform: translateX(-5%);
     }
   }
   @media (max-width: ${theme.breakpoints.md}) {
-    position: absolute;
-    padding: 0 1rem;
+    padding: 1rem;
+    /* justify-content: center; */
     img {
-      width: 35%;
+      width: 12.5rem;
     }
   }
 `;

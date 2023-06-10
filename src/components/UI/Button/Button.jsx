@@ -36,4 +36,10 @@ const StyledButton = styled(Button)`
       0 0 80px ${theme.colors.accent};
     background: ${theme.colors.accent};
   }
+  @media (max-width: ${theme.breakpoints.md}) {
+    align-self: center !important;
+    padding: 0.85rem 1rem;
+    width: 100%;
+    max-width: 250px;
+  }
 `;

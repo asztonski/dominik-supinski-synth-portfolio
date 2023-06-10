@@ -10,7 +10,7 @@ const Container = ({ children }) => {
   return (
     <StyledContainer>
       {children}
-      {isMobile && <NavBar />}
+      {isMobile && <NavBar style={{ position: "fixed" }} />}
     </StyledContainer>
   );
 };
@@ -24,6 +24,6 @@ const StyledContainer = styled.div`
   display: flex;
   flex-direction: column;
   @media (max-width: ${theme.breakpoints.md}) {
-    padding: 1.5rem 0;
+    padding: 0;
   }
 `;

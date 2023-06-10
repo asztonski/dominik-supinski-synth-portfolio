@@ -1,9 +1,12 @@
 // Variables
 
 $sm: 600px;
+$md: 900px;
+$color-accent: #0706b7;
+$color-primary: #dddddd;
+$color-hover: #098ce8;
 
 /* Fonts */
-
 @font-face {
   font-family: Montserrat;
   src: url("/fonts/Montserrat-SemiBold.ttf");
@@ -20,6 +23,22 @@ $sm: 600px;
   margin: 0;
 }
 
+*::-webkit-scrollbar-thumb {
+  background-color: $color-accent;
+  outline: 1px solid $color-hover;
+}
+
+*::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+
+*::-webkit-scrollbar {
+  width: 1em;
+  @media (max-width: $md) {
+    width: 0.4rem;
+  }
+}
+
 html,
 body {
   margin: 0;
@@ -32,15 +51,22 @@ body {
   font-weight: 300;
   overflow: hidden;
   position: relative;
+  @media (max-width: $md) {
+    overflow: scroll;
+  }
 }
 
 #__next {
   height: 100%;
-  display: flex;
-  flex-direction: column;
+  // display: flex;
+  // flex-direction: column;
   position: relative;
   overflow: hidden;
   cursor: url("../assets/cursors/cursor.png"), auto;
+  @media (max-width: $md) {
+    overflow: scroll;
+    scroll-behavior: smooth;
+  }
 }
 
 h1,
