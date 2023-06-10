@@ -1,3 +1,4 @@
+/** @jsxImportSource @emotion/react */
 import { useContext, useState, useEffect } from "react";
 import { AppContext } from "@/api/AppContext";
 import styled from "@emotion/styled";
@@ -14,51 +15,11 @@ const ContactSvg = () => {
     if (stage === 4) {
       setActive(true);
     }
-    console.log(active);
   }, [stage]);
 
-  //   Animations
-
-  const greyPath = keyframes`
-    from {
-        stroke-dasharray: 7950;
-        stroke-dashoffset: 7960;
-    }
-    to {
-        stroke-dasharray: 7950;
-        stroke-dashoffset: 0;
-    }
-  `;
-
-  const StyledSvgBox = styled.div`
-    svg {
-      path {
-        transition: 0.2s ease;
-      }
-      .grey {
-        /* stroke-dasharray: 7950;
-        stroke-dashoffset: 7960; */
-        animation-delay: 1s;
-        animation-duration: 14s;
-        animation-timing-function: ease;
-        animation-fill-mode: forwards;
-      }
-    }
-    .active {
-      .grey {
-        /* animation-name: ${greyPath}; */
-      }
-    }
-  `;
-
   return (
-    <StyledSvgBox>
-      <svg
-        // className={`${active === true ? "active" : ""}`}
-        viewBox="0 0 575 896"
-        width="575px"
-        height="896px"
-      >
+    <StyledSvgBox className={`${active === true ? "active" : ""}`}>
+      <svg viewBox="0 0 575 896" width="575px" height="896px">
         <path
           className="path grey"
           fill-rule="evenodd"
@@ -95,5 +56,40 @@ const ContactSvg = () => {
     </StyledSvgBox>
   );
 };
+
+//   Animations
+
+const greyPath = keyframes`
+from {
+    stroke-dasharray: 7950;
+    stroke-dashoffset: 7960;
+}
+to {
+    stroke-dasharray: 7950;
+    stroke-dashoffset: 0;
+}
+`;
+
+const StyledSvgBox = styled.div`
+  svg {
+    path {
+      transition: 0.2s ease;
+    }
+    .grey {
+      stroke-dasharray: 7950;
+      stroke-dashoffset: 7960;
+      animation-delay: 1s;
+      transition: 0.2s ease;
+      animation-duration: 14s;
+      animation-timing-function: ease;
+      animation-fill-mode: forwards;
+    }
+  }
+  &.active {
+    .grey {
+      animation-name: ${greyPath};
+    }
+  }
+`;
 
 export default ContactSvg;
