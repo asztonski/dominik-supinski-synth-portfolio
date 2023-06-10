@@ -6,8 +6,15 @@ import Wrapper from "@/components/Layout/Wrapper/Wrapper";
 import { contactItems } from "@/api/contact";
 import Form from "@/components/UI/Form/Form";
 import ContactSvg from "@/assets/svg/ContactSvg";
+import { useInView } from "react-intersection-observer";
+// import { useContext, useEffect } from "react";
+// import { AppContext } from "@/api/AppContext";
 
 const Contact = ({ id, observer }) => {
+  const [svgEl, isSvgElInView] = useInView({
+    threshold: 0.5,
+  });
+
   return (
     <ContactSection ref={observer} id={id} className="bottom contact">
       <Wrapper>
@@ -35,7 +42,7 @@ const Contact = ({ id, observer }) => {
         </ContactInfoWrapper>
         <PhotoBox>
           {/* <Image src={img} alt="Drawnings of Dominik Supinski" /> */}
-          <ContactSvg />
+          <ContactSvg inView={isSvgElInView} observer={svgEl} />
         </PhotoBox>
       </Wrapper>
     </ContactSection>
@@ -133,7 +140,6 @@ const PhotoBox = styled.div`
   pointer-events: none;
   width: 50%;
   max-width: 816px;
-  img,
   svg {
     position: absolute;
     inset: 0 0 -20% auto;
@@ -146,10 +152,9 @@ const PhotoBox = styled.div`
     align-self: center;
     width: 75% !important;
     margin: 2rem 0 0;
-    img {
+    svg {
       position: unset;
       width: 100%;
-      inset: 0;
     }
   }
 `;

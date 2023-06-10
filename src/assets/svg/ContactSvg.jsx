@@ -3,22 +3,36 @@ import { useContext, useState, useEffect } from "react";
 import { AppContext } from "@/api/AppContext";
 import styled from "@emotion/styled";
 import { keyframes } from "@emotion/react";
+import { theme } from "@/api/theme";
 
-const ContactSvg = () => {
-  const { stage, mouseCoord } = useContext(AppContext);
+const ContactSvg = ({ observer, inView }) => {
+  const { stage, mouseCoord, isMobile } = useContext(AppContext);
   const [active, setActive] = useState(false);
 
   let mouseX = mouseCoord.x / 150;
   let mouseY = mouseCoord.y / 150;
 
   useEffect(() => {
-    if (stage === 4) {
-      setActive(true);
+    if (!isMobile) {
+      if (stage === 4) {
+        setActive(true);
+      }
     }
   }, [stage]);
 
+  useEffect(() => {
+    if (isMobile) {
+      if (inView) {
+        setActive(true);
+      }
+    }
+  });
+
   return (
-    <StyledSvgBox className={`${active === true ? "active" : ""}`}>
+    <StyledSvgBox
+      ref={observer}
+      className={`${active === true ? "active" : ""}`}
+    >
       <svg viewBox="0 0 575 896" width="575px" height="896px">
         <path
           className="path grey"
@@ -89,6 +103,10 @@ const StyledSvgBox = styled.div`
     .grey {
       animation-name: ${greyPath};
     }
+  }
+  @media (max-width: ${theme.breakpoints.md}) {
+    position: relative;
+    bottom: -1rem;
   }
 `;
 
