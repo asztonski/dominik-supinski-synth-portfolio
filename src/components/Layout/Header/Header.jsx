@@ -12,7 +12,8 @@ const Header = () => {
     <StyledHeader>
       <HeaderWrapper>
         <img src="images/logo.png" alt="Dominik Supinski's Logo" />
-        {!isMobile ? <HeaderNav className="header-nav" /> : <BurgerIcon />}
+        {/* {!isMobile ? <HeaderNav className="header-nav" /> : <BurgerIcon />} */}
+        <HeaderNav className="header-nav" />
       </HeaderWrapper>
     </StyledHeader>
   );
@@ -50,15 +51,15 @@ const HeaderWrapper = styled.div`
       transform: translateX(-29%);
     }
     .stage-3 {
-      transform: translateX(-15%);
+      transform: translateX(-16%);
     }
     .stage-4 {
-      transform: translateX(0);
+      transform: translateX(-5%);
     }
   }
   @media (max-width: ${theme.breakpoints.md}) {
     padding: 1rem;
-    justify-content: center;
+    /* justify-content: center; */
     img {
       width: 12.5rem;
     }
