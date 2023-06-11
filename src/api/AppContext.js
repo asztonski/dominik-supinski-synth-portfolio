@@ -6,15 +6,16 @@ import Container from "@/components/Layout/Container/Container";
 export const AppContext = createContext();
 
 const AppContextProvider = ({ children }) => {
+  // States
   const [isMobile, setIsMobile] = useState(true);
   const [stage, setStage] = useState(1);
   const stages = 4;
   const stageItems = Array.from({ length: stages }, (_, index) => index + 1);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [isModalRendered, setIsModalRendered] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
 
   // Detect screen size
-
   useEffect(() => {
     const breakpoint = parseInt(theme.breakpoints.md, 10);
 
@@ -82,7 +83,6 @@ const AppContextProvider = ({ children }) => {
   }, [stage]);
 
   // Nav handlers
-
   useEffect(() => {
     const keyHandler = (e) => {
       if (isModalRendered === true || isFocused === true) {
@@ -137,7 +137,6 @@ const AppContextProvider = ({ children }) => {
   });
 
   // PORTFOLIO
-
   const sliderSettings = {
     slidesToShow: 3,
     slidesToScroll: 1,
@@ -170,6 +169,14 @@ const AppContextProvider = ({ children }) => {
     ],
   };
 
+  // Modal Handler
+  const modalHandler = () => {
+    setIsModalRendered(true);
+    setTimeout(() => {
+      setIsModalOpen(true);
+    }, 200);
+  };
+
   return (
     <AppContext.Provider
       value={{
@@ -181,10 +188,13 @@ const AppContextProvider = ({ children }) => {
         stages,
         stageItems,
         sliderSettings,
+        isModalOpen,
+        setIsModalOpen,
         isModalRendered,
         setIsModalRendered,
         isFocused,
         setIsFocused,
+        modalHandler,
       }}
     >
       <Container>{children}</Container>

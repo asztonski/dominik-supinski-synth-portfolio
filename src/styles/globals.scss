@@ -127,3 +127,12 @@ textarea {
 textarea {
   font-family: "Roboto";
 }
+
+// Firefox
+@supports (-moz-appearance: none) {
+  #home {
+    .wrapper {
+      height: 25rem !important;
+    }
+  }
+}

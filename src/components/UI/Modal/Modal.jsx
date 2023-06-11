@@ -15,11 +15,12 @@ to {
 }
 `;
 
-const Modal = ({ selectedItem, style, setIsModalOpen }) => {
-  const { setIsModalRendered, isModalRendered } = useContext(AppContext);
+const Modal = ({ selectedItem, style, setIsModalOpen, id, content }) => {
+  const { setIsModalRendered, isModalRendered, stage } = useContext(AppContext);
 
   const closeBtnHandler = () => {
     setIsModalOpen(false);
+
     setTimeout(() => {
       setIsModalRendered(false);
     }, 300);
@@ -31,24 +32,35 @@ const Modal = ({ selectedItem, style, setIsModalOpen }) => {
       <ModalWindow>
         <CloseBtn onClick={closeBtnHandler} />
         <ScrollableContainer>
-          <ModalContent>
-            <h3>{selectedItem.name}</h3>
-            <h5>
-              <span>Year: {selectedItem.year}</span>
-              <span>Technologies: {selectedItem.technologies}</span>
-            </h5>
-            <p>{selectedItem.about}</p>
-            <ImageContainer>
-              <Image
-                alt={selectedItem.alt + "modal"}
-                src={selectedItem.asset}
-                fill
+          {id === "about-modal" && content ? (
+            <ModalContent className="about-modal">
+              <h3>{content.title}</h3>
+              <p
+                className="copy"
+                dangerouslySetInnerHTML={{ __html: content.content }}
               />
-            </ImageContainer>
-            <a target="_blank" href={selectedItem.address}>
-              Live version
-            </a>
-          </ModalContent>
+            </ModalContent>
+          ) : null}
+          {id === "portfolio-modal" ? (
+            <ModalContent className="portfolio-modal">
+              <h3>{selectedItem.name}</h3>
+              <h5>
+                <span>Year: {selectedItem.year}</span>
+                <span>Technologies: {selectedItem.technologies}</span>
+              </h5>
+              <p>{selectedItem.about}</p>
+              <ImageContainer>
+                <Image
+                  alt={selectedItem.alt + "modal"}
+                  src={selectedItem.asset}
+                  fill
+                />
+              </ImageContainer>
+              <a target="_blank" href={selectedItem.address}>
+                Live version
+              </a>
+            </ModalContent>
+          ) : null}
         </ScrollableContainer>
       </ModalWindow>
     </ItemModal>
@@ -65,6 +77,7 @@ const ItemModal = styled.div`
   right: 0;
   bottom: 0;
   top: 0;
+  left: 0;
   padding: 2rem;
   z-index: 10;
   backdrop-filter: blur(0);
@@ -73,10 +86,10 @@ const ItemModal = styled.div`
   overflow: hidden;
   @media (max-width: ${theme.breakpoints.md}) {
     position: fixed;
-    width: 90% !important;
-    height: 90%;
+    /* height: 90%; */
     inset: 0;
     margin: auto;
+    max-width: unset !important;
   }
 `;
 
@@ -115,7 +128,18 @@ const ModalWindow = styled.div`
     z-index: -1;
   }
   @media (max-width: ${theme.breakpoints.md}) {
+    width: 85% !important;
     border-width: 2rem 0.25rem 0.25rem;
+    max-height: none;
+    min-height: none;
+    height: 80%;
+    button {
+      top: -1.75rem;
+    }
+    &::after {
+      box-shadow: 0 0 10px ${theme.colors.accent},
+        0 0 10px ${theme.colors.accent}, 0 0 20px ${theme.colors.accent};
+    }
   }
 `;
 
@@ -130,35 +154,71 @@ const ModalContent = styled.div`
   flex-direction: column;
   align-items: center;
   height: auto;
-  h3 {
-    font-size: 2rem;
-    margin: 0 0 1.5rem;
+  &.about-modal {
+    h3 {
+      font-size: 2rem;
+      margin: 0 0 1.5rem;
+    }
+    .copy {
+      font-size: 1.4rem;
+    }
   }
-  h5 {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1rem;
+
+  &.portfolio-modal {
+    h3 {
+      font-size: 3rem;
+      margin: 0 0 2rem;
+    }
+    h5 {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+      font-size: 1.25rem;
+    }
+    p {
+      max-width: 75%;
+      margin: 2rem 0 4rem;
+    }
+    img {
+      width: auto;
+      height: 100%;
+      /* margin: 2rem 0; */
+    }
+    a {
+      color: ${theme.colors.extra};
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      font-weight: bold;
+      margin: 2rem 0 0;
+      /* border: 1px solid ${theme.colors.extra}; */
+    }
   }
-  p {
-    max-width: 75%;
-    margin: 2rem 0;
-  }
-  img {
-    width: auto;
-    height: 100%;
-    /* margin: 2rem 0; */
-  }
-  a {
-    color: ${theme.colors.extra};
-    letter-spacing: 4px;
-    text-transform: uppercase;
-    font-weight: bold;
-    margin: 2rem 0 0;
-    /* border: 1px solid ${theme.colors.extra}; */
-  }
+
   @media (max-width: ${theme.breakpoints.md}) {
     padding: 0.5rem;
+    &.about-modal {
+      padding: 1rem;
+      align-items: flex-start;
+      h3 {
+        margin: 0;
+      }
+      .copy {
+        font-size: 1rem;
+        margin: 1rem 0;
+      }
+    }
+    &.portfolio-modal {
+      p {
+        text-align: center;
+      }
+
+      h5 {
+        span {
+          text-align: center;
+        }
+      }
+    }
   }
 `;
 
@@ -170,5 +230,9 @@ const ImageContainer = styled.div`
     object-fit: cover;
     inset: 0;
     margin: auto;
+  }
+  @media (max-width: ${theme.breakpoints.md}) {
+    width: 75% !important;
+    max-width: 400px;
   }
 `;

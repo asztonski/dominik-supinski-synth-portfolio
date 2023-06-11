@@ -141,6 +141,7 @@ const PhotoBox = styled.div`
   @media (max-width: ${theme.breakpoints.md}) {
     align-self: center;
     width: 75% !important;
+    max-width: 250px !important;
     margin: 2rem 0 0;
     svg {
       position: unset;

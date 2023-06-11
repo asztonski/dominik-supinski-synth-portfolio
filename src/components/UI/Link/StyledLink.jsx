@@ -15,14 +15,12 @@ const StyledLink = styled.a`
   display: flex;
   justify-content: center;
   align-self: center !important;
-  padding: 0.85rem 1rem;
+  padding: 1.1rem 0;
   width: 100%;
   max-width: 250px;
   &:hover {
     box-shadow: 0 0 10px ${theme.colors.accent}, 0 0 40px ${theme.colors.accent},
       0 0 80px ${theme.colors.accent};
     background: ${theme.colors.accent};
-  }
-  @media (max-width: ${theme.breakpoints.md}) {
   }
 `;

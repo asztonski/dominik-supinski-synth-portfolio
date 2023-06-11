@@ -22,7 +22,7 @@ const Main = () => {
     threshold: 0.5,
   });
   const [portfolio, isPortfolioInView] = useInView({
-    threshold: 0.5,
+    threshold: 1,
   });
   const [contact, isContactInView] = useInView({
     threshold: 0.25,
@@ -49,7 +49,7 @@ const Main = () => {
     <StyledMain
       style={{
         transform: `${isMobile ? `none` : `translateX(${(stage - 1) * -25}%)`}`,
-        zIndex: `${stage === 3 ? "3" : "1"}`,
+        zIndex: `${stage === 3 || stage === 2 ? "3" : "1"}`,
       }}
     >
       <Home observer={home} id="home" />
@@ -107,12 +107,6 @@ const StyledMain = styled.main`
     div {
       width: 100%;
       max-width: 550px;
-    }
-    .home {
-      .wrapper {
-        height: 30%;
-        max-height: 200px;
-      }
     }
     .contact {
       overflow: hidden;

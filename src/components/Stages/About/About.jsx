@@ -5,8 +5,10 @@ import { theme } from "@/api/theme";
 import img from "../../../../public/images/about/dominik.png";
 import Image from "next/image";
 import { AppContext } from "@/api/AppContext";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import Wrapper from "@/components/Layout/Wrapper/Wrapper";
+import Modal from "@/components/UI/Modal/Modal";
+import { aboutCopy } from "@/api/about";
 
 const SKILLS = [
   ["HTML", 4],
@@ -32,7 +34,23 @@ const renderHandler = (colorIcons, id) => {
 };
 
 const About = ({ id, observer }) => {
-  const { stage, setStage, isMobile } = useContext(AppContext);
+  const {
+    stage,
+    setStage,
+    isMobile,
+    isModalOpen,
+    isModalRendered,
+    setIsModalOpen,
+    modalHandler,
+  } = useContext(AppContext);
+
+  const [modalContent, setModalContent] = useState(null);
+
+  useEffect(() => {
+    if (isModalRendered === false) {
+      setModalContent(null);
+    }
+  }, [isModalRendered]);
 
   return (
     <AboutSection ref={observer} id={id} className="bottom">
@@ -44,11 +62,11 @@ const About = ({ id, observer }) => {
             love exploring new digital horizons. Get to know me through my work.
             Let's create something amazing together!
           </p>
-          {isMobile && (
+          {isMobile ? (
             <PhotoBox>
               <Image src={img} alt="Photo of Dominik Supinski" />
             </PhotoBox>
-          )}
+          ) : null}
           <SkillsBox>
             <Skills>
               {SKILLS.map((skill, id) => (
@@ -61,19 +79,34 @@ const About = ({ id, observer }) => {
               ))}
             </Skills>
           </SkillsBox>
-          {!isMobile && (
+          <ButtonsWrapper>
+            {!isMobile ? (
+              <CustomButton
+                onClick={() => setStage(stage + 1)}
+                content="see portfolio"
+              />
+            ) : (
+              <CustomLink content="see portfolio" href="#portfolio" />
+            )}
             <CustomButton
-              onClick={() => setStage(stage + 1)}
-              content="see portfolio"
+              onClick={() => (modalHandler(), setModalContent(aboutCopy))}
+              content="read bio"
             />
-          )}
-          {isMobile && <CustomLink content="see portfolio" href="#portfolio" />}
+          </ButtonsWrapper>
         </InfoBox>
-        {!isMobile && (
+        {!isMobile ? (
           <PhotoBox>
             <Image src={img} alt="Photo of Dominik Supinski" />
           </PhotoBox>
-        )}
+        ) : null}
+        {isModalRendered ? (
+          <Modal
+            id="about-modal"
+            style={{ opacity: `${isModalOpen ? "1" : "0"}` }}
+            setIsModalOpen={setIsModalOpen}
+            content={modalContent}
+          />
+        ) : null}
       </Wrapper>
     </AboutSection>
   );
@@ -83,6 +116,10 @@ export default About;
 
 const AboutSection = styled.section`
   width: 100%;
+  position: relative;
+  .wrapper {
+    position: unset !important;
+  }
   @media (max-width: ${theme.breakpoints.md}) {
     .wrapper {
       flex-direction: column;
@@ -106,6 +143,18 @@ const InfoBox = styled.div`
     p {
       margin: 2rem 0 0;
       width: auto;
+    }
+  }
+`;
+
+const ButtonsWrapper = styled.div`
+  display: flex;
+  gap: 3rem;
+  @media (max-width: ${theme.breakpoints.md}) {
+    flex-direction: column-reverse;
+    gap: 1.5rem;
+    button {
+      font-size: 1rem;
     }
   }
 `;
@@ -181,6 +230,7 @@ const PhotoBox = styled.div`
   @media (max-width: ${theme.breakpoints.md}) {
     align-self: center;
     width: 75% !important;
+    max-width: 250px !important;
     margin: 1rem 0 3rem;
     img {
       position: unset;

@@ -96,6 +96,7 @@ const HomeSection = styled.section`
   @media (max-width: ${theme.breakpoints.md}) {
     .pulse-title {
       font-size: 1rem;
+      margin: 1rem auto 0;
     }
   }
 `;
@@ -134,11 +135,10 @@ const TextImagesContainer = styled.div`
     left: 0.25%;
   }
   @media (max-width: ${theme.breakpoints.md}) {
+    height: 10rem;
     img.above {
       width: 60% !important;
       max-width: 600px;
-      /* top !important; */
-      bottom: -45% !important;
       height: auto;
     }
     img.below {

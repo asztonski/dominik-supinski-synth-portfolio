@@ -88,7 +88,6 @@ const HeaderNav = ({ className }) => {
               className="github-link"
               target="_blank"
               href="https://github.com/asztonski"
-              style={{ maskImage: `url(${Github.src})` }}
             >
               <svg
                 viewBox="0 0 98 96"
@@ -168,8 +167,6 @@ const StyledNavBox = styled.div`
           display: block;
           align-items: center;
           justify-content: center;
-          mask-size: cover;
-          color: unset !important;
           svg {
             width: 100%;
             height: 100%;
