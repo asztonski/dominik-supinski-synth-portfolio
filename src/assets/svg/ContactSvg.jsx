@@ -86,9 +86,6 @@ to {
 
 const StyledSvgBox = styled.div`
   svg {
-    path {
-      transition: 0.2s ease;
-    }
     .grey {
       stroke-dasharray: 7950;
       stroke-dashoffset: 7960;

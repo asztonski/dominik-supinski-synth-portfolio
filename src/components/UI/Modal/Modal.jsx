@@ -33,8 +33,11 @@ const Modal = ({ selectedItem, style, setIsModalOpen }) => {
         <ScrollableContainer>
           <ModalContent>
             <h3>{selectedItem.name}</h3>
+            <h5>
+              <span>Year: {selectedItem.year}</span>
+              <span>Technologies: {selectedItem.technologies}</span>
+            </h5>
             <p>{selectedItem.about}</p>
-            <h5>Technologies: {selectedItem.technologies}</h5>
             <ImageContainer>
               <Image
                 alt={selectedItem.alt + "modal"}
@@ -129,6 +132,13 @@ const ModalContent = styled.div`
   height: auto;
   h3 {
     font-size: 2rem;
+    margin: 0 0 1.5rem;
+  }
+  h5 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
   }
   p {
     max-width: 75%;
@@ -143,8 +153,8 @@ const ModalContent = styled.div`
     color: ${theme.colors.extra};
     letter-spacing: 4px;
     text-transform: uppercase;
-    padding: 0.5rem 1rem;
     font-weight: bold;
+    margin: 2rem 0 0;
     /* border: 1px solid ${theme.colors.extra}; */
   }
   @media (max-width: ${theme.breakpoints.md}) {
@@ -156,7 +166,6 @@ const ImageContainer = styled.div`
   width: 45%;
   aspect-ratio: 1 / 1;
   position: relative;
-  margin: 2rem 0 1rem;
   img {
     object-fit: cover;
     inset: 0;

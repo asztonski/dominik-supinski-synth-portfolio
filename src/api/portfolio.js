@@ -7,6 +7,7 @@ export const carouselItems = [
     technologies: "[React.js]",
     asset: "/images/portfolio/runicat.jpg",
     alt: "Runicat Project Image",
+    year: "2021",
   },
   {
     name: "luna-arte",
@@ -16,6 +17,7 @@ export const carouselItems = [
     technologies: "[HTML, SCSS, JavaScript]",
     asset: "/images/portfolio/luna-arte.jpg",
     alt: "Luna-Arte Project Image",
+    year: "2021",
   },
   {
     name: "ainpiracje",
@@ -25,6 +27,7 @@ export const carouselItems = [
     technologies: "[HTML, SCSS, JavaScript]",
     asset: "/images/portfolio/ainspiracje.jpg",
     alt: "Ainspiracje Project Image",
+    year: "2021",
   },
   {
     name: "atlanca",
@@ -34,5 +37,6 @@ export const carouselItems = [
     technologies: "[HTML, SCSS, JavaScript]",
     asset: "/images/portfolio/atlanca.jpg",
     alt: "Atlanca Project Image",
+    year: "2021",
   },
 ];
