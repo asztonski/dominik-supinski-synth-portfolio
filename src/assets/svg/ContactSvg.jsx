@@ -6,11 +6,11 @@ import { keyframes } from "@emotion/react";
 import { theme } from "@/api/theme";
 
 const ContactSvg = ({ observer, inView }) => {
-  const { stage, mouseCoord, isMobile } = useContext(AppContext);
+  const { stage, mouseContactCoord, isMobile } = useContext(AppContext);
   const [active, setActive] = useState(false);
 
-  let mouseX = mouseCoord.x / 150;
-  let mouseY = mouseCoord.y / 150;
+  let mouseX = mouseContactCoord.x / 100;
+  let mouseY = mouseContactCoord.y / 100;
 
   useEffect(() => {
     if (!isMobile) {

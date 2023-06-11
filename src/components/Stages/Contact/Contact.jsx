@@ -1,14 +1,10 @@
 import styled from "@emotion/styled";
 import { theme } from "@/api/theme";
-import img from "../../../../public/images/contact/dominik_vector.png";
-import Image from "next/image";
 import Wrapper from "@/components/Layout/Wrapper/Wrapper";
 import { contactItems } from "@/api/contact";
 import Form from "@/components/UI/Form/Form";
 import ContactSvg from "@/assets/svg/ContactSvg";
 import { useInView } from "react-intersection-observer";
-// import { useContext, useEffect } from "react";
-// import { AppContext } from "@/api/AppContext";
 
 const Contact = ({ id, observer }) => {
   const [svgEl, isSvgElInView] = useInView({
@@ -41,7 +37,6 @@ const Contact = ({ id, observer }) => {
           </ContentWrapper>
         </ContactInfoWrapper>
         <PhotoBox>
-          {/* <Image src={img} alt="Drawnings of Dominik Supinski" /> */}
           <ContactSvg inView={isSvgElInView} observer={svgEl} />
         </PhotoBox>
       </Wrapper>
@@ -86,7 +81,6 @@ const ContentWrapper = styled.div`
 const InfoBox = styled.div`
   display: flex;
   flex-direction: column;
-  /* justify-content: space-between; */
   gap: 5rem;
   width: 100%;
   p {
@@ -109,10 +103,6 @@ const ContactLink = styled.div`
   gap: 2.5rem;
   span {
     min-width: 4rem;
-  }
-  .info-item {
-    /* flex-basis: 0;
-    flex: 1 1 0px; */
   }
   .link-item {
     color: ${theme.colors.accent};

@@ -8,9 +8,9 @@ import { theme } from "@/api/theme";
 import Wrapper from "@/components/Layout/Wrapper/Wrapper";
 
 const Home = ({ id, observer }) => {
-  const { mouseCoord } = useContext(AppContext);
-  let mouseX = mouseCoord.x / 150;
-  let mouseY = mouseCoord.y / 150;
+  const { mouseHomeCoord } = useContext(AppContext);
+  let mouseX = mouseHomeCoord.x / 150;
+  let mouseY = mouseHomeCoord.y / 150;
 
   const pulse = keyframes`
   0%, 100% {

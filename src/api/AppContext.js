@@ -38,14 +38,16 @@ const AppContextProvider = ({ children }) => {
     };
   }, [theme.breakpoints.md]);
 
-  // Home logo handler
+  // Mouse move event handler
 
-  const [mouseCoord, setMouseCoords] = useState({ x: 0, y: 0 });
+  const [mouseHomeCoord, setMouseHomeCoords] = useState({ x: 0, y: 0 });
+  const [mouseContactCoord, setMouseContactCoords] = useState({ x: 0, y: 0 });
 
+  // Home mouse handler
   useEffect(() => {
     const handleMouseMove = (e) => {
       if (stage === 1) {
-        setMouseCoords({ x: e.clientX, y: e.clientY });
+        setMouseHomeCoords({ x: e.clientX, y: e.clientY });
       }
     };
 
@@ -57,6 +59,25 @@ const AppContextProvider = ({ children }) => {
 
     return () => {
       window.removeEventListener("mousemove", handleMouseMove);
+    };
+  }, [stage]);
+
+  // Contact mouse handler
+  useEffect(() => {
+    const handleContactMove = (e) => {
+      if (stage === 4) {
+        setMouseContactCoords({ x: e.clientX, y: e.clientY });
+      }
+    };
+
+    if (stage === 4) {
+      window.addEventListener("mousemove", handleContactMove);
+    } else {
+      window.removeEventListener("mousemove", handleContactMove);
+    }
+
+    return () => {
+      window.removeEventListener("mousemove", handleContactMove);
     };
   }, [stage]);
 
@@ -153,7 +174,8 @@ const AppContextProvider = ({ children }) => {
     <AppContext.Provider
       value={{
         isMobile,
-        mouseCoord,
+        mouseHomeCoord,
+        mouseContactCoord,
         stage,
         setStage,
         stages,

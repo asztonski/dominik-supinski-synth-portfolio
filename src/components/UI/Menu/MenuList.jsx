@@ -198,6 +198,15 @@ const StyledNavBox = styled.div`
       }
     }
   }
+  @media (max-width: ${theme.breakpoints.md}) {
+    ul {
+      gap: 1rem !important;
+      .msg-icon,
+      .github-link {
+        width: 1.5rem !important;
+      }
+    }
+  }
 `;
 
 const AbsoluteElement = styled.div`
