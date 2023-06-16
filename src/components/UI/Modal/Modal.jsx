@@ -44,10 +44,7 @@ const Modal = ({ selectedItem, style, setIsModalOpen, id, content }) => {
           {id === "portfolio-modal" ? (
             <ModalContent className="portfolio-modal">
               <h3>{selectedItem.name}</h3>
-              <h5>
-                <span>Year: {selectedItem.year}</span>
-                <span>Technologies: {selectedItem.technologies}</span>
-              </h5>
+              <h4 className="year">Year: {selectedItem.year}</h4>
               <p>{selectedItem.about}</p>
               <ImageContainer>
                 <Image
@@ -56,6 +53,9 @@ const Modal = ({ selectedItem, style, setIsModalOpen, id, content }) => {
                   fill
                 />
               </ImageContainer>
+              <h5 className="technologies">
+                Technologies: <i>{selectedItem.technologies}</i>
+              </h5>
               <a target="_blank" href={selectedItem.address}>
                 Live version
               </a>
@@ -107,7 +107,7 @@ const ModalWindow = styled.div`
   padding: 0.25rem 0 1rem;
   button {
     right: 0;
-    top: -5%;
+    top: -2.45rem;
     transition: transform 1s cubic-bezier(0.54, -0.01, 0.48, 1);
     background-color: ${theme.colors.extra};
     /* &:hover {
@@ -133,6 +133,7 @@ const ModalWindow = styled.div`
     max-height: none;
     min-height: none;
     height: 80%;
+    inset: 2rem 0 0 0;
     button {
       top: -1.75rem;
     }
@@ -167,23 +168,47 @@ const ModalContent = styled.div`
   &.portfolio-modal {
     h3 {
       font-size: 3rem;
-      margin: 0 0 2rem;
+      margin: 0;
     }
-    h5 {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 1rem;
-      font-size: 1.25rem;
+    .technologies {
+      font-size: 0.8rem;
+      margin-top: 1rem;
+      /* background: rgba(7, 6, 183, 0.4); */
+      padding: 0.5rem 2rem;
+      position: relative;
+      text-shadow: 1px 1px 1px ${theme.colors.hover};
+      &::after,
+      &::before {
+        content: "";
+        position: absolute;
+        width: 2%;
+        height: 100%;
+        top: 0;
+        bottom: 0;
+        margin: auto;
+        border-style: solid;
+        border-width: 1px;
+        z-index: 1;
+      }
+      &::after {
+        right: 0;
+        border-left: 1px;
+        border-color: ${theme.colors.extra};
+      }
+      &::before {
+        left: 0;
+        border-right: 1px;
+        border-color: ${theme.colors.accent};
+      }
     }
     p {
-      max-width: 75%;
-      margin: 2rem 0 4rem;
+      margin: 0 0 3rem;
+      text-align: center;
+      width: clamp(24rem, 50%, 32rem);
     }
     img {
       width: auto;
       height: 100%;
-      /* margin: 2rem 0; */
     }
     a {
       color: ${theme.colors.extra};
@@ -191,7 +216,11 @@ const ModalContent = styled.div`
       text-transform: uppercase;
       font-weight: bold;
       margin: 2rem 0 0;
-      /* border: 1px solid ${theme.colors.extra}; */
+    }
+    .year {
+      font-size: 0.7rem;
+      margin: 0 0 2rem;
+      font-style: italic;
     }
   }
 
@@ -211,12 +240,15 @@ const ModalContent = styled.div`
     &.portfolio-modal {
       p {
         text-align: center;
+        width: 90%;
       }
-
+      h3 {
+        font-size: clamp(2rem, 8vw, 3rem);
+      }
       h5 {
-        span {
-          text-align: center;
-        }
+        text-align: center;
+        padding: 0.5rem 0.25rem !important;
+        width: 75%;
       }
     }
   }

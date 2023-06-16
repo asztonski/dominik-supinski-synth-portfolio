@@ -149,7 +149,9 @@ const InfoBox = styled.div`
 
 const ButtonsWrapper = styled.div`
   display: flex;
+  flex-direction: row-reverse;
   gap: 3rem;
+  align-self: flex-start;
   @media (max-width: ${theme.breakpoints.md}) {
     flex-direction: column-reverse;
     gap: 1.5rem;

@@ -22,6 +22,36 @@ const Home = ({ id, observer }) => {
   }
 `;
 
+  const neonAnim = keyframes`
+    from, 2% {
+      opacity: 1;
+  }
+  2%, 4% {
+    opacity: 0;
+  }
+  4%, 4.5% {
+    opacity: 1;
+  }
+  4.5%, 5% {
+    opacity: 0;
+  }
+  5%, 6.2% {
+    opacity: 1;
+  }
+  6.2%, 7% {
+    opacity: 0;
+  }
+  7%, 8% {
+    opacity: 1;
+  }
+  8%, 16% {
+    opacity: 0;
+  }
+  16%, 75% {
+    opacity: 1;
+  }
+  `;
+
   return (
     <HomeSection ref={observer} id={id}>
       <Wrapper column withHeight>
@@ -39,6 +69,9 @@ const Home = ({ id, observer }) => {
             className="above"
             src="/images/home/name_2.png"
             alt="First name first layer"
+            css={css`
+              animation: ${neonAnim} 12.5s linear infinite;
+            `}
           />
           <Image
             fill

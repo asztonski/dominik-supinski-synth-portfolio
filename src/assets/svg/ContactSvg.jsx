@@ -92,7 +92,7 @@ const StyledSvgBox = styled.div`
       animation-delay: 1s;
       transition: 0.2s ease;
       animation-duration: 14s;
-      animation-timing-function: ease;
+      animation-timing-function: ease-in-out;
       animation-fill-mode: forwards;
     }
   }
