@@ -9,6 +9,7 @@ import { useContext, useEffect, useState } from "react";
 import Wrapper from "@/components/Layout/Wrapper/Wrapper";
 import Modal from "@/components/UI/Modal/Modal";
 import { aboutCopy } from "@/api/about";
+import GlitchSquare from "@/components/Decor/Square/GlitchSquare";
 
 const SKILLS = [
   ["HTML", 4],
@@ -108,6 +109,8 @@ const About = ({ id, observer }) => {
           />
         ) : null}
       </Wrapper>
+      {/* <GlitchSquare translateX={50} translateY={80} order={1} />
+      <GlitchSquare translateX={50} translateY={25} delay={15} order={2} /> */}
     </AboutSection>
   );
 };
@@ -119,6 +122,12 @@ const AboutSection = styled.section`
   position: relative;
   .wrapper {
     position: unset !important;
+  }
+  .square-1 {
+    inset: -130% -10% 0 0;
+  }
+  .square-2 {
+    inset: 0 20% 0 0;
   }
   @media (max-width: ${theme.breakpoints.md}) {
     .wrapper {

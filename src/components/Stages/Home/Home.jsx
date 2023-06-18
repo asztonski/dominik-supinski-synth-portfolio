@@ -24,8 +24,8 @@ const Home = ({ id, observer }) => {
 `;
 
   const neonAnim = keyframes`
-    from, 2% {
-      opacity: 1;
+  from, 2% {
+    opacity: 1;
   }
   2%, 4% {
     opacity: 0;
@@ -114,10 +114,10 @@ const Home = ({ id, observer }) => {
           front end developer
         </h2>
       </Wrapper>
-      <GlitchSquare order={1} />
-      <GlitchSquare order={2} />
-      <GlitchSquare order={3} />
-      <GlitchSquare order={4} />
+      <GlitchSquare translateX={50} translateY={80} order={1} />
+      <GlitchSquare translateX={50} translateY={25} delay={7} order={2} />
+      <GlitchSquare translateX={10} translateY={80} delay={12} order={3} />
+      <GlitchSquare translateX={70} translateY={40} delay={15} order={4} />
     </HomeSection>
   );
 };
@@ -132,13 +132,16 @@ const HomeSection = styled.section`
     font-size: 2rem;
   }
   .square-1 {
-    inset: 25% 40% 0 0;
+    inset: -50% 30% 0 0;
   }
   .square-2 {
-    inset: 74.5% 0 0 43%;
+    inset: -45% -95% 0 0;
   }
   .square-3 {
-    inset: 50% 80% 0 0;
+    inset: 60% 90% 0 0;
+  }
+  .square-4 {
+    inset: 80% 0 0 0;
   }
   @media (max-width: ${theme.breakpoints.md}) {
     .pulse-title {
