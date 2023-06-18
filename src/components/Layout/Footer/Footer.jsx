@@ -31,7 +31,6 @@ const StyledFooter = styled.footer`
   @media (max-width: ${theme.breakpoints.md}) {
     background: black;
     bottom: 0;
-    flex-shrink: 0;
     margin-top: 0.5rem;
     padding: 0;
   }
@@ -43,6 +42,19 @@ const FooterWrapper = styled.div`
   text-transform: uppercase;
   width: 100%;
   z-index: 1;
+  flex-shrink: 0;
+  .footer-item,
+  .nav-bar {
+    flex: 1;
+  }
+  .footer-item {
+    &:last-of-type {
+      p {
+        width: max-content;
+        margin: auto 0 auto auto;
+      }
+    }
+  }
   @media (max-width: ${theme.breakpoints.md}) {
     padding: 1rem;
   }

@@ -79,7 +79,7 @@ const NavBar = ({ style }) => {
           <img className="arrow-left" src="images/svg/arrow_left.png" alt="" />
         </a>
       )}
-      <MiddleBar className="footer-item">
+      <MiddleBar className="middlebar">
         {!isMobile &&
           stageItems.map((id) => (
             <NavSquareBtn
@@ -127,7 +127,7 @@ const NavBar = ({ style }) => {
 
 export default NavBar;
 
-const NavBarWrapper = styled.div`
+const NavBarWrapper = styled.nav`
   display: flex;
   gap: 1rem;
   align-items: center;

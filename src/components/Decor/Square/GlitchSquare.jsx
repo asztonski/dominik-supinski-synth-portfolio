@@ -10,7 +10,7 @@ export default GlitchSquare;
 
 const StyledGlitchSquare = styled.div`
   border: 1px solid ${theme.colors.accent};
-  width: 88px;
+  width: 88px !important;
   height: 88px;
   position: absolute;
   margin: auto;
