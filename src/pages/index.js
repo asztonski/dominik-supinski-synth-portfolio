@@ -6,10 +6,24 @@ import Footer from "@/components/Layout/Footer/Footer";
 import AppContextProvider from "@/api/AppContext";
 import { customTheme } from "@/api/theme";
 import { ThemeProvider } from "@mui/material";
+import LoadingScreen from "@/components/Layout/LoadingScreen/LoadingScreen";
+import { useState, useEffect } from "react";
+import { countAssets } from "@/helpers/assetsCounter";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
+  const [assetsCount, setAssetsCount] = useState(0);
+  const [loadedAssets, setLoadedAssets] = useState(0);
+
+  useEffect(() => {
+    const assetExtensions = [".png", ".jpg", ".woff", ".woff2"];
+
+    const count = countAssets(assetExtensions);
+    setAssetsCount(count);
+    console.log(assetsCount);
+  }, []);
+
   return (
     <ThemeProvider theme={customTheme}>
       <Head>
@@ -19,6 +33,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <AppContextProvider>
+        {/* <LoadingScreen /> */}
         <Header />
         <Main />
         <Footer />

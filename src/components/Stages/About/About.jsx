@@ -1,15 +1,20 @@
+/** @jsxImportSource @emotion/react */
 import styled from "@emotion/styled";
 import CustomButton from "@/components/UI/Button/Button";
 import CustomLink from "@/components/UI/Link/StyledLink";
 import { theme } from "@/api/theme";
 import img from "../../../../public/images/about/dominik.png";
+import imgGlitchOne from "../../../../public/images/about/dominik_glitch_1.png";
+import imgGlitchTwo from "../../../../public/images/about/dominik_glitch_2.png";
+import imgGlitchThree from "../../../../public/images/about/dominik_glitch_3.png";
 import Image from "next/image";
 import { AppContext } from "@/api/AppContext";
 import { useContext, useEffect, useState } from "react";
 import Wrapper from "@/components/Layout/Wrapper/Wrapper";
 import Modal from "@/components/UI/Modal/Modal";
 import { aboutCopy } from "@/api/about";
-import GlitchSquare from "@/components/Decor/Square/GlitchSquare";
+// import GlitchSquare from "@/components/Decor/Square/GlitchSquare";
+import { keyframes, css } from "@emotion/react";
 
 const SKILLS = [
   ["HTML", 4],
@@ -53,6 +58,42 @@ const About = ({ id, observer }) => {
     }
   }, [isModalRendered]);
 
+  const imgAnimOne = keyframes`
+  0%, 20%, 23%, 91% {
+    opacity: 1;
+  }
+  21%, 24%, 92%, 100% {
+    opacity: 0;
+  }
+  `;
+
+  const imgAnimTwo = keyframes`
+  0%, 90% {
+    opacity: 1;
+  }
+  90%,100% {
+    opacity: 0;
+  }
+  `;
+
+  const imgAnimThree = keyframes`
+  0%, 30%, 33%, 91% {
+    opacity: 0;
+  }
+  31%, 34%, 92%, 100% {
+    opacity: 1;
+  }
+  `;
+
+  const imgAnimFour = keyframes`
+  0%, 40%, 43% {
+    opacity: 0;
+  }
+  41%, 44%, 100% {
+    opacity: 1;
+  }
+  `;
+
   return (
     <AboutSection ref={observer} id={id} className="bottom">
       <Wrapper>
@@ -65,7 +106,42 @@ const About = ({ id, observer }) => {
           </p>
           {isMobile ? (
             <PhotoBox>
-              <Image src={img} alt="Photo of Dominik Supinski" />
+              <Image
+                css={css`
+                  inset: 0 0 -10% auto;
+                  animation: ${imgAnimOne};
+                  z-index: 2;
+                `}
+                src={img}
+                alt="Photo of Dominik Supinski"
+              />
+              <Image
+                className="glitch-img glitch-1"
+                css={css`
+                  inset: 0 0 -10% auto;
+                  /* animation-name: ${imgAnimTwo}; */
+                `}
+                src={imgGlitchOne}
+                alt="First Glitched Photo of Dominik Supinski"
+              />
+              <Image
+                className="glitch-img glitch-2"
+                css={css`
+                  inset: 15% 5% 0 auto;
+                  animation: ${imgAnimThree};
+                `}
+                src={imgGlitchTwo}
+                alt="Second Glitched Photo of Dominik Supinski"
+              />
+              <Image
+                className="glitch-img glitch-3"
+                css={css`
+                  inset: 15% -8% 0 auto;
+                  animation: ${imgAnimFour};
+                `}
+                src={imgGlitchThree}
+                alt="Third Glitched Photo of Dominik Supinski"
+              />
             </PhotoBox>
           ) : null}
           <SkillsBox>
@@ -97,7 +173,42 @@ const About = ({ id, observer }) => {
         </InfoBox>
         {!isMobile ? (
           <PhotoBox>
-            <Image src={img} alt="Photo of Dominik Supinski" />
+            <Image
+              css={css`
+                inset: 0 0 -15% auto;
+                animation: ${imgAnimOne};
+                z-index: 1;
+              `}
+              src={img}
+              alt="Photo of Dominik Supinski"
+            />
+            <Image
+              className="glitch-ing glitch-1"
+              css={css`
+                inset: 0 0 -10% auto;
+                /* animation-name: ${imgAnimTwo}; */
+              `}
+              src={imgGlitchOne}
+              alt="First Glitched Photo of Dominik Supinski"
+            />
+            <Image
+              className="glitch-ing glitch-2"
+              css={css`
+                inset: 15% 5% 0 auto;
+                animation: ${imgAnimThree};
+              `}
+              src={imgGlitchTwo}
+              alt="Second Glitched Photo of Dominik Supinski"
+            />
+            <Image
+              className="glitch-ing glitch-3"
+              css={css`
+                inset: 15% -8% 0 auto;
+                animation: ${imgAnimFour};
+              `}
+              src={imgGlitchThree}
+              alt="Third Glitched Photo of Dominik Supinski"
+            />
           </PhotoBox>
         ) : null}
         {isModalRendered ? (
@@ -166,6 +277,7 @@ const ButtonsWrapper = styled.div`
     gap: 1.5rem;
     button {
       font-size: 1rem;
+      font-weight: 300;
     }
   }
 `;
@@ -232,11 +344,13 @@ const PhotoBox = styled.div`
   max-width: 816px;
   img {
     position: absolute;
-    inset: 0 0 -10% auto;
     margin: auto 0;
     height: auto;
-    width: 60vh;
+    width: 57.5vh;
     max-width: 625px;
+    animation-duration: 10s;
+    animation-timing-function: step-end;
+    animation-iteration-count: infinite;
   }
   @media (max-width: ${theme.breakpoints.md}) {
     align-self: center;
@@ -247,6 +361,20 @@ const PhotoBox = styled.div`
       position: unset;
       width: 100%;
       inset: 0;
+    }
+    .glitch-img {
+      position: absolute !important;
+      z-index: -1;
+    }
+    .glitch-1 {
+      top: -1rem;
+    }
+    .glitch-2 {
+      left: 1rem;
+    }
+    .glitch-3 {
+      left: -0.7rem;
+      top: 0.7rem;
     }
   }
 `;
