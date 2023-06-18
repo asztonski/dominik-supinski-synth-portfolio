@@ -6,6 +6,7 @@ import { useContext } from "react";
 import { keyframes, css } from "@emotion/react";
 import { theme } from "@/api/theme";
 import Wrapper from "@/components/Layout/Wrapper/Wrapper";
+import GlitchSquare from "@/components/Decor/Square/GlitchSquare";
 
 const Home = ({ id, observer }) => {
   const { mouseHomeCoord } = useContext(AppContext);
@@ -113,6 +114,10 @@ const Home = ({ id, observer }) => {
           front end developer
         </h2>
       </Wrapper>
+      <GlitchSquare order={1} />
+      <GlitchSquare order={2} />
+      <GlitchSquare order={3} />
+      <GlitchSquare order={4} />
     </HomeSection>
   );
 };
@@ -125,6 +130,15 @@ const HomeSection = styled.section`
   height: 100%;
   .pulse-title {
     font-size: 2rem;
+  }
+  .square-1 {
+    inset: 25% 40% 0 0;
+  }
+  .square-2 {
+    inset: 74.5% 0 0 43%;
+  }
+  .square-3 {
+    inset: 50% 80% 0 0;
   }
   @media (max-width: ${theme.breakpoints.md}) {
     .pulse-title {
