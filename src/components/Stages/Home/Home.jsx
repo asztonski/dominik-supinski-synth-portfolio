@@ -9,7 +9,7 @@ import Wrapper from "@/components/Layout/Wrapper/Wrapper";
 import GlitchSquare from "@/components/Decor/Square/GlitchSquare";
 
 const Home = ({ id, observer }) => {
-  const { mouseHomeCoord } = useContext(AppContext);
+  const { mouseHomeCoord, isMobile } = useContext(AppContext);
   let mouseX = mouseHomeCoord.x / 150;
   let mouseY = mouseHomeCoord.y / 150;
 
@@ -115,8 +115,12 @@ const Home = ({ id, observer }) => {
         </h2>
       </Wrapper>
       <GlitchSquare translateX={50} translateY={80} order={1} />
-      <GlitchSquare translateX={50} translateY={25} delay={7} order={2} />
-      <GlitchSquare translateX={10} translateY={80} delay={12} order={3} />
+      {!isMobile ? (
+        <GlitchSquare translateX={50} translateY={25} delay={7} order={2} />
+      ) : null}
+      {!isMobile ? (
+        <GlitchSquare translateX={10} translateY={80} delay={12} order={3} />
+      ) : null}
       <GlitchSquare translateX={70} translateY={40} delay={15} order={4} />
     </HomeSection>
   );
