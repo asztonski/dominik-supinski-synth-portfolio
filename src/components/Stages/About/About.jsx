@@ -86,10 +86,10 @@ const About = ({ id, observer }) => {
   `;
 
   const imgAnimFour = keyframes`
-  0%, 39%, 100% {
+  0%,23%, 25%, 64%, 100% {
     opacity: 0;
   }
-  38% {
+  24%,63% {
     opacity: 1;
   }
   `;
@@ -251,7 +251,7 @@ const InfoBox = styled.div`
   display: flex;
   flex-direction: column;
   width: min-content;
-  z-index: 1;
+  z-index: 3;
   h2 {
     white-space: nowrap;
   }
