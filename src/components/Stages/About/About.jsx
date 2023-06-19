@@ -59,10 +59,10 @@ const About = ({ id, observer }) => {
   }, [isModalRendered]);
 
   const imgAnimOne = keyframes`
-  0%, 20%, 23%, 91% {
+  0%, 20%, 23%, 25%, 63%, 100% {
     opacity: 1;
   }
-  21%, 24%, 92%, 100% {
+  21%, 24%, 62%, 64%, 78% {
     opacity: 0;
   }
   `;
@@ -77,19 +77,19 @@ const About = ({ id, observer }) => {
   `;
 
   const imgAnimThree = keyframes`
-  0%, 30%, 33%, 91% {
+  0%, 20%, 23%, 25%, 61%, 63%,72% {
     opacity: 0;
   }
-  31%, 34%, 92%, 100% {
+  21%, 24%, 62%, 64%, 73%, 100% {
     opacity: 1;
   }
   `;
 
   const imgAnimFour = keyframes`
-  0%, 40%, 43% {
+  0%, 39%, 100% {
     opacity: 0;
   }
-  41%, 44%, 100% {
+  38% {
     opacity: 1;
   }
   `;
@@ -348,7 +348,7 @@ const PhotoBox = styled.div`
     height: auto;
     width: 57.5vh;
     max-width: 625px;
-    animation-duration: 10s;
+    animation-duration: 20s;
     animation-timing-function: step-end;
     animation-iteration-count: infinite;
   }
