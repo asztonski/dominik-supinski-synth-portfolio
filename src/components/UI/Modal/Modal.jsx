@@ -24,7 +24,6 @@ const Modal = ({ selectedItem, style, setIsModalOpen, id, content }) => {
     setTimeout(() => {
       setIsModalRendered(false);
     }, 300);
-    console.log(isModalRendered);
   };
 
   return (

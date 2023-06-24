@@ -59,6 +59,7 @@ const Home = ({ id, observer }) => {
         <TextImagesContainer>
           <Image
             fill
+            sizes="(max-width: 600px) 100vw, (max-width: 960px) 50vw, 33vw"
             style={{ objectFit: "contain" }}
             className="above"
             src="/images/home/name_1.png"
@@ -66,9 +67,11 @@ const Home = ({ id, observer }) => {
           />
           <Image
             fill
+            sizes="(max-width: 600px) 100vw, (max-width: 960px) 50vw, 33vw"
             style={{ objectFit: "contain" }}
             className="above"
             src="/images/home/name_2.png"
+            priority
             alt="First name first layer"
             css={css`
               animation: ${neonAnim} 12.5s linear infinite;
@@ -76,6 +79,7 @@ const Home = ({ id, observer }) => {
           />
           <Image
             fill
+            sizes="(max-width: 600px) 100vw, (max-width: 960px) 50vw, 33vw"
             style={{
               objectFit: "contain",
               transform: `translate(${mouseX}px, ${mouseY}px)`,
@@ -86,6 +90,7 @@ const Home = ({ id, observer }) => {
           />
           <Image
             fill
+            sizes="(max-width: 600px) 100vw, (max-width: 960px) 50vw, 33vw"
             style={{
               objectFit: "contain",
               transform: `translate(${-mouseX}px, ${-mouseY}px)`,
@@ -95,10 +100,12 @@ const Home = ({ id, observer }) => {
             alt="Last name second layer"
           />
           <Image
+            sizes="(max-width: 600px) 100vw, (max-width: 960px) 50vw, 33vw"
             fill
             style={{ objectFit: "contain" }}
             className="below relative"
             src="/images/home/lastname_3.png"
+            priority
             alt="Last name third layer"
           />
         </TextImagesContainer>

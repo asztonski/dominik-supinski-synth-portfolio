@@ -7,7 +7,8 @@ export const AppContext = createContext();
 
 const AppContextProvider = ({ children }) => {
   // States
-  const [isMobile, setIsMobile] = useState(true);
+  const [isMobile, setIsMobile] = useState(false);
+  const [isTablet, setIsTablet] = useState(false);
   const [stage, setStage] = useState(1);
   const stages = 4;
   const stageItems = Array.from({ length: stages }, (_, index) => index + 1);
@@ -17,13 +18,20 @@ const AppContextProvider = ({ children }) => {
 
   // Detect screen size
   useEffect(() => {
-    const breakpoint = parseInt(theme.breakpoints.md, 10);
+    const phoneBreakpoint = parseInt(theme.breakpoints.md, 10);
+    const tabletBreakpoint = parseInt(theme.breakpoints.lg, 10);
 
     const handleResize = () => {
-      if (window.innerWidth < breakpoint) {
+      if (window.innerWidth < phoneBreakpoint) {
         setIsMobile(true);
       } else {
         setIsMobile(false);
+      }
+
+      if (window.innerWidth < tabletBreakpoint) {
+        setIsTablet(true);
+      } else {
+        setIsTablet(false);
       }
     };
 
@@ -151,6 +159,7 @@ const AppContextProvider = ({ children }) => {
     autoplaySpeed: 3000,
     pauseOnHover: true,
     cssEase: "ease-in-out",
+    swipe: isTablet ? true : false,
     responsive: [
       {
         breakpoint: 1400,

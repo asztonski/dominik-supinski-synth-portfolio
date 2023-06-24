@@ -13,16 +13,15 @@ import { countAssets } from "@/helpers/assetsCounter";
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
-  const [assetsCount, setAssetsCount] = useState(0);
-  const [loadedAssets, setLoadedAssets] = useState(0);
+  // const [assetsCount, setAssetsCount] = useState(0);
+  // const [loadedAssets, setLoadedAssets] = useState(0);
 
-  useEffect(() => {
-    const assetExtensions = [".png", ".jpg", ".woff", ".woff2"];
+  // useEffect(() => {
+  //   const assetExtensions = [".png", ".jpg", ".woff", ".woff2"];
 
-    const count = countAssets(assetExtensions);
-    setAssetsCount(count);
-    console.log(assetsCount);
-  }, []);
+  //   const count = countAssets(assetExtensions);
+  //   setAssetsCount(count);
+  // }, []);
 
   return (
     <ThemeProvider theme={customTheme}>

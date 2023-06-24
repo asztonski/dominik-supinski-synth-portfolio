@@ -11,7 +11,7 @@ const Footer = () => {
     <StyledFooter>
       <FooterWrapper>
         <div className="footer-item">
-          <p onClick={() => console.log(isMobile)}>webdread © 2023r.</p>
+          <p>webdread © 2023r.</p>
         </div>
         {!isMobile ? <NavBar className="nav-bar" /> : null}
         <div className="footer-item">
