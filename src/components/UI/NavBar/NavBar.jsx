@@ -131,7 +131,6 @@ const NavBarWrapper = styled.nav`
   display: flex;
   gap: 1rem;
   align-items: center;
-  z-index: 3;
   .arrow-btn {
     width: 30px;
     height: 1px;

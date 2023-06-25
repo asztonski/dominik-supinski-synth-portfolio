@@ -5,10 +5,10 @@ import { useContext } from "react";
 import { AppContext } from "@/api/AppContext";
 
 const Footer = () => {
-  const { isMobile } = useContext(AppContext);
+  const { isMobile, isModalOpen } = useContext(AppContext);
 
   return (
-    <StyledFooter>
+    <StyledFooter style={{ zIndex: `${isModalOpen ? "0" : "3"}` }}>
       <FooterWrapper>
         <div className="footer-item">
           <p>webdread © 2023r.</p>
@@ -26,7 +26,6 @@ export default Footer;
 
 const StyledFooter = styled.footer`
   width: 100%;
-  z-index: 3;
   padding: 0 2rem;
   @media (max-width: ${theme.breakpoints.md}) {
     background: black;

@@ -22,6 +22,7 @@ const Form = () => {
   });
   const [errorArr, setErrorArr] = useState([]);
   const [isFormValid, setIsFormValid] = useState(false);
+  const [msgCharacters, setMsgCharacters] = useState(0);
 
   let isValid;
 
@@ -56,6 +57,10 @@ const Form = () => {
 
   const handleInputChange = (e, input) => {
     const { name, value } = e.target;
+
+    if (value.length <= 100) {
+      setMsgCharacters(value.length);
+    }
 
     if (name === "name") {
       isValid = validateName(value);
@@ -115,7 +120,11 @@ const Form = () => {
           rows={input.rows}
           onClick={() => setIsFocused(true)}
           onBlur={(e) => (setIsFocused(false), onBlurHandler(e, input))}
-          helperText={input.helperText}
+          helperText={
+            input.name !== "message"
+              ? input.helperText
+              : `Characters ${msgCharacters} / 100`
+          }
           sx={{
             border: `1px solid ${theme.colors.squares}`,
           }}
