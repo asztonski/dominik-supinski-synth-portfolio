@@ -119,7 +119,7 @@ const About = ({ id, observer }) => {
                 className="glitch-img glitch-1"
                 css={css`
                   inset: 0 0 -10% auto;
-                  /* animation-name: ${imgAnimTwo}; */
+                  animation-name: ${imgAnimTwo};
                 `}
                 src={imgGlitchOne}
                 alt="First Glitched Photo of Dominik Supinski"
@@ -137,7 +137,7 @@ const About = ({ id, observer }) => {
                 className="glitch-img glitch-3"
                 css={css`
                   inset: 15% -8% 0 auto;
-                  animation: ${imgAnimFour};
+                  /* animation: ${imgAnimFour}; */
                 `}
                 src={imgGlitchThree}
                 alt="Third Glitched Photo of Dominik Supinski"
@@ -183,16 +183,15 @@ const About = ({ id, observer }) => {
               alt="Photo of Dominik Supinski"
             />
             <Image
-              className="glitch-ing glitch-1"
+              className="glitch-img glitch-1"
               css={css`
                 inset: 0 0 -10% auto;
-                /* animation-name: ${imgAnimTwo}; */
               `}
               src={imgGlitchOne}
               alt="First Glitched Photo of Dominik Supinski"
             />
             <Image
-              className="glitch-ing glitch-2"
+              className="glitch-img glitch-2"
               css={css`
                 inset: 15% 5% 0 auto;
                 animation: ${imgAnimThree};
@@ -201,7 +200,7 @@ const About = ({ id, observer }) => {
               alt="Second Glitched Photo of Dominik Supinski"
             />
             <Image
-              className="glitch-ing glitch-3"
+              className="glitch-img glitch-3"
               css={css`
                 inset: 15% -8% 0 auto;
                 animation: ${imgAnimFour};

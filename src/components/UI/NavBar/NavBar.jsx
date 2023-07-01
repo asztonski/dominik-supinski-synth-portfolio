@@ -191,14 +191,14 @@ const MiddleBar = styled.div`
   overflow: visible;
   flex: 1;
   display: flex;
-  :first-child {
+  /* :first-child {
     margin-left: auto;
     justify-content: flex-start;
   }
   :last-child {
     margin-right: auto;
     justify-content: flex-end;
-  }
+  } */
   .active {
     :after {
       transform: translateY(100%);

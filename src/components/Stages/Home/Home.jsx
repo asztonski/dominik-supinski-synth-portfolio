@@ -121,14 +121,14 @@ const Home = ({ id, observer }) => {
           front end developer
         </h2>
       </Wrapper>
-      <GlitchSquare translateX={50} translateY={80} order={1} />
+      {/* <GlitchSquare translateX={50} translateY={80} order={1} />
       {!isMobile ? (
         <GlitchSquare translateX={50} translateY={25} delay={7} order={2} />
       ) : null}
       {!isMobile ? (
         <GlitchSquare translateX={10} translateY={80} delay={12} order={3} />
       ) : null}
-      <GlitchSquare translateX={70} translateY={40} delay={15} order={4} />
+      <GlitchSquare translateX={70} translateY={40} delay={15} order={4} /> */}
     </HomeSection>
   );
 };

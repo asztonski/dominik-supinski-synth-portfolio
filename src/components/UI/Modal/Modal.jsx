@@ -50,6 +50,7 @@ const Modal = ({ selectedItem, style, setIsModalOpen, id, content }) => {
                   alt={selectedItem.alt + "modal"}
                   src={selectedItem.asset}
                   fill
+                  sizes="(max-width: 600px) 100vw, (max-width: 960px) 50vw, 33vw"
                 />
               </ImageContainer>
               <h5 className="technologies">

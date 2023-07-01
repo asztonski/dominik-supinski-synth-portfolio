@@ -41,7 +41,12 @@ const Portfolio = ({ id, observer }) => {
                 key={id}
                 target="_blank"
               >
-                <Image fill alt={item.alt} src={item.asset} />
+                <Image
+                  fill
+                  sizes="(max-width: 600px) 100vw, (max-width: 960px) 50vw, 33vw"
+                  alt={item.alt}
+                  src={item.asset}
+                />
               </CarouselItem>
             ))}
           </Slider>
