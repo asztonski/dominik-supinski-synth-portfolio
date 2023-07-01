@@ -6,23 +6,32 @@ import Container from "@/components/Layout/Container/Container";
 export const AppContext = createContext();
 
 const AppContextProvider = ({ children }) => {
-  const [isMobile, setIsMobile] = useState(true);
+  // States
+  const [isMobile, setIsMobile] = useState(false);
+  const [isTablet, setIsTablet] = useState(false);
   const [stage, setStage] = useState(1);
   const stages = 4;
   const stageItems = Array.from({ length: stages }, (_, index) => index + 1);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [isModalRendered, setIsModalRendered] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
 
   // Detect screen size
-
   useEffect(() => {
-    const breakpoint = parseInt(theme.breakpoints.md, 10);
+    const phoneBreakpoint = parseInt(theme.breakpoints.md, 10);
+    const tabletBreakpoint = parseInt(theme.breakpoints.lg, 10);
 
     const handleResize = () => {
-      if (window.innerWidth < breakpoint) {
+      if (window.innerWidth < phoneBreakpoint) {
         setIsMobile(true);
       } else {
         setIsMobile(false);
+      }
+
+      if (window.innerWidth < tabletBreakpoint) {
+        setIsTablet(true);
+      } else {
+        setIsTablet(false);
       }
     };
 
@@ -38,14 +47,16 @@ const AppContextProvider = ({ children }) => {
     };
   }, [theme.breakpoints.md]);
 
-  // Home logo handler
+  // Mouse move event handler
 
-  const [mouseCoord, setMouseCoords] = useState({ x: 0, y: 0 });
+  const [mouseHomeCoord, setMouseHomeCoords] = useState({ x: 0, y: 0 });
+  const [mouseContactCoord, setMouseContactCoords] = useState({ x: 0, y: 0 });
 
+  // Home mouse handler
   useEffect(() => {
     const handleMouseMove = (e) => {
       if (stage === 1) {
-        setMouseCoords({ x: e.clientX, y: e.clientY });
+        setMouseHomeCoords({ x: e.clientX, y: e.clientY });
       }
     };
 
@@ -60,8 +71,26 @@ const AppContextProvider = ({ children }) => {
     };
   }, [stage]);
 
-  // Nav handlers
+  // Contact mouse handler
+  useEffect(() => {
+    const handleContactMove = (e) => {
+      if (stage === 4) {
+        setMouseContactCoords({ x: e.clientX, y: e.clientY });
+      }
+    };
 
+    if (stage === 4) {
+      window.addEventListener("mousemove", handleContactMove);
+    } else {
+      window.removeEventListener("mousemove", handleContactMove);
+    }
+
+    return () => {
+      window.removeEventListener("mousemove", handleContactMove);
+    };
+  }, [stage]);
+
+  // Nav handlers
   useEffect(() => {
     const keyHandler = (e) => {
       if (isModalRendered === true || isFocused === true) {
@@ -116,7 +145,6 @@ const AppContextProvider = ({ children }) => {
   });
 
   // PORTFOLIO
-
   const sliderSettings = {
     slidesToShow: 3,
     slidesToScroll: 1,
@@ -131,6 +159,7 @@ const AppContextProvider = ({ children }) => {
     autoplaySpeed: 3000,
     pauseOnHover: true,
     cssEase: "ease-in-out",
+    swipe: isTablet ? true : false,
     responsive: [
       {
         breakpoint: 1400,
@@ -149,20 +178,32 @@ const AppContextProvider = ({ children }) => {
     ],
   };
 
+  // Modal Handler
+  const modalHandler = () => {
+    setIsModalRendered(true);
+    setTimeout(() => {
+      setIsModalOpen(true);
+    }, 200);
+  };
+
   return (
     <AppContext.Provider
       value={{
         isMobile,
-        mouseCoord,
+        mouseHomeCoord,
+        mouseContactCoord,
         stage,
         setStage,
         stages,
         stageItems,
         sliderSettings,
+        isModalOpen,
+        setIsModalOpen,
         isModalRendered,
         setIsModalRendered,
         isFocused,
         setIsFocused,
+        modalHandler,
       }}
     >
       <Container>{children}</Container>

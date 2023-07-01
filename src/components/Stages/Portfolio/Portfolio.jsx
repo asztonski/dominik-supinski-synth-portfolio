@@ -7,50 +7,59 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { carouselItems } from "@/api/portfolio";
 import { AppContext } from "@/api/AppContext";
-import { useContext, useState, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import Modal from "@/components/UI/Modal/Modal";
 
 const Portfolio = ({ id, observer }) => {
-  const { sliderSettings, isModalRendered, setIsModalRendered, isMobile } =
-    useContext(AppContext);
+  const {
+    sliderSettings,
+    isModalRendered,
+    isModalOpen,
+    setIsModalOpen,
+    isMobile,
+    modalHandler,
+  } = useContext(AppContext);
 
   const [selectedItem, setSelectedItem] = useState();
-  const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const modalHandler = (item) => {
-    setSelectedItem(item);
-    setIsModalRendered(true);
-    setTimeout(() => {
-      setIsModalOpen(true);
-    }, 200);
-  };
+  useEffect(() => {
+    if (isModalOpen === false) {
+      setSelectedItem(null);
+    }
+  }, [isModalOpen]);
 
   return (
     <PortfolioSection ref={observer} id={id} className="portfolio">
       <Wrapper withHeight>
-        {isMobile && <h2>Portfolio</h2>}
+        {isMobile ? <h2>Portfolio</h2> : null}
         <CarouselWrapper>
           <Slider {...sliderSettings}>
             {carouselItems.map((item, id) => (
               <CarouselItem
-                onClick={() => modalHandler(item)}
+                onClick={() => (modalHandler(item), setSelectedItem(item))}
                 className="carousel-item"
                 key={id}
                 target="_blank"
               >
-                <Image fill alt={item.alt} src={item.asset} />
+                <Image
+                  fill
+                  sizes="(max-width: 600px) 100vw, (max-width: 960px) 50vw, 33vw"
+                  alt={item.alt}
+                  src={item.asset}
+                />
               </CarouselItem>
             ))}
           </Slider>
         </CarouselWrapper>
 
-        {isModalRendered && selectedItem && (
+        {isModalRendered && selectedItem ? (
           <Modal
+            id="portfolio-modal"
             style={{ opacity: `${isModalOpen ? "1" : "0"}` }}
             selectedItem={selectedItem}
             setIsModalOpen={setIsModalOpen}
           />
-        )}
+        ) : null}
       </Wrapper>
     </PortfolioSection>
   );

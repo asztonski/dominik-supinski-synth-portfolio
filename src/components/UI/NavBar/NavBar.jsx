@@ -79,7 +79,7 @@ const NavBar = ({ style }) => {
           <img className="arrow-left" src="images/svg/arrow_left.png" alt="" />
         </a>
       )}
-      <MiddleBar className="footer-item">
+      <MiddleBar className="middlebar">
         {!isMobile &&
           stageItems.map((id) => (
             <NavSquareBtn
@@ -127,11 +127,10 @@ const NavBar = ({ style }) => {
 
 export default NavBar;
 
-const NavBarWrapper = styled.div`
+const NavBarWrapper = styled.nav`
   display: flex;
   gap: 1rem;
   align-items: center;
-  z-index: 3;
   .arrow-btn {
     width: 30px;
     height: 1px;
@@ -192,14 +191,14 @@ const MiddleBar = styled.div`
   overflow: visible;
   flex: 1;
   display: flex;
-  :first-child {
+  /* :first-child {
     margin-left: auto;
     justify-content: flex-start;
   }
   :last-child {
     margin-right: auto;
     justify-content: flex-end;
-  }
+  } */
   .active {
     :after {
       transform: translateY(100%);

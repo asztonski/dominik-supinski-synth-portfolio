@@ -5,7 +5,7 @@ const Wrapper = ({ children, isMobile, withHeight, column }) => {
   return (
     <StyledWrapper
       style={{
-        height: `${!isMobile ? `${withHeight ? "50%" : "auto"}` : ""} `,
+        height: `${withHeight ? "50%" : "auto"}`,
         flexDirection: `${column && !isMobile ? "column" : "row"}`,
       }}
       className="wrapper"

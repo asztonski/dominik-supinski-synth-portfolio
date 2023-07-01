@@ -26,9 +26,10 @@ export default CustomButton;
 
 const StyledButton = styled(Button)`
   border: 1px solid ${theme.colors.accent};
-  padding: 0.85rem 5rem;
+  padding: 0.85rem 0;
+  width: 16rem;
   color: ${theme.colors.primary};
-  width: max-content;
+  background-color: black;
   transition: 1s;
   text-transform: uppercase;
   &:hover {
@@ -38,7 +39,6 @@ const StyledButton = styled(Button)`
   }
   @media (max-width: ${theme.breakpoints.md}) {
     align-self: center !important;
-    padding: 0.85rem 1rem;
     width: 100%;
     max-width: 250px;
   }

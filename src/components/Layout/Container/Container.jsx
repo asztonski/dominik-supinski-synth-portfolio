@@ -5,12 +5,20 @@ import { AppContext } from "@/api/AppContext";
 import NavBar from "@/components/UI/NavBar/NavBar";
 
 const Container = ({ children }) => {
-  const { isMobile } = useContext(AppContext);
+  const { isMobile, isModalOpen } = useContext(AppContext);
 
   return (
     <StyledContainer>
       {children}
-      {isMobile && <NavBar style={{ position: "fixed" }} />}
+      {isMobile && (
+        <NavBar
+          style={{
+            position: "fixed",
+            pointerEvents: `${isModalOpen ? "none" : ""}`,
+            opacity: `${isModalOpen ? "0" : ""}`,
+          }}
+        />
+      )}
     </StyledContainer>
   );
 };

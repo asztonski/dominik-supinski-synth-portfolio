@@ -1,12 +1,16 @@
 import styled from "@emotion/styled";
 import { theme } from "@/api/theme";
-import img from "../../../../public/images/contact/dominik_vector.png";
-import Image from "next/image";
 import Wrapper from "@/components/Layout/Wrapper/Wrapper";
 import { contactItems } from "@/api/contact";
 import Form from "@/components/UI/Form/Form";
+import ContactSvg from "@/assets/svg/ContactSvg";
+import { useInView } from "react-intersection-observer";
 
 const Contact = ({ id, observer }) => {
+  const [svgEl, isSvgElInView] = useInView({
+    threshold: 0.5,
+  });
+
   return (
     <ContactSection ref={observer} id={id} className="bottom contact">
       <Wrapper>
@@ -33,7 +37,7 @@ const Contact = ({ id, observer }) => {
           </ContentWrapper>
         </ContactInfoWrapper>
         <PhotoBox>
-          <Image src={img} alt="Drawnings of Dominik Supinski" />
+          <ContactSvg inView={isSvgElInView} observer={svgEl} />
         </PhotoBox>
       </Wrapper>
     </ContactSection>
@@ -77,7 +81,6 @@ const ContentWrapper = styled.div`
 const InfoBox = styled.div`
   display: flex;
   flex-direction: column;
-  /* justify-content: space-between; */
   gap: 5rem;
   width: 100%;
   p {
@@ -100,10 +103,6 @@ const ContactLink = styled.div`
   gap: 2.5rem;
   span {
     min-width: 4rem;
-  }
-  .info-item {
-    /* flex-basis: 0;
-    flex: 1 1 0px; */
   }
   .link-item {
     color: ${theme.colors.accent};
@@ -131,9 +130,9 @@ const PhotoBox = styled.div`
   pointer-events: none;
   width: 50%;
   max-width: 816px;
-  img {
+  svg {
     position: absolute;
-    inset: 0 0 -10% auto;
+    inset: 0 0 -20% auto;
     margin: auto 0;
     height: auto;
     width: 60vh;
@@ -142,11 +141,11 @@ const PhotoBox = styled.div`
   @media (max-width: ${theme.breakpoints.md}) {
     align-self: center;
     width: 75% !important;
+    max-width: 250px !important;
     margin: 2rem 0 0;
-    img {
+    svg {
       position: unset;
       width: 100%;
-      inset: 0;
     }
   }
 `;
