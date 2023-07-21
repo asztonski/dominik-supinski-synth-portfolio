@@ -1,10 +1,8 @@
 /** @jsxImportSource @emotion/react */
 import styled from "@emotion/styled";
-import { useEffect, useState } from "react";
 import { AppContext } from "@/api/AppContext";
 import { useContext } from "react";
 import { theme } from "@/api/theme";
-import { css } from "@emotion/react";
 
 const NavBar = ({ style }) => {
   const { stage, setStage, stages, stageItems, isMobile } =
@@ -175,6 +173,7 @@ const NavBarWrapper = styled.nav`
     flex-direction: column;
     height: 350px;
     gap: 2rem;
+    z-index: 10;
     .arrow-btn {
       transform: rotate(90deg);
     }
