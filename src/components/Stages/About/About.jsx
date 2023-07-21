@@ -133,15 +133,17 @@ const About = ({ id, observer }) => {
                 src={imgGlitchTwo}
                 alt="Second Glitched Photo of Dominik Supinski"
               />
-              <Image
-                className="glitch-img glitch-3"
-                css={css`
-                  inset: 15% -8% 0 auto;
-                  /* animation: ${imgAnimFour}; */
-                `}
-                src={imgGlitchThree}
-                alt="Third Glitched Photo of Dominik Supinski"
-              />
+              {!isMobile ? (
+                <Image
+                  className="glitch-img glitch-3"
+                  css={css`
+                    inset: 15% -8% 0 auto;
+                    /* animation: ${imgAnimFour}; */
+                  `}
+                  src={imgGlitchThree}
+                  alt="Third Glitched Photo of Dominik Supinski"
+                />
+              ) : null}
             </PhotoBox>
           ) : null}
           <SkillsBox>
