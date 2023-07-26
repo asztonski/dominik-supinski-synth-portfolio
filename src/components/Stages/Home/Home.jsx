@@ -9,7 +9,7 @@ import Wrapper from "@/components/Layout/Wrapper/Wrapper";
 import GlitchSquare from "@/components/Decor/Square/GlitchSquare";
 
 const Home = ({ id, observer }) => {
-  const { mouseHomeCoord, isMobile } = useContext(AppContext);
+  const { mouseHomeCoord } = useContext(AppContext);
   let mouseX = mouseHomeCoord.x / 150;
   let mouseY = mouseHomeCoord.y / 150;
 
@@ -141,6 +141,7 @@ const HomeSection = styled.section`
   height: 100%;
   .pulse-title {
     font-size: 2rem;
+    margin: 2rem auto 0;
   }
   .square-1 {
     inset: -50% 30% 0 0;
@@ -157,7 +158,6 @@ const HomeSection = styled.section`
   @media (max-width: ${theme.breakpoints.md}) {
     .pulse-title {
       font-size: 1rem;
-      margin: 1rem auto 0;
     }
   }
 `;
