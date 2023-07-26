@@ -158,7 +158,7 @@ const HomeSection = styled.section`
   @media (max-width: ${theme.breakpoints.md}) {
     .pulse-title {
       font-size: 1rem;
-      margin: 1rem auto 0;
+      margin: 0 auto;
     }
   }
 `;

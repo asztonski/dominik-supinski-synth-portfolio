@@ -7,7 +7,7 @@ export const AppContext = createContext();
 
 const AppContextProvider = ({ children }) => {
   // States
-  const [isMobile, setIsMobile] = useState(false);
+  const [isMobile, setIsMobile] = useState(true);
   const [isTablet, setIsTablet] = useState(false);
   const [stage, setStage] = useState(1);
   const stages = 4;
