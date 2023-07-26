@@ -251,14 +251,14 @@ const AboutSection = styled.section`
 const InfoBox = styled.div`
   display: flex;
   flex-direction: column;
-  width: min-content;
   z-index: 3;
   h2 {
     white-space: nowrap;
   }
   p {
-    margin: 2rem 0 4rem;
+    margin: 3.5vh 0 6.5vh;
     width: 85%;
+    max-width: 800px;
   }
   @media (max-width: ${theme.breakpoints.md}) {
     p {
@@ -285,7 +285,7 @@ const ButtonsWrapper = styled.div`
 
 const SkillsBox = styled.div`
   width: 50%;
-  margin-bottom: 4rem;
+  margin-bottom: 6.5vh;
   @media (max-width: ${theme.breakpoints.md}) {
     width: 100% !important;
     margin: 0 auto 4rem;

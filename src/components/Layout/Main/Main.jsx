@@ -84,7 +84,7 @@ const StyledMain = styled.main`
     margin: auto;
     position: relative;
     h2 {
-      font-size: clamp(2.5rem, 8vw, 9rem);
+      font-size: 15vmin;
     }
     p {
       line-height: 1.6;
