@@ -17,6 +17,11 @@ $color-hover: #098ce8;
   src: url("/fonts/Montserrat-ExtraBold.ttf");
 }
 
+@font-face {
+  font-family: Roboto;
+  src: url("/fonts/Roboto-Regular.ttf");
+}
+
 * {
   box-sizing: border-box;
   padding: 0;
