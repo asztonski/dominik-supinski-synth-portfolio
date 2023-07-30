@@ -103,6 +103,9 @@ const StyledMain = styled.main`
       width: 100%;
       height: auto;
       min-height: 100vh;
+      h2 {
+        font-size: 2.5rem;
+      }
     }
     div {
       width: 100%;

@@ -3,7 +3,7 @@ import { createTheme } from "@mui/material";
 export const theme = {
   colors: {
     primary: "#dddddd",
-    accent: "#0706b7",
+    accent: "#2827ce",
     hover: "#098ce8",
     squares: "#252525",
     extra: "#e8092e",
