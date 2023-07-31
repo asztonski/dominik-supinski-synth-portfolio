@@ -19,6 +19,7 @@ const HeaderNav = ({ className }) => {
             ? menuListArr.map((link, id) => (
                 <li key={id} className={stage === id + 1 ? "active" : ""}>
                   <button
+                    tabIndex={id + 1}
                     css={css`
                       position: relative;
                       &:after {
@@ -49,7 +50,7 @@ const HeaderNav = ({ className }) => {
               ))
             : null}
           <li>
-            <a href="mailto:supinski.dev@gmail.com">
+            <a tabIndex="5" href="mailto:supinski.dev@gmail.com">
               <svg
                 className="msg-icon"
                 id="Layer_2"
@@ -88,6 +89,7 @@ const HeaderNav = ({ className }) => {
               className="github-link"
               target="_blank"
               href="https://github.com/asztonski"
+              tabIndex="6"
             >
               <svg
                 viewBox="0 0 98 96"

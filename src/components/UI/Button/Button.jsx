@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 import { theme } from "@/api/theme";
 import { Button } from "@mui/material";
 
-const CustomButton = ({ content, onClick, disabled }) => {
+const CustomButton = ({ content, onClick, disabled, tabIndex, className }) => {
   return (
     <StyledButton
       sx={{
@@ -16,6 +16,8 @@ const CustomButton = ({ content, onClick, disabled }) => {
       }}
       disabled={disabled}
       onClick={onClick}
+      tabIndex={tabIndex}
+      className="tabElement"
     >
       {content}
     </StyledButton>

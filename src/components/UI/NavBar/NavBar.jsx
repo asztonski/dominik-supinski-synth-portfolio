@@ -63,6 +63,7 @@ const NavBar = ({ style }) => {
     <NavBarWrapper style={style}>
       {!isMobile && (
         <button
+          tabIndex="-1"
           onClick={leftBtnHandler}
           className={`${stage === 1 ? "disabled" : ""} arrow-btn`}
         >
@@ -84,6 +85,7 @@ const NavBar = ({ style }) => {
               className={`nav-square ${stage === id ? "active" : ""}`}
               key={id}
               onClick={() => setStage(id)}
+              tabIndex="-1"
             />
           ))}
         {isMobile &&
@@ -99,6 +101,7 @@ const NavBar = ({ style }) => {
         <button
           onClick={rightBtnHandler}
           className={`${stage === stages ? "disabled" : ""} arrow-btn`}
+          tabIndex="-1"
         >
           <img
             className="arrow-right"

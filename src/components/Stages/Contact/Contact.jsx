@@ -5,11 +5,15 @@ import { contactItems } from "@/api/contact";
 import Form from "@/components/UI/Form/Form";
 import ContactSvg from "@/assets/svg/ContactSvg";
 import { useInView } from "react-intersection-observer";
+import { useContext } from "react";
+import { AppContext } from "@/api/AppContext";
 
 const Contact = ({ id, observer }) => {
   const [svgEl, isSvgElInView] = useInView({
     threshold: 0.5,
   });
+
+  const { stage } = useContext(AppContext);
 
   return (
     <ContactSection ref={observer} id={id} className="bottom contact">
@@ -27,7 +31,8 @@ const Contact = ({ id, observer }) => {
                     <span>{item.name}</span>
                     <div
                       className="link-item"
-                      dangerouslySetInnerHTML={{ __html: item.link }}
+                      // dangerouslySetInnerHTML={{ __html: item.link }}
+                      tabIndex="-1"
                     />
                   </ContactLink>
                 ))}

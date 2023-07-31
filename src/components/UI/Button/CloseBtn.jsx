@@ -3,7 +3,7 @@ import { theme } from "@/api/theme";
 
 const CloseBtn = ({ onClick }) => {
   return (
-    <StyledCloseBtn onClick={onClick}>
+    <StyledCloseBtn className="tabElement" tabIndex="17" onClick={onClick}>
       <span />
       <span />
     </StyledCloseBtn>

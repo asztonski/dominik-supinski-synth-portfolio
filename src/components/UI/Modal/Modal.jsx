@@ -27,7 +27,7 @@ const Modal = ({ selectedItem, style, setIsModalOpen, id, content }) => {
   };
 
   return (
-    <ItemModal style={style}>
+    <ItemModal onClick={() => closeBtnHandler()} style={style}>
       <ModalWindow>
         <CloseBtn onClick={closeBtnHandler} />
         <ScrollableContainer>
@@ -74,16 +74,18 @@ const ItemModal = styled.div`
   height: 100vh;
   position: absolute;
   margin: auto;
-  right: 0;
-  bottom: 0;
-  top: 0;
-  left: 0;
+  inset: 0;
   padding: 2rem;
   z-index: 10;
   backdrop-filter: blur(0);
   animation: ${blurAnim} 0.3s ease-in forwards;
   transition: opacity 0.2s ease-in-out;
   overflow: hidden;
+  /* &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+  } */
   @media (max-width: ${theme.breakpoints.md}) {
     position: fixed;
     /* height: 90%; */
@@ -105,6 +107,7 @@ const ModalWindow = styled.div`
   border: solid ${theme.colors.accent};
   border-width: 3rem 0.5rem 0.5rem;
   padding: 0.25rem 0 1rem;
+  z-index: 11;
   button {
     right: 0;
     top: -2.45rem;

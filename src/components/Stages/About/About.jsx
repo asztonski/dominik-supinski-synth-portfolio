@@ -13,7 +13,6 @@ import { useContext, useEffect, useState } from "react";
 import Wrapper from "@/components/Layout/Wrapper/Wrapper";
 import Modal from "@/components/UI/Modal/Modal";
 import { aboutCopy } from "@/api/about";
-// import GlitchSquare from "@/components/Decor/Square/GlitchSquare";
 import { keyframes, css } from "@emotion/react";
 
 const SKILLS = [
@@ -163,6 +162,7 @@ const About = ({ id, observer }) => {
               <CustomButton
                 onClick={() => setStage(stage + 1)}
                 content="see portfolio"
+                tabIndex={stage !== 2 ? "-1" : "7"}
               />
             ) : (
               <CustomLink content="see portfolio" href="#portfolio" />
@@ -170,6 +170,7 @@ const About = ({ id, observer }) => {
             <CustomButton
               onClick={() => (modalHandler(), setModalContent(aboutCopy))}
               content="read bio"
+              tabIndex={stage !== 2 ? "-1" : "8"}
             />
           </ButtonsWrapper>
         </InfoBox>

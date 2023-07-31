@@ -11,7 +11,7 @@ const Footer = () => {
     <StyledFooter style={{ zIndex: `${isModalOpen ? "0" : "3"}` }}>
       <FooterWrapper>
         <div className="footer-item">
-          <p>webdread © 2023r.</p>
+          <p>webdread © 2023 </p>
         </div>
         {!isMobile ? <NavBar className="nav-bar" /> : null}
         <div className="footer-item">

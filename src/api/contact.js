@@ -19,7 +19,7 @@ export const contactItems = [
 
 export const formItems = [
   {
-    label: "your name",
+    label: "name lastname",
     type: "text",
     name: "name",
     id: "name",

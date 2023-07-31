@@ -144,6 +144,31 @@ const AppContextProvider = ({ children }) => {
     window.onwheel = handleWheel;
   });
 
+  // tab nav
+
+  useEffect(() => {
+    const tabHandler = (e) => {
+      const tabIndex = e.target.tabIndex;
+      const buttons = document.querySelectorAll(".tabElement");
+      if (e.key === "Tab") {
+        console.log(tabIndex);
+        console.log(buttons);
+        if (tabIndex >= 6) {
+          e.preventDefault();
+          if (stage >= 1 && stage < stages) {
+            setStage(stage + 1);
+          }
+        }
+      }
+    };
+
+    window.onkeydown = tabHandler;
+
+    return () => {
+      window.onkeydown = null;
+    };
+  });
+
   // PORTFOLIO
   const sliderSettings = {
     slidesToShow: 3,
@@ -155,8 +180,8 @@ const AppContextProvider = ({ children }) => {
     centerMode: true,
     centerPadding: "0",
     autoplay: isModalRendered ? false : true,
-    speed: 2000,
-    autoplaySpeed: 3000,
+    speed: 500,
+    autoplaySpeed: 2500,
     pauseOnHover: true,
     cssEase: "ease-in-out",
     swipe: isTablet ? true : false,

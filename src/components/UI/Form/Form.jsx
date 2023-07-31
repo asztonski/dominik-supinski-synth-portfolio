@@ -13,7 +13,7 @@ import { useContext } from "react";
 import { AppContext } from "@/api/AppContext";
 
 const Form = () => {
-  const { setIsFocused } = useContext(AppContext);
+  const { setIsFocused, stage } = useContext(AppContext);
 
   const [inputArr, setArrValue] = useState({
     name: "",
@@ -108,13 +108,16 @@ const Form = () => {
     <FormContainer>
       {formItems.map((input) => (
         <TextField
-          className={errorArr.includes(input.name) ? "error" : ""}
+          className={
+            "tabElement" + errorArr.includes(input.name) ? "error" : ""
+          }
           key={input.id}
           onChange={(e) => handleInputChange(e, input)}
           type={input.type}
           label={input.label}
           name={input.id}
           id={input.id}
+          tabIndex="-1"
           value={inputArr[input.id]}
           multiline={input.isMultiline}
           rows={input.rows}
@@ -132,6 +135,9 @@ const Form = () => {
             style: {
               color: `${theme.colors.primary}`,
               fontStyle: "italic",
+            },
+            inputProps: {
+              tabIndex: -1,
             },
           }}
           InputLabelProps={{
