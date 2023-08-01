@@ -31,10 +31,6 @@ const AppContextProvider = ({ children }) => {
         return;
       }
 
-      if (stage === 1) {
-        window.location.hash = "home";
-        return;
-      }
       if (stage === 2) {
         window.location.hash = "about";
         return;
@@ -52,19 +48,14 @@ const AppContextProvider = ({ children }) => {
 
   // Scroll the page after refresh
   useEffect(() => {
-    if (!isMobile) {
-      if (path === "/#home") {
-        setStage(1);
-      }
-      if (path === "/#about") {
-        setStage(2);
-      }
-      if (path === "/#portfolio") {
-        setStage(3);
-      }
-      if (path === "/#contact") {
-        setStage(4);
-      }
+    if (path === "/#about") {
+      setStage(2);
+    }
+    if (path === "/#portfolio") {
+      setStage(3);
+    }
+    if (path === "/#contact") {
+      setStage(4);
     }
   }, [path]);
 
