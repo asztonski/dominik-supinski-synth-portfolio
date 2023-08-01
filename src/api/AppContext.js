@@ -30,7 +30,10 @@ const AppContextProvider = ({ children }) => {
         isFirstRender.current = false;
         return;
       }
-
+      if (stage === 1) {
+        window.location.hash = "";
+        return;
+      }
       if (stage === 2) {
         window.location.hash = "about";
         return;
@@ -106,7 +109,7 @@ const AppContextProvider = ({ children }) => {
 
   // KEYBOARD NAVIGATION
   useEffect(() => {
-    const keyHandler = debounce((e) => {
+    const keyHandler = (e) => {
       const tabIndex = e.target.tabIndex;
 
       if (isModalRendered === true || isFocused === true) {
@@ -114,6 +117,7 @@ const AppContextProvider = ({ children }) => {
       }
 
       switch (e.key) {
+        // Arrows navigation
         case "ArrowLeft":
           if (stage > 1) {
             setStage(stage - 1);
@@ -124,6 +128,8 @@ const AppContextProvider = ({ children }) => {
             setStage(stage + 1);
           }
           break;
+
+        // Tab navigation
         case "Tab":
           if (stage === 1) {
             if (tabIndex > 5) {
@@ -150,8 +156,7 @@ const AppContextProvider = ({ children }) => {
             }
           }
       }
-    }, 350);
-
+    };
     window.onkeydown = keyHandler;
 
     return () => {
