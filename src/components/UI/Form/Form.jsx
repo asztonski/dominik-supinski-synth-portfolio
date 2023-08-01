@@ -117,7 +117,6 @@ const Form = () => {
           label={input.label}
           name={input.id}
           id={input.id}
-          tabIndex="-1"
           value={inputArr[input.id]}
           multiline={input.isMultiline}
           rows={input.rows}
@@ -137,7 +136,7 @@ const Form = () => {
               fontStyle: "italic",
             },
             inputProps: {
-              tabIndex: -1,
+              tabIndex: stage !== 4 ? "-1" : input.tabIndex,
             },
           }}
           InputLabelProps={{
@@ -151,6 +150,7 @@ const Form = () => {
         disabled={!isFormValid}
         onClick={handleSubmit}
         content="Send message"
+        tabIndex={isFormValid ? "17" : "-1"}
       />
     </FormContainer>
   );

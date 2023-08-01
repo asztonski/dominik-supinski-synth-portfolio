@@ -1,19 +1,34 @@
 export const contactItems = [
   {
     name: "e-mail",
-    link: '<a href="mailto:supinski.dev@gmail.com">supinski.dev@gmail.com</a>',
+    isLink: true,
+    isMail: true,
+    link: "mailto:supinski.dev@gmail.com",
+    text: "supinski.dev@gmail.com",
+    tabIndex: 11,
   },
   {
     name: "phone",
-    link: "<span>(+44) 07949694746</span>",
+    isLink: false,
+    isMail: false,
+    link: "",
+    text: "(+44) 07949694746",
   },
   {
     name: "linkedin",
-    link: '<a target="_blank" href="https://www.linkedin.com/in/dominik-supi%C5%84ski-094ba3210/">/dominik-supinski</a>',
+    isLink: true,
+    isMail: false,
+    link: "https://www.linkedin.com/in/dominik-supi%C5%84ski-094ba3210/",
+    text: "dominik-supinski",
+    tabIndex: 12,
   },
   {
     name: "github",
-    link: '<a target="_blank" href="https://www.github.com/asztonski/">/asztonski</a>',
+    isLink: true,
+    isMail: false,
+    link: "https://www.github.com/asztonski/",
+    text: "asztonski",
+    tabIndex: 13,
   },
 ];
 
@@ -27,6 +42,7 @@ export const formItems = [
     rows: "",
     maxRows: "",
     helperText: "Please provide correct name and surname",
+    tabIndex: "14",
   },
   {
     label: "e-mail",
@@ -37,6 +53,7 @@ export const formItems = [
     rows: "",
     maxRows: "",
     helperText: "Please provide correct e-mail address",
+    tabIndex: "15",
   },
   {
     label: "message",
@@ -47,5 +64,6 @@ export const formItems = [
     rows: 4,
     maxRows: 16,
     helperText: "Ohh C'mon! Message is way too short.",
+    tabIndex: "16",
   },
 ];

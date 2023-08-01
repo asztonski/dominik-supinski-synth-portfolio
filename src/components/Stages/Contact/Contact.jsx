@@ -29,11 +29,26 @@ const Contact = ({ id, observer }) => {
                 {contactItems.map((item, id) => (
                   <ContactLink key={id}>
                     <span>{item.name}</span>
-                    <div
-                      className="link-item"
-                      // dangerouslySetInnerHTML={{ __html: item.link }}
-                      tabIndex="-1"
-                    />
+                    <div className="link-item">
+                      {item.isLink && item.isMail === false ? (
+                        <a
+                          tabIndex={stage !== 4 ? "-1" : item.tabIndex}
+                          target="_blank"
+                          href={item.link}
+                        >
+                          {item.text}
+                        </a>
+                      ) : item.isLink && item.isMail ? (
+                        <a
+                          tabIndex={stage !== 4 ? "-1" : item.tabIndex}
+                          href={`mailto:${item.link}`}
+                        >
+                          {item.text}
+                        </a>
+                      ) : (
+                        <span>{item.text}</span>
+                      )}
+                    </div>
                   </ContactLink>
                 ))}
               </ContactInfo>

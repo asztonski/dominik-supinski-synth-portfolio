@@ -37,7 +37,7 @@ const NavBar = ({ style }) => {
 
   const navUpArrowLinkHandler = () => {
     if (stage === 2) {
-      return "#home";
+      return "";
     }
     if (stage === 3) {
       return "#about";
@@ -193,14 +193,6 @@ const MiddleBar = styled.div`
   overflow: visible;
   flex: 1;
   display: flex;
-  /* :first-child {
-    margin-left: auto;
-    justify-content: flex-start;
-  }
-  :last-child {
-    margin-right: auto;
-    justify-content: flex-end;
-  } */
   .active {
     :after {
       transform: translateY(100%);
@@ -229,7 +221,6 @@ const MiddleBar = styled.div`
       transition: transform ${`${theme.transitionTime}s`} ease-in;
       left: 0;
       bottom: 0;
-      /* transform: translateY(-50%); */
     }
     :after {
       background: black;

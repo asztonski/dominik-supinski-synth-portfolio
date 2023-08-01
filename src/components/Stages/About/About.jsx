@@ -162,7 +162,7 @@ const About = ({ id, observer }) => {
               <CustomButton
                 onClick={() => setStage(stage + 1)}
                 content="see portfolio"
-                tabIndex={stage !== 2 ? "-1" : "7"}
+                tabIndex={stage !== 2 ? "-1" : "8"}
               />
             ) : (
               <CustomLink content="see portfolio" href="#portfolio" />
@@ -170,7 +170,7 @@ const About = ({ id, observer }) => {
             <CustomButton
               onClick={() => (modalHandler(), setModalContent(aboutCopy))}
               content="read bio"
-              tabIndex={stage !== 2 ? "-1" : "8"}
+              tabIndex={stage !== 2 ? "-1" : "7"}
             />
           </ButtonsWrapper>
         </InfoBox>

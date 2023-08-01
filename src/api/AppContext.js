@@ -1,7 +1,8 @@
-import { createContext, useState, useEffect } from "react";
+import { createContext, useState, useEffect, useRef } from "react";
 import ArrowBtn from "@/components/UI/Button/ArrowBtn";
 import { theme } from "./theme";
 import Container from "@/components/Layout/Container/Container";
+import { useRouter } from "next/router";
 
 export const AppContext = createContext();
 
@@ -16,7 +17,58 @@ const AppContextProvider = ({ children }) => {
   const [isModalRendered, setIsModalRendered] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
 
-  // Detect screen size
+  ////////// URL HANDLER ////////////
+
+  // Change URL based on stage
+  const router = useRouter();
+  const isFirstRender = useRef(true);
+  let path = router.asPath;
+
+  useEffect(() => {
+    if (!isMobile) {
+      if (isFirstRender.current) {
+        isFirstRender.current = false;
+        return;
+      }
+
+      if (stage === 1) {
+        window.location.hash = "home";
+        return;
+      }
+      if (stage === 2) {
+        window.location.hash = "about";
+        return;
+      }
+      if (stage === 3) {
+        window.location.hash = "portfolio";
+        return;
+      }
+      if (stage === 4) {
+        window.location.hash = "contact";
+        return;
+      }
+    }
+  });
+
+  // Scroll the page after refresh
+  useEffect(() => {
+    if (!isMobile) {
+      if (path === "/#home") {
+        setStage(1);
+      }
+      if (path === "/#about") {
+        setStage(2);
+      }
+      if (path === "/#portfolio") {
+        setStage(3);
+      }
+      if (path === "/#contact") {
+        setStage(4);
+      }
+    }
+  }, [path]);
+
+  // Detect screen size to handle responsivness
   useEffect(() => {
     const phoneBreakpoint = parseInt(theme.breakpoints.md, 10);
     const tabletBreakpoint = parseInt(theme.breakpoints.lg, 10);
@@ -38,7 +90,6 @@ const AppContextProvider = ({ children }) => {
     // Initial screen size check
     handleResize();
 
-    // Event listener for window resize
     window.addEventListener("resize", handleResize);
 
     // Cleanup function
@@ -47,8 +98,97 @@ const AppContextProvider = ({ children }) => {
     };
   }, [theme.breakpoints.md]);
 
-  // Mouse move event handler
+  //_______________________________
 
+  // NAVIGATE THE PAGE
+
+  // Debounce function to prevent bugs with changing stages too fast
+  function debounce(func, delay) {
+    let timer;
+    return function (...args) {
+      clearTimeout(timer);
+      timer = setTimeout(() => {
+        func.apply(this, args);
+      }, delay);
+    };
+  }
+
+  // KEYBOARD NAVIGATION
+  useEffect(() => {
+    const keyHandler = debounce((e) => {
+      const tabIndex = e.target.tabIndex;
+
+      if (isModalRendered === true || isFocused === true) {
+        return;
+      }
+
+      switch (e.key) {
+        case "ArrowLeft":
+          if (stage > 1) {
+            setStage(stage - 1);
+          }
+          break;
+        case "ArrowRight":
+          if (stage < stages) {
+            setStage(stage + 1);
+          }
+          break;
+        case "Tab":
+          if (stage === 1) {
+            if (tabIndex > 5) {
+              e.preventDefault();
+              setStage(2);
+            }
+          }
+          if (stage === 2) {
+            if (tabIndex > 7) {
+              e.preventDefault();
+              setStage(3);
+            }
+          }
+          if (stage === 3) {
+            if (tabIndex > 9) {
+              e.preventDefault();
+              setStage(4);
+            }
+          }
+          if (stage === 4) {
+            if (tabIndex > 15) {
+              e.preventDefault();
+              setStage(1);
+            }
+          }
+      }
+    }, 350);
+
+    window.onkeydown = keyHandler;
+
+    return () => {
+      window.onkeydown = null;
+    };
+  }, [isModalRendered, isFocused, stage, stages]);
+
+  // MOUSE NAVIGATION
+  useEffect(() => {
+    const handleWheel = debounce((e) => {
+      const deltaY = e.deltaY;
+
+      if (!isModalRendered && !isMobile) {
+        if (deltaY < 0 && stage > 1) {
+          setStage(stage - 1);
+        } else if (deltaY > 0 && stage < stages) {
+          setStage(stage + 1);
+        }
+      }
+    }, 100);
+
+    window.onwheel = handleWheel;
+  });
+
+  //_____________________________________
+  // COSMETICS
+
+  // Mouse move event handler
   const [mouseHomeCoord, setMouseHomeCoords] = useState({ x: 0, y: 0 });
   const [mouseContactCoord, setMouseContactCoords] = useState({ x: 0, y: 0 });
 
@@ -90,84 +230,7 @@ const AppContextProvider = ({ children }) => {
     };
   }, [stage]);
 
-  // Nav handlers
-  useEffect(() => {
-    const keyHandler = (e) => {
-      if (isModalRendered === true || isFocused === true) {
-        return;
-      }
-
-      switch (e.keyCode) {
-        case 37:
-          if (stage > 1) {
-            setStage(stage - 1);
-          }
-          break;
-        case 39:
-          if (stage < stages) {
-            setStage(stage + 1);
-          }
-          break;
-      }
-    };
-
-    window.onkeydown = keyHandler;
-
-    return () => {
-      window.onkeydown = null;
-    };
-  }, [isModalRendered, isFocused, stage, stages]);
-
-  function debounce(func, delay) {
-    let timer;
-    return function (...args) {
-      clearTimeout(timer);
-      timer = setTimeout(() => {
-        func.apply(this, args);
-      }, delay);
-    };
-  }
-
-  useEffect(() => {
-    const handleWheel = debounce((e) => {
-      const deltaY = e.deltaY;
-
-      if (!isModalRendered && !isMobile) {
-        if (deltaY < 0 && stage > 1) {
-          setStage(stage - 1);
-        } else if (deltaY > 0 && stage < stages) {
-          setStage(stage + 1);
-        }
-      }
-    }, 100);
-
-    window.onwheel = handleWheel;
-  });
-
-  // tab nav
-
-  useEffect(() => {
-    const tabHandler = (e) => {
-      const tabIndex = e.target.tabIndex;
-      const buttons = document.querySelectorAll(".tabElement");
-      if (e.key === "Tab") {
-        console.log(tabIndex);
-        console.log(buttons);
-        if (tabIndex >= 6) {
-          e.preventDefault();
-          if (stage >= 1 && stage < stages) {
-            setStage(stage + 1);
-          }
-        }
-      }
-    };
-
-    window.onkeydown = tabHandler;
-
-    return () => {
-      window.onkeydown = null;
-    };
-  });
+  //__________________________
 
   // PORTFOLIO
   const sliderSettings = {
