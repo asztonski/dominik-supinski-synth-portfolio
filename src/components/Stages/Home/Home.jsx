@@ -56,7 +56,7 @@ const Home = ({ id, observer }) => {
   return (
     <HomeSection ref={observer} id={id}>
       <Wrapper column withHeight>
-        <TextImagesContainer>
+        <TextImagesContainer alt="Dominik Supinski">
           <Image
             fill
             sizes="(max-width: 600px) 100vw, (max-width: 960px) 50vw, 33vw"
@@ -109,6 +109,7 @@ const Home = ({ id, observer }) => {
             alt="Last name third layer"
           />
         </TextImagesContainer>
+
         <h2
           css={css`
             animation: ${pulse} 2s ease infinite;
@@ -139,6 +140,10 @@ export default Home;
 
 const HomeSection = styled.section`
   height: 100%;
+  h1 {
+    position: relative;
+    height: 100%;
+  }
   .pulse-title {
     font-size: 2rem;
     margin: 2rem auto 0;
@@ -163,7 +168,7 @@ const HomeSection = styled.section`
   }
 `;
 
-const TextImagesContainer = styled.div`
+const TextImagesContainer = styled.h1`
   width: inherit;
   height: 100%;
   align-self: center;

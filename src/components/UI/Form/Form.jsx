@@ -101,7 +101,9 @@ const Form = () => {
     const body = encodeURIComponent(dataArr);
     const mailtoLink = `mailto:supinski.dev@gmail.com?subject=${subject}&body=${body}`;
 
-    window.location.href = mailtoLink;
+    if (isFormValid) {
+      window.location.href = mailtoLink;
+    }
   };
 
   return (
@@ -145,10 +147,9 @@ const Form = () => {
         />
       ))}
       <CustomButton
-        disabled={!isFormValid}
         onClick={handleSubmit}
         content="Send message"
-        tabIndex={isFormValid ? "17" : "-1"}
+        tabIndex="17"
       />
     </FormContainer>
   );
