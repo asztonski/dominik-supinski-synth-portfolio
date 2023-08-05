@@ -169,7 +169,7 @@ const NavBarWrapper = styled.nav`
   }
   @media (max-width: ${theme.breakpoints.md}) {
     position: absolute;
-    right: 1rem;
+    right: 0.5rem;
     top: 0;
     bottom: 0;
     margin: auto;

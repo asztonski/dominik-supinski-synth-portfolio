@@ -1,18 +1,34 @@
 import styled from "@emotion/styled";
 import { theme } from "@/api/theme";
+import HeaderNav from "@/components/UI/Menu/MenuList";
+import Link from "next/link";
 import { AppContext } from "@/api/AppContext";
 import { useContext } from "react";
-import HeaderNav from "@/components/UI/Menu/MenuList";
-import BurgerIcon from "@/components/UI/Menu/BurgerIcon";
 
 const Header = () => {
-  const { isMobile } = useContext(AppContext);
+  const { setStage, isMobile } = useContext(AppContext);
+
+  const logoLinkHandler = (e) => {
+    if (!isMobile) {
+      e.preventDefault();
+      setStage(1);
+    } else {
+      window.location.hash = "";
+      window.history.replaceState({}, document.title, window.location.pathname);
+      window.location.reload();
+    }
+  };
 
   return (
     <StyledHeader>
       <HeaderWrapper>
-        <img src="images/logo.png" alt="Dominik Supinski's Logo" />
-        {/* {!isMobile ? <HeaderNav className="header-nav" /> : <BurgerIcon />} */}
+        <Link
+          onClick={(e) => logoLinkHandler(e)}
+          className="logo-link"
+          href="/"
+        >
+          <img src="images/logo.png" alt="Dominik Supinski's Logo" />
+        </Link>
         <HeaderNav className="header-nav" />
       </HeaderWrapper>
     </StyledHeader>
@@ -59,7 +75,6 @@ const HeaderWrapper = styled.div`
   }
   @media (max-width: ${theme.breakpoints.md}) {
     padding: 1rem;
-    /* justify-content: center; */
     img {
       width: 12.5rem;
     }

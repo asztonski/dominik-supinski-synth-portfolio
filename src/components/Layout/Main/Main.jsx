@@ -13,7 +13,7 @@ import Contact from "@/components/Stages/Contact/Contact";
 import Separator from "@/components/UI/Separator/Separator";
 
 const Main = () => {
-  const { stage, setStage, isMobile, isModalRendered } = useContext(AppContext);
+  const { stage, setStage, isMobile } = useContext(AppContext);
 
   const [home, isHomeInView] = useInView({
     threshold: 0.5,
@@ -52,7 +52,8 @@ const Main = () => {
         zIndex: `${stage === 3 || stage === 2 ? "3" : "1"}`,
       }}
     >
-      <Home observer={home} id="home" />
+      <Separator className="absolute" margin={0} id="home" />
+      <Home observer={home} />
       <Separator margin={3} id="about" />
       <About observer={about} />
       <Separator margin={2} id="portfolio" />
@@ -71,7 +72,6 @@ const StyledMain = styled.main`
   width: 400vw;
   transition: transform ${`${theme.transitionTime}s`} ease-in;
   height: 75vh;
-  /* overflow: hidden; */
   section {
     display: flex;
     width: 25%;
@@ -90,8 +90,10 @@ const StyledMain = styled.main`
       line-height: 1.6;
     }
   }
-  .bottom {
-    justify-content: flex-end;
+  .absolute {
+    position: absolute;
+    top: 0;
+    left: 0;
   }
   @media (max-width: ${theme.breakpoints.md}) {
     width: 100%;
@@ -113,9 +115,6 @@ const StyledMain = styled.main`
     }
     .contact {
       overflow: hidden;
-    }
-    .bottom {
-      justify-content: flex-start;
     }
   }
 `;

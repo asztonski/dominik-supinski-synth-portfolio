@@ -16,7 +16,7 @@ const Contact = ({ id, observer }) => {
   const { stage } = useContext(AppContext);
 
   return (
-    <ContactSection ref={observer} id={id} className="bottom contact">
+    <ContactSection ref={observer} id={id} className="contact">
       <Wrapper>
         <ContactInfoWrapper>
           <TitleBox>
