@@ -138,7 +138,7 @@ const CarouselWrapper = styled.div`
   }
 `;
 
-const CarouselItem = styled.div`
+const CarouselItem = styled.button`
   width: 80% !important;
   aspect-ratio: 1 / 1;
   position: relative;
@@ -153,7 +153,7 @@ const CarouselItem = styled.div`
     width: 100%;
     height: 100%;
     background: ${theme.colors.other};
-    opacity: 0.5;
+    opacity: 0.3;
     content: "";
     z-index: 1;
     transition: 0.34s ease-in;
