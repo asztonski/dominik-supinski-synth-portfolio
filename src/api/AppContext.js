@@ -109,7 +109,7 @@ const AppContextProvider = ({ children }) => {
 
   // KEYBOARD NAVIGATION
   useEffect(() => {
-    const keyHandler = (e) => {
+    const keyHandler = debounce((e) => {
       const tabIndex = e.target.tabIndex;
 
       if (isModalRendered === true || isFocused === true) {
@@ -156,7 +156,7 @@ const AppContextProvider = ({ children }) => {
             }
           }
       }
-    };
+    }, 200);
     window.onkeydown = keyHandler;
 
     return () => {
