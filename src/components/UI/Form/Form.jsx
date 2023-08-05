@@ -122,11 +122,7 @@ const Form = () => {
           rows={input.rows}
           onClick={() => setIsFocused(true)}
           onBlur={(e) => (setIsFocused(false), onBlurHandler(e, input))}
-          helperText={
-            input.name !== "message"
-              ? input.helperText
-              : `Characters ${msgCharacters} / 100`
-          }
+          helperText={input.helperText}
           sx={{
             border: `1px solid ${theme.colors.squares}`,
           }}
@@ -149,7 +145,7 @@ const Form = () => {
       <CustomButton
         onClick={handleSubmit}
         content="Send message"
-        tabIndex="17"
+        tabIndex={stage !== 4 ? "-1" : "17"}
       />
     </FormContainer>
   );

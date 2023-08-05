@@ -63,7 +63,7 @@ export const formItems = [
     isMultiline: true,
     rows: 4,
     maxRows: 16,
-    helperText: "Ohh C'mon! Message is way too short.",
+    helperText: "Message must be longer than 100 characters",
     tabIndex: "16",
   },
 ];

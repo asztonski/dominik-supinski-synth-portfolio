@@ -132,31 +132,31 @@ const AppContextProvider = ({ children }) => {
         // Tab navigation
         case "Tab":
           if (stage === 1) {
-            if (tabIndex > 5) {
+            if (tabIndex === 6) {
               e.preventDefault();
               setStage(2);
             }
           }
           if (stage === 2) {
-            if (tabIndex > 7) {
+            if (tabIndex === 8) {
               e.preventDefault();
               setStage(3);
             }
           }
           if (stage === 3) {
-            if (tabIndex > 9) {
+            if (tabIndex === 10) {
               e.preventDefault();
               setStage(4);
             }
           }
           if (stage === 4) {
-            if (tabIndex > 15) {
+            if (tabIndex === 17) {
               e.preventDefault();
               setStage(1);
             }
           }
       }
-    }, 200);
+    }, 400);
     window.onkeydown = keyHandler;
 
     return () => {
