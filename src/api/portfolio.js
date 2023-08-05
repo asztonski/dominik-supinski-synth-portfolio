@@ -6,7 +6,7 @@ export const carouselItems = [
       "[BETA] Runicat is a react web app created for people who want to understand the present and the future through runes. Type your birthdate and let universe works for you! This app were created 2 years ago.",
     technologies: "React.js",
     asset: "/images/portfolio/runicat.jpg",
-    alt: "Runicat Project Image",
+    alt: "Image of Runicat App",
     year: "(2021)",
   },
   {
@@ -16,7 +16,7 @@ export const carouselItems = [
       "Pixel Perfect website for tattoo & piercing studio in Warsaw, Poland made with UX/UI graphic designer. Pure vanilla project.",
     technologies: "HTML, SCSS, JavaScript",
     asset: "/images/portfolio/luna-arte.jpg",
-    alt: "Luna-Arte Project Image",
+    alt: "Image of Luna Arte website",
     year: "(2021)",
   },
   {
@@ -25,7 +25,7 @@ export const carouselItems = [
     about: "Website made for a Austrian Travel Guide. Pure vanilla project.",
     technologies: "HTML, SCSS, JavaScript",
     asset: "/images/portfolio/ainspiracje.jpg",
-    alt: "Ainspiracje Project Image",
+    alt: "Image of Ainspiracje website",
     year: "(2021)",
   },
   {
@@ -34,7 +34,7 @@ export const carouselItems = [
     about: "Website made for a Canary Islands boat rental.",
     technologies: "HTML, SCSS, JavaScript",
     asset: "/images/portfolio/atlanca.jpg",
-    alt: "Atlanca Project Image",
+    alt: "Image of Atlanca website",
     year: "(2021)",
   },
 ];
