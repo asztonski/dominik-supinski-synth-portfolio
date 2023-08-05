@@ -4,11 +4,10 @@ import { css } from "@emotion/react";
 import { AppContext } from "@/api/AppContext";
 import { useContext } from "react";
 import { theme } from "@/api/theme";
-import Github from "../../../assets/svg/github-black.svg";
 
 const menuListArr = ["home", "about", "portfolio", "contact"];
 
-const HeaderNav = ({ className }) => {
+const MenuList = ({ className }) => {
   const { stage, setStage, isMobile } = useContext(AppContext);
 
   return (
@@ -116,6 +115,8 @@ const HeaderNav = ({ className }) => {
     </StyledNavBox>
   );
 };
+
+export default MenuList;
 
 const StyledNavBox = styled.div`
   position: relative;
@@ -231,5 +232,3 @@ const AbsoluteElement = styled.div`
     width: 52.5%;
   }
 `;
-
-export default HeaderNav;

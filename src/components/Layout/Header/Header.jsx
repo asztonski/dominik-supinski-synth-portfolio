@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import { theme } from "@/api/theme";
-import HeaderNav from "@/components/UI/Menu/MenuList";
+import MenuList from "@/components/UI/Menu/MenuList";
 import Link from "next/link";
 import { AppContext } from "@/api/AppContext";
 import { useContext } from "react";
@@ -26,10 +26,11 @@ const Header = () => {
           onClick={(e) => logoLinkHandler(e)}
           className="logo-link"
           href="/"
+          tabIndex={-1}
         >
           <img src="images/logo.png" alt="Dominik Supinski's Logo" />
         </Link>
-        <HeaderNav className="header-nav" />
+        <MenuList className="header-nav" />
       </HeaderWrapper>
     </StyledHeader>
   );

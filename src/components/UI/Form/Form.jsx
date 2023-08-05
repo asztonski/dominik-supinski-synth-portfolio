@@ -90,7 +90,7 @@ const Form = () => {
     validateForm();
   }, [inputArr]);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = () => {
     const { name, email, message } = inputArr;
     const dataArr = [
       `Message from:\n\nName: ${name}\n\n\nEmail: ${email}\n\n\nMessage: ${message}\n\n\n\n\n\n`,
@@ -108,9 +108,7 @@ const Form = () => {
     <FormContainer>
       {formItems.map((input) => (
         <TextField
-          className={
-            "tabElement" + errorArr.includes(input.name) ? "error" : ""
-          }
+          className={errorArr.includes(input.name) ? "error" : ""}
           key={input.id}
           onChange={(e) => handleInputChange(e, input)}
           type={input.type}
@@ -166,7 +164,6 @@ const FormContainer = styled.form`
   div {
     position: relative;
     background: transparent !important;
-    /* padding-top: 10px; */
     label {
       text-transform: uppercase;
     }
@@ -182,11 +179,6 @@ const FormContainer = styled.form`
       pointer-events: none;
       font-weight: bold;
     }
-    /* svg {
-      position: absolute;
-      right: 3%;
-      top: 0;
-    } */
   }
   .error {
     p {
