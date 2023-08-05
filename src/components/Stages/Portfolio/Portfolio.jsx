@@ -39,7 +39,6 @@ const Portfolio = ({ id, observer }) => {
                 onClick={() => (modalHandler(item), setSelectedItem(item))}
                 className="carousel-item"
                 key={id}
-                target="_blank"
               >
                 <Image
                   fill

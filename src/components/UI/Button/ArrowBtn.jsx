@@ -13,7 +13,12 @@ const ArrowBtn = ({ leftBtn, rightBtn, onClick }) => {
       tabIndex={stage !== 3 ? "-1" : leftBtn ? "9" : "10"}
     >
       {leftBtn && (
-        <svg width="85.5px" height="47.5px" viewBox="0 0 85.5 47.5">
+        <svg
+          width="85.5px"
+          height="47.5px"
+          viewBox="0 0 85.5 47.5"
+          alt="Slider's previous button"
+        >
           <path
             fillRule="evenodd"
             stroke="rgb(7, 6, 183)"
@@ -35,7 +40,12 @@ const ArrowBtn = ({ leftBtn, rightBtn, onClick }) => {
         </svg>
       )}
       {rightBtn && (
-        <svg width="85.5px" height="47.5px" viewBox="0 0 85.5 47.5">
+        <svg
+          width="85.5px"
+          height="47.5px"
+          viewBox="0 0 85.5 47.5"
+          alt="Slider's next button"
+        >
           <path
             fillRule="evenodd"
             stroke={theme.colors.accent}
