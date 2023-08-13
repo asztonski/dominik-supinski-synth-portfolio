@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 import { theme } from "@/api/theme";
 import { Button } from "@mui/material";
 
-const CustomButton = ({ content, onClick, disabled, tabIndex, className }) => {
+const CustomButton = ({ content, onClick, isDisabled, tabIndex }) => {
   return (
     <StyledButton
       sx={{
@@ -14,10 +14,9 @@ const CustomButton = ({ content, onClick, disabled, tabIndex, className }) => {
           opacity: 0,
         },
       }}
-      disabled={disabled}
       onClick={onClick}
       tabIndex={tabIndex}
-      className="tabElement"
+      className={isDisabled ? "disabled" : ""}
     >
       {content}
     </StyledButton>
@@ -31,13 +30,20 @@ const StyledButton = styled(Button)`
   padding: 0.85rem 0;
   width: 16rem;
   color: ${theme.colors.primary};
-  background-color: black;
+  background: black;
   transition: 1s;
   text-transform: uppercase;
   &:hover {
     box-shadow: 0 0 10px ${theme.colors.accent}, 0 0 40px ${theme.colors.accent},
       0 0 80px ${theme.colors.accent};
     background: ${theme.colors.accent};
+  }
+  &.disabled {
+    &:hover {
+      box-shadow: none;
+      background: black;
+      cursor: not-allowed !important;
+    }
   }
   @media (max-width: ${theme.breakpoints.md}) {
     align-self: center !important;

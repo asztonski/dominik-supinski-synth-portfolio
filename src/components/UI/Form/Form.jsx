@@ -65,6 +65,7 @@ const Form = () => {
     }
   };
 
+  // This function is for submit button only, to show errors under the inputs if validation is not correct
   const errorHandlerForAllInputs = () => {
     formItems.forEach((input) => {
       errorHandler({ target: { value: inputArr[input.id] } }, input);
@@ -115,7 +116,6 @@ const Form = () => {
   };
 
   const handleFormSubmit = () => {
-    validateForm();
     errorHandlerForAllInputs();
     if (isFormValid) {
       generateMail();
@@ -132,7 +132,7 @@ const Form = () => {
               : ""
           }
           key={input.id}
-          onChange={(e) => handleInputChange(e, input)}
+          onChange={(e) => (handleInputChange(e, input), validateForm())}
           type={input.type}
           label={input.label}
           name={input.id}
@@ -142,7 +142,9 @@ const Form = () => {
           rows={input.rows}
           onClick={() => (setIsFocused(true), checkUserTyping(input.name))}
           onBlur={(e) => (
-            setIsFocused(false), setIsTyping(false), errorHandler(e, input)
+            setIsFocused(false),
+            setIsTyping(false),
+            errorHandler(e, input),
           )}
           helperText={input.helperText}
           sx={{
@@ -168,6 +170,7 @@ const Form = () => {
         onClick={handleFormSubmit}
         content="Send message"
         tabIndex={stage !== 4 ? "-1" : "17"}
+        isDisabled={!isFormValid}
       />
     </FormContainer>
   );
