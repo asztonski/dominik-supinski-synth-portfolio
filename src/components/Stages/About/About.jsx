@@ -16,27 +16,32 @@ import { aboutCopy } from "@/api/about";
 import { keyframes, css } from "@emotion/react";
 
 const SKILLS = [
-  ["HTML", 4],
-  ["CSS", 4],
-  ["JavaScript", 3],
-  ["React.js", 3],
-  ["Next.js", 2],
+  "HTML",
+  "CSS",
+  "JS Ecma 6",
+  "React.js",
+  "Next.js",
+  "Styled Components",
+  "Emotion",
+  "Typescript",
+  "SCSS",
+  "Storybook.js",
+  "Three.js",
 ];
 
-const renderHandler = (colorIcons, id) => {
-  const emptyIcons = SKILLS.length - colorIcons;
-  const colorIconArr = Array.from({ length: colorIcons });
-  const emptyIconArr = Array.from({ length: emptyIcons });
-
-  return [
-    ...colorIconArr.map((_, index) => (
-      <span key={`colored-icon-${index}`} className="progress-icon colored" />
-    )),
-    ...emptyIconArr.map((_, index) => (
-      <span key={`blank-icon-${index}`} className="progress-icon blank" />
-    )),
-  ];
+const shuffleArray = (array) => {
+  const shuffled = [...array];
+  for (let lenght = shuffled.length - 1; lenght > 0; lenght--) {
+    const randomNumber = Math.floor(Math.random() * (lenght + 1));
+    [shuffled[lenght], shuffled[randomNumber]] = [
+      shuffled[randomNumber],
+      shuffled[lenght],
+    ];
+  }
+  return shuffled;
 };
+
+const skillRows = Array.from({ length: 4 }, (_, id) => id);
 
 const About = ({ id, observer }) => {
   const {
@@ -146,16 +151,16 @@ const About = ({ id, observer }) => {
             </PhotoBox>
           ) : null}
           <SkillsBox>
-            <Skills>
-              {SKILLS.map((skill, id) => (
+            {skillRows.map((skill, id) => {
+              const shuffledSkills = shuffleArray(SKILLS);
+              return (
                 <SkillRow key={id}>
-                  <div className="skill-title">
-                    <span>{skill[0]}</span>
-                  </div>
-                  <IconBox>{renderHandler(skill[1], id)}</IconBox>
+                  {shuffledSkills.map((singleSkill, index) => (
+                    <SingleSkill key={index}>{singleSkill}</SingleSkill>
+                  ))}
                 </SkillRow>
-              ))}
-            </Skills>
+              );
+            })}
           </SkillsBox>
           <ButtonsWrapper>
             {!isMobile ? (
@@ -222,8 +227,6 @@ const About = ({ id, observer }) => {
           />
         ) : null}
       </Wrapper>
-      {/* <GlitchSquare translateX={50} translateY={80} order={1} />
-      <GlitchSquare translateX={50} translateY={25} delay={15} order={2} /> */}
     </AboutSection>
   );
 };
@@ -287,16 +290,19 @@ const ButtonsWrapper = styled.div`
 const SkillsBox = styled.div`
   width: 50%;
   margin-bottom: 6.5vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
   @media (max-width: ${theme.breakpoints.md}) {
     width: 100% !important;
     margin: 0 auto 4rem;
   }
 `;
 
-const Skills = styled.ul`
+const SkillRow = styled.ul`
   display: flex;
-  flex-direction: column;
-  gap: 1rem;
+  gap: 3rem;
   width: 90%;
   @media (max-width: ${theme.breakpoints.md}) {
     align-items: center;
@@ -304,39 +310,10 @@ const Skills = styled.ul`
   }
 `;
 
-const IconBox = styled.div`
-  display: flex;
-  gap: 2rem;
-  justify-content: flex-end;
-  .progress-icon {
-    width: 1rem;
-    height: 1rem;
-    border: 1px solid ${theme.colors.accent};
-    display: block;
-    transform: rotate(-45deg);
-  }
-  .colored {
-    background: ${theme.colors.extra};
-  }
-  @media (max-width: ${theme.breakpoints.md}) {
-    gap: 1.25rem;
-  }
-`;
-
-const SkillRow = styled.li`
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  .skill-title {
-    span {
-      width: 5rem;
-      display: block;
-    }
-  }
-  @media (max-width: ${theme.breakpoints.md}) {
-    /* max-width: 360px; */
-    width: 100%;
-  }
+const SingleSkill = styled.span`
+  font-size: 1.5rem;
+  height: max-content;
+  white-space: nowrap;
 `;
 
 const PhotoBox = styled.div`
