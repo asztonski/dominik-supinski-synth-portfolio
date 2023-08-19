@@ -120,6 +120,7 @@ export default MenuList;
 
 const StyledNavBox = styled.div`
   position: relative;
+  overflow: hidden;
   nav {
     ul {
       display: flex;
