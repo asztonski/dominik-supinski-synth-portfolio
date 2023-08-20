@@ -42,7 +42,7 @@ export const formItems = [
     rows: "",
     maxRows: "",
     helperText: "Please provide correct name and surname",
-    tabIndex: "14",
+    tabIndex: 14,
   },
   {
     label: "e-mail",
@@ -53,7 +53,7 @@ export const formItems = [
     rows: "",
     maxRows: "",
     helperText: "Please provide correct e-mail address",
-    tabIndex: "15",
+    tabIndex: 15,
   },
   {
     label: "message",
@@ -64,6 +64,6 @@ export const formItems = [
     rows: 4,
     maxRows: 16,
     helperText: "Message must be longer than 100 characters",
-    tabIndex: "16",
+    tabIndex: 16,
   },
 ];

@@ -10,7 +10,7 @@ const ArrowBtn = ({ leftBtn, rightBtn, onClick }) => {
     <StyledArrowBtn
       onClick={onClick}
       className={leftBtn ? "left-btn" : "right-btn"}
-      tabIndex={stage !== 3 ? "-1" : leftBtn ? "9" : "10"}
+      tabIndex={stage !== 3 ? -1 : leftBtn ? 9 : 10}
     >
       {leftBtn && (
         <svg

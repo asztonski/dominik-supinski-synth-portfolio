@@ -32,7 +32,7 @@ const Contact = ({ id, observer }) => {
                     <div className="link-item">
                       {item.isLink && item.isMail === false ? (
                         <a
-                          tabIndex={stage !== 4 ? "-1" : item.tabIndex}
+                          tabIndex={stage !== 4 ? -1 : item.tabIndex}
                           target="_blank"
                           href={item.link}
                         >
@@ -40,7 +40,7 @@ const Contact = ({ id, observer }) => {
                         </a>
                       ) : item.isLink && item.isMail ? (
                         <a
-                          tabIndex={stage !== 4 ? "-1" : item.tabIndex}
+                          tabIndex={stage !== 4 ? -1 : item.tabIndex}
                           href={`mailto:${item.link}`}
                         >
                           {item.text}

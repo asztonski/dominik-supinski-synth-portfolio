@@ -70,7 +70,7 @@ const About = ({ id, observer }) => {
           </p>
           {isMobile ? <PhotoBox /> : null}
           <SkillsBox>
-            {skillRows.map((skill, id) => {
+            {/* {skillRows.map((skill, id) => {
               const shuffledSkills = shuffleArray(SKILLS);
               return (
                 <SkillRow key={id}>
@@ -79,14 +79,14 @@ const About = ({ id, observer }) => {
                   ))}
                 </SkillRow>
               );
-            })}
+            })} */}
           </SkillsBox>
           <ButtonsWrapper>
             {!isMobile ? (
               <CustomButton
                 onClick={() => setStage(stage + 1)}
                 content="see portfolio"
-                tabIndex={stage !== 2 ? "-1" : "8"}
+                tabIndex={stage !== 2 ? -1 : 8}
               />
             ) : (
               <CustomLink content="see portfolio" href="#portfolio" />
@@ -94,7 +94,7 @@ const About = ({ id, observer }) => {
             <CustomButton
               onClick={() => (modalHandler(), setModalContent(aboutCopy))}
               content="read bio"
-              tabIndex={stage !== 2 ? "-1" : "7"}
+              tabIndex={stage !== 2 ? -1 : 7}
             />
           </ButtonsWrapper>
         </InfoBox>
@@ -102,7 +102,7 @@ const About = ({ id, observer }) => {
         {isModalRendered ? (
           <Modal
             id="about-modal"
-            style={{ opacity: `${isModalOpen ? "1" : "0"}` }}
+            style={{ opacity: `${isModalOpen ? 1 : 0}` }}
             setIsModalOpen={setIsModalOpen}
             content={modalContent}
           />

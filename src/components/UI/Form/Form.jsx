@@ -156,7 +156,7 @@ const Form = () => {
               fontStyle: "italic",
             },
             inputProps: {
-              tabIndex: stage !== 4 ? "-1" : input.tabIndex,
+              tabIndex: stage !== 4 ? -1 : input.tabIndex,
             },
           }}
           InputLabelProps={{
@@ -169,7 +169,7 @@ const Form = () => {
       <CustomButton
         onClick={handleFormSubmit}
         content="Send message"
-        tabIndex={stage !== 4 ? "-1" : "17"}
+        tabIndex={stage !== 4 ? -1 : 17}
         isDisabled={!isFormValid}
       />
     </FormContainer>
