@@ -1,10 +1,10 @@
 /** @jsxImportSource @emotion/react */
+import React, { useState, useEffect, useContext } from "react";
 import styled from "@emotion/styled";
 import CustomButton from "@/components/UI/Button/Button";
 import CustomLink from "@/components/UI/Link/StyledLink";
 import { theme } from "@/api/theme";
 import { AppContext } from "@/api/AppContext";
-import { useContext, useEffect, useState } from "react";
 import Wrapper from "@/components/Layout/Wrapper/Wrapper";
 import Modal from "@/components/UI/Modal/Modal";
 import { aboutCopy } from "@/api/about";
@@ -27,11 +27,11 @@ const SKILLS = [
 
 const shuffleArray = (array) => {
   const shuffled = [...array];
-  for (let lenght = shuffled.length - 1; lenght > 0; lenght--) {
-    const randomNumber = Math.floor(Math.random() * (lenght + 1));
-    [shuffled[lenght], shuffled[randomNumber]] = [
+  for (let length = shuffled.length - 1; length > 0; length--) {
+    const randomNumber = Math.floor(Math.random() * (length + 1));
+    [shuffled[length], shuffled[randomNumber]] = [
       shuffled[randomNumber],
-      shuffled[lenght],
+      shuffled[length],
     ];
   }
   return shuffled;
@@ -51,6 +51,12 @@ const About = ({ id, observer }) => {
   } = useContext(AppContext);
 
   const [modalContent, setModalContent] = useState(null);
+  const [shuffledSkillsArray, setShuffledSkillsArray] = useState([]);
+
+  useEffect(() => {
+    const newShuffledSkillsArray = skillRows.map(() => shuffleArray(SKILLS));
+    setShuffledSkillsArray(newShuffledSkillsArray);
+  }, []);
 
   useEffect(() => {
     if (isModalRendered === false) {
@@ -70,16 +76,13 @@ const About = ({ id, observer }) => {
           </p>
           {isMobile ? <PhotoBox /> : null}
           <SkillsBox>
-            {/* {skillRows.map((skill, id) => {
-              const shuffledSkills = shuffleArray(SKILLS);
-              return (
-                <SkillRow key={id}>
-                  {shuffledSkills.map((singleSkill, index) => (
-                    <SingleSkill key={index}>{singleSkill}</SingleSkill>
-                  ))}
-                </SkillRow>
-              );
-            })} */}
+            {shuffledSkillsArray.map((shuffledSkills, id) => (
+              <SkillRow key={id}>
+                {shuffledSkills.map((singleSkill, index) => (
+                  <SingleSkill key={index}>{singleSkill}</SingleSkill>
+                ))}
+              </SkillRow>
+            ))}
           </SkillsBox>
           <ButtonsWrapper>
             {!isMobile ? (
