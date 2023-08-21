@@ -141,15 +141,17 @@ const InfoBox = styled.div`
   flex-direction: column;
   z-index: 3;
   width: 50%;
+  gap: 5vh;
   h2 {
     white-space: nowrap;
   }
   p {
-    margin: 3.5vh 0 6.5vh;
+    /* margin: 3.5vh 0 6.5vh; */
     width: 85%;
     max-width: 800px;
   }
   @media (max-width: ${theme.breakpoints.md}) {
+    gap: 1rem;
     p {
       margin: 2rem 0 0;
       width: auto;
@@ -177,10 +179,11 @@ const SkillsBox = styled.div`
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 3vh;
   @media (max-width: ${theme.breakpoints.md}) {
     width: 100% !important;
     margin: 0 auto 4rem;
+    gap: 1rem;
   }
 `;
 
@@ -189,6 +192,7 @@ const SkillRow = styled.ul`
   gap: 3rem;
   @media (max-width: ${theme.breakpoints.md}) {
     align-items: center;
+    gap: 1.75rem;
   }
 `;
 
@@ -196,4 +200,7 @@ const SingleSkill = styled.span`
   font-size: 1.5rem;
   height: max-content;
   white-space: nowrap;
+  @media (max-width: ${theme.breakpoints.md}) {
+    font-size: 1rem;
+  }
 `;
