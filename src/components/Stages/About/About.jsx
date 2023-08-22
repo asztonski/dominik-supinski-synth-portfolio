@@ -200,6 +200,10 @@ const SingleSkill = styled.span`
   font-size: 1.5rem;
   height: max-content;
   white-space: nowrap;
+  font-style: italic;
+  /* text-shadow: -0.0625rem -0.0625rem 0 ${theme.colors.hover},
+    0.0625rem 0.0625rem 0 ${theme.colors.accent}; */
+  text-shadow: 1px 1px 1px ${theme.colors.hover};
   @media (max-width: ${theme.breakpoints.md}) {
     font-size: 1rem;
   }
