@@ -8,13 +8,13 @@ import { AppContext } from "@/api/AppContext";
 import Wrapper from "@/components/Layout/Wrapper/Wrapper";
 import Modal from "@/components/UI/Modal/Modal";
 import { aboutCopy } from "@/api/about";
-import Slider from "react-slick";
+import { HorizontalTicker } from "react-infinite-ticker";
 import PhotoBox from "@/components/Layout/Container/PhotoBox";
 
 const SKILLS = [
   "HTML",
   "CSS",
-  "JS Ecma 6",
+  "JS ES6",
   "React.js",
   "Next.js",
   "Styled Components",
@@ -77,11 +77,14 @@ const About = ({ id, observer }) => {
           {isMobile ? <PhotoBox /> : null}
           <SkillsBox>
             {shuffledSkillsArray.map((shuffledSkills, id) => (
-              <SkillRow key={id}>
+              <HorizontalTicker
+                reverse={id === 1 ? true : false}
+                duration={15000}
+              >
                 {shuffledSkills.map((singleSkill, index) => (
                   <SingleSkill key={index}>{singleSkill}</SingleSkill>
                 ))}
-              </SkillRow>
+              </HorizontalTicker>
             ))}
           </SkillsBox>
           <ButtonsWrapper>
@@ -152,6 +155,7 @@ const InfoBox = styled.div`
   }
   @media (max-width: ${theme.breakpoints.md}) {
     gap: 1rem;
+    overflow: hidden;
     p {
       margin: 2rem 0 0;
       width: auto;
@@ -176,23 +180,19 @@ const ButtonsWrapper = styled.div`
 
 const SkillsBox = styled.div`
   margin-bottom: 6.5vh;
-  overflow: hidden;
   display: flex;
   flex-direction: column;
   gap: 3vh;
   @media (max-width: ${theme.breakpoints.md}) {
-    width: 100% !important;
+    width: unset !important;
+    max-width: unset !important;
     margin: 0 auto 4rem;
     gap: 1rem;
-  }
-`;
-
-const SkillRow = styled.ul`
-  display: flex;
-  gap: 3rem;
-  @media (max-width: ${theme.breakpoints.md}) {
-    align-items: center;
-    gap: 1.75rem;
+    div {
+      width: 200%;
+      max-width: unset;
+      position: relative;
+    }
   }
 `;
 
@@ -201,6 +201,7 @@ const SingleSkill = styled.span`
   height: max-content;
   white-space: nowrap;
   font-style: italic;
+  padding: 0 1rem;
   /* text-shadow: -0.0625rem -0.0625rem 0 ${theme.colors.hover},
     0.0625rem 0.0625rem 0 ${theme.colors.accent}; */
   text-shadow: 1px 1px 1px ${theme.colors.hover};
