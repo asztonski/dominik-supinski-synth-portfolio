@@ -13,7 +13,7 @@ import { useContext } from "react";
 import { AppContext } from "@/api/AppContext";
 
 const Form = () => {
-  const { setIsFocused } = useContext(AppContext);
+  const { setIsFocused, stage } = useContext(AppContext);
 
   const [inputArr, setArrValue] = useState({
     name: "",
@@ -22,12 +22,24 @@ const Form = () => {
   });
   const [errorArr, setErrorArr] = useState([]);
   const [isFormValid, setIsFormValid] = useState(false);
-  const [msgCharacters, setMsgCharacters] = useState(0);
+  const [isTyping, setIsTyping] = useState(false);
+  const [timer, setTimer] = useState(null);
 
-  let isValid;
+  const checkUserTyping = (input) => {
+    if (!isTyping) {
+      setIsTyping(input);
+    }
 
-  const onBlurHandler = (e, input) => {
-    // Check validation for name input, add error if its invalid
+    clearTimeout(timer);
+
+    setTimer(
+      setTimeout(() => {
+        setIsTyping(false);
+      }, 5000)
+    );
+  };
+
+  const errorHandler = (e, input) => {
     if (input.name === "name") {
       if (!validateName(e.target.value)) {
         setErrorArr((current) => [input.name, ...current]);
@@ -36,7 +48,6 @@ const Form = () => {
       }
     }
 
-    // Check validation for email input, add error if its invalid
     if (input.name === "email") {
       if (!validateEmail(e.target.value)) {
         setErrorArr((current) => [input.name, ...current]);
@@ -45,7 +56,6 @@ const Form = () => {
       }
     }
 
-    // Check validation for message input, add error if its invalid
     if (input.name === "message") {
       if (!validateMessage(e.target.value)) {
         setErrorArr((current) => [input.name, ...current]);
@@ -55,19 +65,23 @@ const Form = () => {
     }
   };
 
+  // This function is for submit button only, to show errors under the inputs if validation is not correct
+  const errorHandlerForAllInputs = () => {
+    formItems.forEach((input) => {
+      errorHandler({ target: { value: inputArr[input.id] } }, input);
+    });
+  };
+
   const handleInputChange = (e, input) => {
+    checkUserTyping();
     const { name, value } = e.target;
 
-    if (value.length <= 100) {
-      setMsgCharacters(value.length);
-    }
-
     if (name === "name") {
-      isValid = validateName(value);
+      validateName(value);
     } else if (name === "email") {
-      isValid = validateEmail(value);
+      validateEmail(value);
     } else if (name === "message") {
-      isValid = validateMessage(value);
+      validateMessage(value);
     }
 
     setArrValue((prevInputValue) => ({
@@ -75,7 +89,7 @@ const Form = () => {
       [name]: value,
     }));
 
-    onBlurHandler(e, input);
+    errorHandler(e, input);
   };
 
   const validateForm = () => {
@@ -83,14 +97,11 @@ const Form = () => {
       validateName(inputArr.name) &&
       validateEmail(inputArr.email) &&
       validateMessage(inputArr.message);
+
     setIsFormValid(isAllInputsValid);
   };
 
-  useEffect(() => {
-    validateForm();
-  }, [inputArr]);
-
-  const handleSubmit = (e) => {
+  const generateMail = () => {
     const { name, email, message } = inputArr;
     const dataArr = [
       `Message from:\n\nName: ${name}\n\n\nEmail: ${email}\n\n\nMessage: ${message}\n\n\n\n\n\n`,
@@ -104,13 +115,24 @@ const Form = () => {
     window.location.href = mailtoLink;
   };
 
+  const handleFormSubmit = () => {
+    errorHandlerForAllInputs();
+    if (isFormValid) {
+      generateMail();
+    }
+  };
+
   return (
     <FormContainer>
       {formItems.map((input) => (
         <TextField
-          className={errorArr.includes(input.name) ? "error" : ""}
+          className={
+            errorArr.includes(input.name) && isTyping !== input.name
+              ? "error"
+              : ""
+          }
           key={input.id}
-          onChange={(e) => handleInputChange(e, input)}
+          onChange={(e) => (handleInputChange(e, input), validateForm())}
           type={input.type}
           label={input.label}
           name={input.id}
@@ -118,13 +140,13 @@ const Form = () => {
           value={inputArr[input.id]}
           multiline={input.isMultiline}
           rows={input.rows}
-          onClick={() => setIsFocused(true)}
-          onBlur={(e) => (setIsFocused(false), onBlurHandler(e, input))}
-          helperText={
-            input.name !== "message"
-              ? input.helperText
-              : `Characters ${msgCharacters} / 100`
-          }
+          onClick={() => (setIsFocused(true), checkUserTyping(input.name))}
+          onBlur={(e) => (
+            setIsFocused(false),
+            setIsTyping(false),
+            errorHandler(e, input),
+          )}
+          helperText={input.helperText}
           sx={{
             border: `1px solid ${theme.colors.squares}`,
           }}
@@ -132,6 +154,9 @@ const Form = () => {
             style: {
               color: `${theme.colors.primary}`,
               fontStyle: "italic",
+            },
+            inputProps: {
+              tabIndex: stage !== 4 ? -1 : input.tabIndex,
             },
           }}
           InputLabelProps={{
@@ -142,9 +167,10 @@ const Form = () => {
         />
       ))}
       <CustomButton
-        disabled={!isFormValid}
-        onClick={handleSubmit}
+        onClick={handleFormSubmit}
         content="Send message"
+        tabIndex={stage !== 4 ? -1 : 17}
+        isDisabled={!isFormValid}
       />
     </FormContainer>
   );
@@ -160,7 +186,6 @@ const FormContainer = styled.form`
   div {
     position: relative;
     background: transparent !important;
-    /* padding-top: 10px; */
     label {
       text-transform: uppercase;
     }
@@ -176,11 +201,6 @@ const FormContainer = styled.form`
       pointer-events: none;
       font-weight: bold;
     }
-    /* svg {
-      position: absolute;
-      right: 3%;
-      top: 0;
-    } */
   }
   .error {
     p {

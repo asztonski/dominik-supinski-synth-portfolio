@@ -56,7 +56,7 @@ const Home = ({ id, observer }) => {
   return (
     <HomeSection ref={observer} id={id}>
       <Wrapper column withHeight>
-        <TextImagesContainer>
+        <TextImagesContainer alt="Dominik Supinski">
           <Image
             fill
             sizes="(max-width: 600px) 100vw, (max-width: 960px) 50vw, 33vw"
@@ -109,6 +109,7 @@ const Home = ({ id, observer }) => {
             alt="Last name third layer"
           />
         </TextImagesContainer>
+
         <h2
           css={css`
             animation: ${pulse} 2s ease infinite;
@@ -139,6 +140,10 @@ export default Home;
 
 const HomeSection = styled.section`
   height: 100%;
+  h1 {
+    position: relative;
+    height: 100%;
+  }
   .pulse-title {
     font-size: 2rem;
     margin: 2rem auto 0;
@@ -158,12 +163,12 @@ const HomeSection = styled.section`
   @media (max-width: ${theme.breakpoints.md}) {
     .pulse-title {
       font-size: 1rem;
-      margin: 0 auto;
+      margin: 1rem auto 0;
     }
   }
 `;
 
-const TextImagesContainer = styled.div`
+const TextImagesContainer = styled.h1`
   width: inherit;
   height: 100%;
   align-self: center;
@@ -197,7 +202,7 @@ const TextImagesContainer = styled.div`
     left: 0.25%;
   }
   @media (max-width: ${theme.breakpoints.md}) {
-    height: 10rem;
+    height: 7rem !important;
     img.above {
       width: 60% !important;
       max-width: 600px;

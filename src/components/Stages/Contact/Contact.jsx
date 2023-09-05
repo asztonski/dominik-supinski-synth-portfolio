@@ -5,14 +5,18 @@ import { contactItems } from "@/api/contact";
 import Form from "@/components/UI/Form/Form";
 import ContactSvg from "@/assets/svg/ContactSvg";
 import { useInView } from "react-intersection-observer";
+import { useContext } from "react";
+import { AppContext } from "@/api/AppContext";
 
 const Contact = ({ id, observer }) => {
   const [svgEl, isSvgElInView] = useInView({
     threshold: 0.5,
   });
 
+  const { stage } = useContext(AppContext);
+
   return (
-    <ContactSection ref={observer} id={id} className="bottom contact">
+    <ContactSection ref={observer} id={id} className="contact">
       <Wrapper>
         <ContactInfoWrapper>
           <TitleBox>
@@ -25,10 +29,26 @@ const Contact = ({ id, observer }) => {
                 {contactItems.map((item, id) => (
                   <ContactLink key={id}>
                     <span>{item.name}</span>
-                    <div
-                      className="link-item"
-                      dangerouslySetInnerHTML={{ __html: item.link }}
-                    />
+                    <div className="link-item">
+                      {item.isLink && item.isMail === false ? (
+                        <a
+                          tabIndex={stage !== 4 ? -1 : item.tabIndex}
+                          target="_blank"
+                          href={item.link}
+                        >
+                          {item.text}
+                        </a>
+                      ) : item.isLink && item.isMail ? (
+                        <a
+                          tabIndex={stage !== 4 ? -1 : item.tabIndex}
+                          href={`mailto:${item.link}`}
+                        >
+                          {item.text}
+                        </a>
+                      ) : (
+                        <span>{item.text}</span>
+                      )}
+                    </div>
                   </ContactLink>
                 ))}
               </ContactInfo>

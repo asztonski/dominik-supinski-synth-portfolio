@@ -11,7 +11,7 @@ from {
     backdrop-filter: blur(0);
 }
 to {
-    backdrop-filter: blur(3px);
+    backdrop-filter: blur(4px);
 }
 `;
 
@@ -74,10 +74,7 @@ const ItemModal = styled.div`
   height: 100vh;
   position: absolute;
   margin: auto;
-  right: 0;
-  bottom: 0;
-  top: 0;
-  left: 0;
+  inset: 0;
   padding: 2rem;
   z-index: 10;
   backdrop-filter: blur(0);
@@ -86,7 +83,6 @@ const ItemModal = styled.div`
   overflow: hidden;
   @media (max-width: ${theme.breakpoints.md}) {
     position: fixed;
-    /* height: 90%; */
     inset: 0;
     margin: auto;
     max-width: unset !important;
@@ -100,19 +96,15 @@ const ModalWindow = styled.div`
   width: 60%;
   max-height: 85%;
   min-height: 50%;
-  /* height: max-content; */
-  /* overflow: hidden; */
   border: solid ${theme.colors.accent};
   border-width: 3rem 0.5rem 0.5rem;
   padding: 0.25rem 0 1rem;
+  z-index: 11;
   button {
     right: 0;
     top: -2.45rem;
     transition: transform 1s cubic-bezier(0.54, -0.01, 0.48, 1);
     background-color: ${theme.colors.extra};
-    /* &:hover {
-      transform: rotate(-180deg);
-    } */
   }
   &::after {
     width: 100%;
@@ -124,7 +116,7 @@ const ModalWindow = styled.div`
     position: absolute;
     inset: 0;
     margin: auto;
-    opacity: 0.9;
+    opacity: 0.925;
     z-index: -1;
   }
   @media (max-width: ${theme.breakpoints.md}) {
@@ -157,11 +149,41 @@ const ModalContent = styled.div`
   height: auto;
   &.about-modal {
     h3 {
-      font-size: 2rem;
-      margin: 0 0 1.5rem;
+      font-size: 4rem;
+      margin: 0 0 2rem;
     }
     .copy {
-      font-size: 1.4rem;
+      font-size: 1.25rem;
+      .year {
+        text-shadow: 1px 1px 1px ${theme.colors.hover} !important;
+        font-style: italic;
+        position: relative;
+        width: max-content;
+        margin: 0 2rem;
+        &::after,
+        &::before {
+          content: "";
+          position: absolute;
+          width: 2%;
+          height: 100%;
+          top: 0;
+          bottom: 0;
+          margin: auto;
+          border-style: solid;
+          border-width: 3px;
+          z-index: 1;
+        }
+        &::after {
+          right: -2rem;
+          border-left: 1px;
+          border-color: ${theme.colors.extra};
+        }
+        &::before {
+          left: -2rem;
+          border-right: 1px;
+          border-color: ${theme.colors.accent};
+        }
+      }
     }
   }
 
@@ -173,7 +195,6 @@ const ModalContent = styled.div`
     .technologies {
       font-size: 0.8rem;
       margin-top: 1rem;
-      /* background: rgba(7, 6, 183, 0.4); */
       padding: 0.5rem 2rem;
       position: relative;
       text-shadow: 1px 1px 1px ${theme.colors.hover};
@@ -230,11 +251,21 @@ const ModalContent = styled.div`
       padding: 1rem;
       align-items: flex-start;
       h3 {
-        margin: 0;
+        margin: 1rem 0;
+        font-size: 2.5rem;
       }
       .copy {
         font-size: 1rem;
         margin: 1rem 0;
+      }
+      .year {
+        margin: 0 1rem !important;
+        &::after {
+          right: -1rem !important;
+        }
+        &::before {
+          left: -1rem !important;
+        }
       }
     }
     &.portfolio-modal {

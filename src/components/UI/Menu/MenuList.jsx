@@ -4,11 +4,10 @@ import { css } from "@emotion/react";
 import { AppContext } from "@/api/AppContext";
 import { useContext } from "react";
 import { theme } from "@/api/theme";
-import Github from "../../../assets/svg/github-black.svg";
 
 const menuListArr = ["home", "about", "portfolio", "contact"];
 
-const HeaderNav = ({ className }) => {
+const MenuList = ({ className }) => {
   const { stage, setStage, isMobile } = useContext(AppContext);
 
   return (
@@ -19,6 +18,7 @@ const HeaderNav = ({ className }) => {
             ? menuListArr.map((link, id) => (
                 <li key={id} className={stage === id + 1 ? "active" : ""}>
                   <button
+                    tabIndex={id + 1}
                     css={css`
                       position: relative;
                       &:after {
@@ -49,7 +49,7 @@ const HeaderNav = ({ className }) => {
               ))
             : null}
           <li>
-            <a href="mailto:supinski.dev@gmail.com">
+            <a tabIndex="5" href="mailto:supinski.dev@gmail.com">
               <svg
                 className="msg-icon"
                 id="Layer_2"
@@ -88,6 +88,7 @@ const HeaderNav = ({ className }) => {
               className="github-link"
               target="_blank"
               href="https://github.com/asztonski"
+              tabIndex="6"
             >
               <svg
                 viewBox="0 0 98 96"
@@ -115,8 +116,11 @@ const HeaderNav = ({ className }) => {
   );
 };
 
+export default MenuList;
+
 const StyledNavBox = styled.div`
   position: relative;
+  overflow: hidden;
   nav {
     ul {
       display: flex;
@@ -229,5 +233,3 @@ const AbsoluteElement = styled.div`
     width: 52.5%;
   }
 `;
-
-export default HeaderNav;

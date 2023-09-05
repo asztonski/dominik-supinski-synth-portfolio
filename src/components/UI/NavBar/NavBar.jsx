@@ -37,7 +37,7 @@ const NavBar = ({ style }) => {
 
   const navUpArrowLinkHandler = () => {
     if (stage === 2) {
-      return "#home";
+      return "";
     }
     if (stage === 3) {
       return "#about";
@@ -63,6 +63,7 @@ const NavBar = ({ style }) => {
     <NavBarWrapper style={style}>
       {!isMobile && (
         <button
+          tabIndex="-1"
           onClick={leftBtnHandler}
           className={`${stage === 1 ? "disabled" : ""} arrow-btn`}
         >
@@ -84,6 +85,7 @@ const NavBar = ({ style }) => {
               className={`nav-square ${stage === id ? "active" : ""}`}
               key={id}
               onClick={() => setStage(id)}
+              tabIndex="-1"
             />
           ))}
         {isMobile &&
@@ -99,6 +101,7 @@ const NavBar = ({ style }) => {
         <button
           onClick={rightBtnHandler}
           className={`${stage === stages ? "disabled" : ""} arrow-btn`}
+          tabIndex="-1"
         >
           <img
             className="arrow-right"
@@ -166,7 +169,7 @@ const NavBarWrapper = styled.nav`
   }
   @media (max-width: ${theme.breakpoints.md}) {
     position: absolute;
-    right: 1rem;
+    right: 0.5rem;
     top: 0;
     bottom: 0;
     margin: auto;
@@ -190,14 +193,6 @@ const MiddleBar = styled.div`
   overflow: visible;
   flex: 1;
   display: flex;
-  /* :first-child {
-    margin-left: auto;
-    justify-content: flex-start;
-  }
-  :last-child {
-    margin-right: auto;
-    justify-content: flex-end;
-  } */
   .active {
     :after {
       transform: translateY(100%);
@@ -226,7 +221,6 @@ const MiddleBar = styled.div`
       transition: transform ${`${theme.transitionTime}s`} ease-in;
       left: 0;
       bottom: 0;
-      /* transform: translateY(-50%); */
     }
     :after {
       background: black;

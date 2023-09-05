@@ -1,10 +1,11 @@
 import styled from "@emotion/styled";
 import { theme } from "@/api/theme";
 
-const Separator = ({ margin, id }) => {
+const Separator = ({ margin, id, className }) => {
   return (
     <StyledSeparator
       id={id}
+      className={className}
       style={{
         marginBottom: `${margin}rem`,
       }}

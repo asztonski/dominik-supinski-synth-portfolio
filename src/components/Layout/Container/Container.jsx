@@ -14,8 +14,8 @@ const Container = ({ children }) => {
         <NavBar
           style={{
             position: "fixed",
-            pointerEvents: `${isModalOpen ? "none" : ""}`,
-            opacity: `${isModalOpen ? "0" : ""}`,
+            pointerEvents: `${isModalOpen ? "none" : "normal"}`,
+            opacity: `${isModalOpen ? "0" : "1"}`,
           }}
         />
       )}
