@@ -14,7 +14,7 @@ import PhotoBox from "@/components/Layout/Container/PhotoBox";
 const SKILLS = [
   "HTML",
   "CSS",
-  "JS ES6",
+  "Javascript",
   "React",
   "Next.js",
   "Styled Components",
