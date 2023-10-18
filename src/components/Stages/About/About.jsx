@@ -23,6 +23,7 @@ const SKILLS = [
   "Storybook.js",
   "Three.js",
   "Tailwind",
+  "HTML Mails",
 ];
 
 const shuffleArray = (array) => {
