@@ -158,7 +158,7 @@ const StyledNavBox = styled.div`
             width: 0;
             position: absolute;
             left: 2px;
-            top: 150%;
+            top: 135%;
             transition: 0.74s ease;
             background: ${theme.colors.extra};
             z-index: 99;
