@@ -120,7 +120,7 @@ export default MenuList;
 
 const StyledNavBox = styled.div`
   position: relative;
-  overflow: hidden;
+  /* overflow: hidden; */
   nav {
     ul {
       display: flex;
@@ -128,13 +128,14 @@ const StyledNavBox = styled.div`
       align-items: center;
       li {
         list-style: none;
+        position: relative;
+        z-index: 1;
         button,
         a {
           border: none;
           text-transform: uppercase;
           transition: 0.34s ease-in-out;
           color: white;
-          position: relative;
           .btn-border {
             position: absolute;
             top: 0;
@@ -146,10 +147,25 @@ const StyledNavBox = styled.div`
             polyline {
               fill: transparent;
               stroke: ${theme.colors.extra};
-              strokewidth: 2px;
+              stroke-width: 2px;
               stroke-dasharray: 40 460;
               stroke-dashoffset: 40;
             }
+          }
+          :after {
+            content: "";
+            height: 2px;
+            width: 0;
+            position: absolute;
+            left: 2px;
+            top: 150%;
+            transition: 0.74s ease;
+            background: ${theme.colors.extra};
+            z-index: 99;
+            opacity: 1 !important;
+          }
+          :hover:after {
+            width: 96%;
           }
           .msg-icon {
             width: 30px;
@@ -216,6 +232,7 @@ const AbsoluteElement = styled.div`
   position: absolute;
   top: 0;
   left: 0;
+  z-index: 2;
   height: 100%;
   width: 180%;
   pointer-events: none;

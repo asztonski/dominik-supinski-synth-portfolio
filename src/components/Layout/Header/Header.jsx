@@ -57,8 +57,8 @@ const HeaderWrapper = styled.div`
   align-items: center;
   overflow: hidden;
   width: 100%;
-  img {
-    z-index: 2;
+  a {
+    z-index: 3;
   }
   .header-nav {
     .stage-1 {
