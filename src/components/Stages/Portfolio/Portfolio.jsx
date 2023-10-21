@@ -18,6 +18,7 @@ const Portfolio = ({ id, observer }) => {
     setIsModalOpen,
     isMobile,
     modalHandler,
+    isLoaded,
   } = useContext(AppContext);
 
   const [selectedItem, setSelectedItem] = useState();

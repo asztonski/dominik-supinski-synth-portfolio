@@ -16,6 +16,7 @@ const AppContextProvider = ({ children }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isModalRendered, setIsModalRendered] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
+  const [isLoaded, setIsLoaded] = useState(false);
 
   ////////// URL HANDLER ////////////
 
@@ -238,11 +239,13 @@ const AppContextProvider = ({ children }) => {
     initialSlide: 0,
     centerMode: true,
     centerPadding: "0",
-    autoplay: false,
-    speed: 500,
+    autoplay: isMobile ? true : false,
+    autoplaySpeed: 8000,
+    speed: isMobile ? 1500 : 500,
     pauseOnHover: true,
     cssEase: "ease-in-out",
     swipe: isTablet ? true : false,
+    // lazyLoad: true,
     responsive: [
       {
         breakpoint: 1400,
