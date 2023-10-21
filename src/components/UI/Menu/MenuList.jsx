@@ -130,6 +130,23 @@ const StyledNavBox = styled.div`
         list-style: none;
         position: relative;
         z-index: 1;
+        button {
+          :after {
+            content: "";
+            height: 2px;
+            width: 0;
+            position: absolute;
+            left: 2px;
+            top: 135%;
+            transition: 0.74s ease;
+            background: ${theme.colors.extra};
+            z-index: 99;
+            opacity: 1 !important;
+          }
+          :hover:after {
+            width: 96%;
+          }
+        }
         button,
         a {
           border: none;
@@ -151,21 +168,6 @@ const StyledNavBox = styled.div`
               stroke-dasharray: 40 460;
               stroke-dashoffset: 40;
             }
-          }
-          :after {
-            content: "";
-            height: 2px;
-            width: 0;
-            position: absolute;
-            left: 2px;
-            top: 135%;
-            transition: 0.74s ease;
-            background: ${theme.colors.extra};
-            z-index: 99;
-            opacity: 1 !important;
-          }
-          :hover:after {
-            width: 96%;
           }
           .msg-icon {
             width: 30px;
