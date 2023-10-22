@@ -13,8 +13,8 @@ export const aboutCopy = {
       title: "Front End Engineer",
       date: "Feb 2022 - current",
       skills: [
-        "Built web apps for various companies using React.js with Next.js, Tailwind, MUI etc;",
-        "Built headless React.js apps with wordpress API and login system alongside with backend developer;",
+        "Building web apps for various companies using React.js with Next.js, Tailwind, MUI etc;",
+        "Building headless React.js apps with wordpress API and login system alongside with backend developer;",
         "Maintaining apps written in Vue.js using docker;",
         "Working as a team member with other devs using agile workflow (JIRA, BitBucket, Teams);",
         "3D projects using three.js and blender. Creating storybook UI components;",
