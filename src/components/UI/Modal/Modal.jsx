@@ -121,4 +121,10 @@ const ModalWindow = styled.div`
 const ScrollableContainer = styled.div`
   overflow: auto;
   height: 100%;
+  h3 {
+    margin-top: 2rem;
+  }
+  @media (max-width: ${theme.breakpoints.md}) {
+    margin-top: 0.5rem;
+  }
 `;

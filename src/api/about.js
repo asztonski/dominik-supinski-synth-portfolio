@@ -8,18 +8,7 @@ export const aboutCopy = {
   heading: "Experience",
   copy: [
     {
-      company: "Kresky",
-      location: "Freelance",
-      title: "Front End Developer",
-      date: "Jan 2020 to Jan 2022",
-      skills: [
-        "Creating pixel perfect websites for international clients with HTML, CSS and JavaScript for all devices and resolutions, forms, pop up windows, interactions, animations from scratch;",
-        "Communication between designer, programmer and client;",
-        "Adobe XD, Adobe Photoshop, Adobe Illustrator, UX/UI principles.",
-      ],
-    },
-    {
-      company: "GetSavvy",
+      company: "GetSavvy | ",
       location: "Leeds, England",
       title: "Front End Engineer",
       date: "Feb 2022 - current",
@@ -31,6 +20,17 @@ export const aboutCopy = {
         "3D projects using three.js and blender. Creating storybook UI components;",
         "Working with SVG animations (minigames etc), Adobe XD, Photoshop, Illustrator;",
         "Ability to work independently and collaboratively in a remote work system.",
+      ],
+    },
+    {
+      company: "Kresky | ",
+      location: "Freelance",
+      title: "Front End Developer",
+      date: "Jan 2020 to Jan 2022",
+      skills: [
+        "Creating pixel perfect websites for international clients with HTML, CSS and JavaScript for all devices and resolutions, forms, pop up windows, interactions, animations from scratch;",
+        "Communication between designer, programmer and client;",
+        "Adobe XD, Adobe Photoshop, Adobe Illustrator, UX/UI principles.",
       ],
     },
   ],
