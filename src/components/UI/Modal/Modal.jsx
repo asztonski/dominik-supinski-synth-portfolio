@@ -5,6 +5,8 @@ import CloseBtn from "../Button/CloseBtn";
 import Image from "next/image";
 import { keyframes } from "@emotion/react";
 import { AppContext } from "@/api/AppContext";
+import AboutContent from "./About";
+import PortfolioContent from "./Portfolio";
 
 const blurAnim = keyframes`
 from {
@@ -26,40 +28,20 @@ const Modal = ({ selectedItem, style, setIsModalOpen, id, content }) => {
     }, 300);
   };
 
+  useEffect(() => {
+    console.log(content);
+  });
+
   return (
     <ItemModal style={style}>
       <ModalWindow>
         <CloseBtn onClick={closeBtnHandler} />
         <ScrollableContainer>
           {id === "about-modal" && content ? (
-            <ModalContent className="about-modal">
-              <h3>{content.title}</h3>
-              <p
-                className="copy"
-                dangerouslySetInnerHTML={{ __html: content.content }}
-              />
-            </ModalContent>
+            <AboutContent content={content} />
           ) : null}
           {id === "portfolio-modal" ? (
-            <ModalContent className="portfolio-modal">
-              <h3>{selectedItem.name}</h3>
-              <h4 className="year">Year: {selectedItem.year}</h4>
-              <p>{selectedItem.about}</p>
-              <ImageContainer>
-                <Image
-                  alt={selectedItem.alt + "modal"}
-                  src={selectedItem.asset}
-                  fill
-                  sizes="(max-width: 600px) 100vw, (max-width: 960px) 50vw, 33vw"
-                />
-              </ImageContainer>
-              <h5 className="technologies">
-                Technologies: <i>{selectedItem.technologies}</i>
-              </h5>
-              <a target="_blank" href={selectedItem.address}>
-                Live version
-              </a>
-            </ModalContent>
+            <PortfolioContent selectedItem={selectedItem} />
           ) : null}
         </ScrollableContainer>
       </ModalWindow>
@@ -139,163 +121,4 @@ const ModalWindow = styled.div`
 const ScrollableContainer = styled.div`
   overflow: auto;
   height: 100%;
-`;
-
-const ModalContent = styled.div`
-  padding: 3rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  height: auto;
-  &.about-modal {
-    h3 {
-      font-size: 4rem;
-      margin: 0 0 2rem;
-    }
-    .copy {
-      font-size: 1.25rem;
-      .year {
-        text-shadow: 1px 1px 1px ${theme.colors.hover} !important;
-        font-style: italic;
-        position: relative;
-        width: max-content;
-        margin: 0 2rem;
-        &::after,
-        &::before {
-          content: "";
-          position: absolute;
-          width: 2%;
-          height: 100%;
-          top: 0;
-          bottom: 0;
-          margin: auto;
-          border-style: solid;
-          border-width: 3px;
-          z-index: 1;
-        }
-        &::after {
-          right: -2rem;
-          border-left: 1px;
-          border-color: ${theme.colors.extra};
-        }
-        &::before {
-          left: -2rem;
-          border-right: 1px;
-          border-color: ${theme.colors.accent};
-        }
-      }
-    }
-  }
-
-  &.portfolio-modal {
-    h3 {
-      font-size: 3rem;
-      margin: 0;
-    }
-    .technologies {
-      font-size: 0.8rem;
-      margin-top: 1rem;
-      padding: 0.5rem 2rem;
-      position: relative;
-      text-shadow: 1px 1px 1px ${theme.colors.hover};
-      &::after,
-      &::before {
-        content: "";
-        position: absolute;
-        width: 2%;
-        height: 100%;
-        top: 0;
-        bottom: 0;
-        margin: auto;
-        border-style: solid;
-        border-width: 1px;
-        z-index: 1;
-      }
-      &::after {
-        right: 0;
-        border-left: 1px;
-        border-color: ${theme.colors.extra};
-      }
-      &::before {
-        left: 0;
-        border-right: 1px;
-        border-color: ${theme.colors.accent};
-      }
-    }
-    p {
-      margin: 0 0 3rem;
-      text-align: center;
-      width: clamp(24rem, 50%, 32rem);
-    }
-    img {
-      width: auto;
-      height: 100%;
-    }
-    a {
-      color: ${theme.colors.extra};
-      letter-spacing: 4px;
-      text-transform: uppercase;
-      font-weight: bold;
-      margin: 2rem 0 0;
-    }
-    .year {
-      font-size: 0.7rem;
-      margin: 0 0 2rem;
-      font-style: italic;
-    }
-  }
-
-  @media (max-width: ${theme.breakpoints.md}) {
-    padding: 0.5rem;
-    &.about-modal {
-      padding: 1rem;
-      align-items: flex-start;
-      h3 {
-        margin: 1rem 0;
-        font-size: 2.5rem;
-      }
-      .copy {
-        font-size: 1rem;
-        margin: 1rem 0;
-      }
-      .year {
-        margin: 0 1rem !important;
-        &::after {
-          right: -1rem !important;
-        }
-        &::before {
-          left: -1rem !important;
-        }
-      }
-    }
-    &.portfolio-modal {
-      p {
-        text-align: center;
-        width: 90%;
-      }
-      h3 {
-        font-size: clamp(2rem, 8vw, 3rem);
-      }
-      h5 {
-        text-align: center;
-        padding: 0.5rem 0.25rem !important;
-        width: 75%;
-      }
-    }
-  }
-`;
-
-const ImageContainer = styled.div`
-  width: 45%;
-  aspect-ratio: 1 / 1;
-  position: relative;
-  img {
-    object-fit: cover;
-    inset: 0;
-    margin: auto;
-  }
-  @media (max-width: ${theme.breakpoints.md}) {
-    width: 75% !important;
-    max-width: 400px;
-  }
 `;
