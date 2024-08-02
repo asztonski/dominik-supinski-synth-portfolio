@@ -15,15 +15,15 @@ const SKILLS = [
   "HTML",
   "CSS",
   "Javascript",
-  "React",
+  "React.js",
+  "Vue.js",
   "Next.js",
-  "Styled Components",
   "Typescript",
   "API",
   "Storybook.js",
   "Three.js",
   "Tailwind",
-  "HTML Mails",
+  "Accesibility",
 ];
 
 const shuffleArray = (array) => {
