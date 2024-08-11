@@ -8,10 +8,23 @@ export const aboutCopy = {
   heading: "Experience",
   copy: [
     {
+      company: "EnjoyTravel | ",
+      location: "Remote, World",
+      title: "FrontEnd Developer",
+      date: "Jan 2024",
+      skills: [
+        "Working collaboratively in two different teams with two different products;",
+        "Collaborating closely with backend developers and designers using scrum workflow;",
+        "Developing and exporting React.js components with Storybook and Tailwind, enhancing existing product performance and maintainability;",
+        "Maintaining and improving existing product written in Vue.js",
+        "Frontend expertise and advice.",
+      ],
+    },
+    {
       company: "GetSavvy | ",
       location: "Leeds, England",
-      title: "Front End Engineer",
-      date: "Feb 2022 - current",
+      title: "FrontEnd Developer",
+      date: "Feb 2022 - Jan 2024",
       skills: [
         "Building web apps for various companies using React.js with Next.js, Tailwind, MUI etc;",
         "Building headless React.js apps with wordpress API and login system alongside with backend developer;",
@@ -20,17 +33,6 @@ export const aboutCopy = {
         "3D projects using three.js and blender. Creating storybook UI components;",
         "Working with SVG animations (minigames etc), Adobe XD, Photoshop, Illustrator;",
         "Ability to work independently and collaboratively in a remote work system.",
-      ],
-    },
-    {
-      company: "Kresky | ",
-      location: "Freelance",
-      title: "Front End Developer",
-      date: "Jan 2020 to Jan 2022",
-      skills: [
-        "Creating pixel perfect websites for international clients with HTML, CSS and JavaScript for all devices and resolutions, forms, pop up windows, interactions, animations from scratch;",
-        "Communication between designer, programmer and client;",
-        "Adobe XD, Adobe Photoshop, Adobe Illustrator, UX/UI principles.",
       ],
     },
   ],

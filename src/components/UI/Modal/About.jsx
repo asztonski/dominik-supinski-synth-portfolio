@@ -112,4 +112,7 @@ const List = styled.ul`
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
+  li {
+    line-height: 1.6;
+  }
 `;

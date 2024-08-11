@@ -28,10 +28,6 @@ const Modal = ({ selectedItem, style, setIsModalOpen, id, content }) => {
     }, 300);
   };
 
-  useEffect(() => {
-    console.log(content);
-  });
-
   return (
     <ItemModal style={style}>
       <ModalWindow>
