@@ -76,6 +76,7 @@ const About = ({ id, observer }) => {
           <p>
             My name is Dominik and I like to create websites and web apps. I
             love exploring new digital horizons. Get to know me through my work.
+            <br className="desktop" />
             Let's create something amazing together!
           </p>
           {isMobile ? <PhotoBox /> : null}
