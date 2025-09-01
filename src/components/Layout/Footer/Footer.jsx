@@ -11,11 +11,11 @@ const Footer = () => {
     <StyledFooter style={{ zIndex: `${isModalOpen ? "0" : "3"}` }}>
       <FooterWrapper>
         <div className="footer-item">
-          <p>webdread © 2023 </p>
+          <p>webdread © 2025 </p>
         </div>
         {!isMobile ? <NavBar className="nav-bar" /> : null}
         <div className="footer-item">
-          <p>version 1.0</p>
+          <p>version 1.1</p>
         </div>
       </FooterWrapper>
     </StyledFooter>
