@@ -26,12 +26,14 @@ const SKILLS = [
   "Performance",
   "Storybook",
   "Vite",
-  "CI/CD",
   "Git Flow",
   "Node.js",
   "Figma",
   "Scrum / Agile",
   "Testing",
+  "Architecture",
+  "UI/UX",
+  "Three.js",
 ];
 
 const shuffleArray = (array) => {

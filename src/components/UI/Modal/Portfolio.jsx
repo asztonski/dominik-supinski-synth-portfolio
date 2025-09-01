@@ -56,7 +56,8 @@ const Container = styled.div`
     font-size: 0.8rem;
     padding: 0.5rem 2rem;
     position: relative;
-    margin: 0 0 2rem;
+    margin: 0 auto 2rem;
+    max-width: 75%;
     text-shadow: 1px 1px 1px ${theme.colors.hover};
     &::after,
     &::before {
