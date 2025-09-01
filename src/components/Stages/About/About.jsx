@@ -16,17 +16,22 @@ const SKILLS = [
   "CSS",
   "Javascript",
   "React.js",
-  "Redux",
+  "Zustand",
   "Vue.js",
   "Next.js",
   "Typescript",
   "API",
+  "GraphQL / REST API",
   "Storybook.js",
   "Three.js",
   "Tailwind",
   "Accesibility",
   "Scrum / Agile",
   "Testing",
+  "Figma",
+  "Git Flow",
+  "Performance",
+  "Node.js",
 ];
 
 const shuffleArray = (array) => {
