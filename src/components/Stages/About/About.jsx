@@ -14,24 +14,24 @@ import PhotoBox from "@/components/Layout/Container/PhotoBox";
 const SKILLS = [
   "HTML",
   "CSS",
-  "Javascript",
-  "React.js",
-  "Zustand",
-  "Vue.js",
+  "JavaScript",
+  "TypeScript",
+  "React",
   "Next.js",
-  "Typescript",
-  "API",
-  "GraphQL / REST API",
-  "Storybook.js",
-  "Three.js",
+  "SSR",
+  "Zustand",
   "Tailwind",
-  "Accesibility",
+  "Accessibility",
+  "GraphQL / REST",
+  "Performance",
+  "Storybook",
+  "Vite",
+  "CI/CD",
+  "Git Flow",
+  "Node.js",
+  "Figma",
   "Scrum / Agile",
   "Testing",
-  "Figma",
-  "Git Flow",
-  "Performance",
-  "Node.js",
 ];
 
 const shuffleArray = (array) => {
@@ -79,17 +79,20 @@ const About = ({ id, observer }) => {
         <InfoBox>
           <h2>About me</h2>
           <p>
-            My name is Dominik and I like to create websites and web apps. I
-            love exploring new digital horizons. Get to know me through my work.
-            <br className="desktop" />
-            Let's create something amazing together!
+            I'm Dominik — I build production-ready websites and web apps.
+            <br />
+            I love exploring new digital horizons. Get to know me through my
+            work.&nbsp;
+            <br />
+            Let's create something exceptional together!
           </p>
+
           {isMobile ? <PhotoBox /> : null}
           <SkillsBox>
             {shuffledSkillsArray.map((shuffledSkills, id) => (
               <HorizontalTicker
                 reverse={id === 1 ? true : false}
-                duration={15000}
+                duration={20000}
               >
                 {shuffledSkills.map((singleSkill, index) => (
                   <SingleSkill key={index}>{singleSkill}</SingleSkill>
