@@ -264,14 +264,14 @@ const AppContextProvider = ({ children }) => {
     nextArrow: <ArrowBtn rightBtn />,
     infinite: true,
     initialSlide: 0,
-    centerMode: isMobile ? true : false,
+    centerMode: isMobile,
     centerPadding: "0",
-    autoplay: isMobile ? true : false,
-    autoplaySpeed: 8000,
+    autoplay: isMobile && !isModalOpen,
+    autoplaySpeed: 6000,
     speed: isMobile ? 1500 : 500,
     pauseOnHover: true,
     cssEase: "ease-in-out",
-    swipe: isTablet ? true : false,
+    swipe: isTablet,
     // lazyLoad: true,
     responsive: [
       {
