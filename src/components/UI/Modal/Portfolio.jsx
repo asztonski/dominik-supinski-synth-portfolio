@@ -51,6 +51,14 @@ const Container = styled.div`
   h3 {
     font-size: 3rem;
     margin: 0;
+    @media (max-width: ${theme.breakpoints.md}) {
+      font-size: 1.5rem;
+    }
+  }
+  h4 {
+    @media (max-width: ${theme.breakpoints.md}) {
+      font-size: 0.85rem;
+    }
   }
   .technologies {
     font-size: 0.8rem;

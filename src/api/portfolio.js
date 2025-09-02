@@ -4,7 +4,7 @@ export const carouselItems = [
     address: "https://www.enjoytravel.com/",
     about:
       "High-traffic car hire and travel booking platform. I build and maintain the production frontend with SSR, performance optimizations, and i18n.",
-    technologies: "React, TypeScript, Tailwind CSS, Zustand, Vite, SSR",
+    technologies: "React, TypeScript, Tailwind, Storybook, Zustand, SSR",
     asset: "/images/portfolio/enjoytravel.jpg",
     alt: "Screenshot of EnjoyTravel.com",
     year: "(2024–2025)",
