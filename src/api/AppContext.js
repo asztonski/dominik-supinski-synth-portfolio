@@ -18,48 +18,75 @@ const AppContextProvider = ({ children }) => {
   const [isFocused, setIsFocused] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
 
+  // --- BEZPIECZNY SETTER DLA STAGE (KLAMROWANIE 1..4) ---
+  const MIN_STAGE = 1;
+  const MAX_STAGE = stages;
+  const clampStage = (n) => Math.min(MAX_STAGE, Math.max(MIN_STAGE, n));
+  const setStageSafe = (next) =>
+    setStage((prev) =>
+      clampStage(typeof next === "function" ? next(prev) : next)
+    );
+
   ////////// URL HANDLER ////////////
 
-  // Change URL based on stage
   const router = useRouter();
   const isFirstRender = useRef(true);
-  let path = router.asPath;
 
+  // helper: mapowanie stage -> hash
+  const stageToHash = (s) => {
+    if (s === 1) return ""; // bez # na Home
+    if (s === 2) return "#about";
+    if (s === 3) return "#portfolio";
+    if (s === 4) return "#contact";
+    return "";
+  };
+
+  // throttle znaczników historii
+  const lastHashWriteAt = useRef(0);
+
+  // ZMIANA URL NA PODSTAWIE STAGE — **JEDYNA ZMIENIONA SEKCJA**
   useEffect(() => {
-    if (!isMobile) {
-      if (isFirstRender.current) {
-        isFirstRender.current = false;
-        return;
-      }
-      if (stage === 1) {
-        window.location.hash = "";
-        return;
-      }
-      if (stage === 2) {
-        window.location.hash = "about";
-        return;
-      }
-      if (stage === 3) {
-        window.location.hash = "portfolio";
-        return;
-      }
-      if (stage === 4) {
-        window.location.hash = "contact";
-        return;
-      }
+    if (typeof window === "undefined") return;
+    if (isMobile) return; // na mobile nie dotykamy hasha
+
+    if (isFirstRender.current) {
+      // pomiń 1. render
+      isFirstRender.current = false;
+      return;
     }
-  });
+
+    const nextHash = stageToHash(stage);
+    const currentHash = window.location.hash;
+
+    // jeśli nic się nie zmienia — wyjdź
+    if (currentHash === nextHash) return;
+
+    // prosty throttle (>=200 ms)
+    const now = Date.now();
+    if (now - lastHashWriteAt.current < 200) return;
+
+    try {
+      const base = window.location.pathname + window.location.search;
+      history.replaceState(null, "", base + nextHash);
+      lastHashWriteAt.current = now;
+    } catch (err) {
+      // zabezpieczenie przed "The operation is insecure"
+      console.warn("Hash update skipped:", err);
+    }
+  }, [stage, isMobile]);
+  // --------- KONIEC ZMIENIONEJ SEKCJI ---------
 
   // Scroll the page after refresh
+  const path = router.asPath;
   useEffect(() => {
     if (path === "/#about") {
-      setStage(2);
+      setStageSafe(2);
     }
     if (path === "/#portfolio") {
-      setStage(3);
+      setStageSafe(3);
     }
     if (path === "/#contact") {
-      setStage(4);
+      setStageSafe(4);
     }
   }, [path]);
 
@@ -121,12 +148,12 @@ const AppContextProvider = ({ children }) => {
         // Arrows navigation
         case "ArrowLeft":
           if (stage > 1) {
-            setStage(stage - 1);
+            setStageSafe((s) => s - 1);
           }
           break;
         case "ArrowRight":
           if (stage < stages) {
-            setStage(stage + 1);
+            setStageSafe((s) => s + 1);
           }
           break;
 
@@ -135,25 +162,25 @@ const AppContextProvider = ({ children }) => {
           if (stage === 1) {
             if (tabIndex === 6) {
               e.preventDefault();
-              setStage(2);
+              setStageSafe(2);
             }
           }
           if (stage === 2) {
             if (tabIndex === 8) {
               e.preventDefault();
-              setStage(3);
+              setStageSafe(3);
             }
           }
           if (stage === 3) {
             if (tabIndex === 10) {
               e.preventDefault();
-              setStage(4);
+              setStageSafe(4);
             }
           }
           if (stage === 4) {
             if (tabIndex === 17) {
               e.preventDefault();
-              setStage(1);
+              setStageSafe(1);
             }
           }
       }
@@ -172,9 +199,9 @@ const AppContextProvider = ({ children }) => {
 
       if (!isModalRendered && !isMobile) {
         if (deltaY < 0 && stage > 1) {
-          setStage(stage - 1);
+          setStageSafe((s) => s - 1);
         } else if (deltaY > 0 && stage < stages) {
-          setStage(stage + 1);
+          setStageSafe((s) => s + 1);
         }
       }
     }, 100);
@@ -236,7 +263,7 @@ const AppContextProvider = ({ children }) => {
     prevArrow: <ArrowBtn leftBtn />,
     nextArrow: <ArrowBtn rightBtn />,
     infinite: true,
-    initialSlide: 0,
+    initialSlide: 1,
     centerMode: true,
     centerPadding: "0",
     autoplay: isMobile ? true : false,
@@ -279,7 +306,7 @@ const AppContextProvider = ({ children }) => {
         mouseHomeCoord,
         mouseContactCoord,
         stage,
-        setStage,
+        setStage: setStageSafe, // wystawiamy bezpieczny setter
         stages,
         stageItems,
         sliderSettings,
