@@ -1,6 +1,6 @@
 export const carouselItems = [
   {
-    name: "enjoytravel.com",
+    name: "enjoytravel",
     address: "https://www.enjoytravel.com/",
     about:
       "High-traffic car hire and travel booking platform. I build and maintain the production frontend with SSR, performance optimizations, and i18n.",

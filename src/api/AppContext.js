@@ -8,7 +8,7 @@ export const AppContext = createContext();
 
 const AppContextProvider = ({ children }) => {
   // States
-  const [isMobile, setIsMobile] = useState(true);
+  const [isMobile, setIsMobile] = useState();
   const [isTablet, setIsTablet] = useState(false);
   const [stage, setStage] = useState(1);
   const stages = 4;
@@ -16,7 +16,7 @@ const AppContextProvider = ({ children }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isModalRendered, setIsModalRendered] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
-  const [isLoaded, setIsLoaded] = useState(false);
+  // const [isLoaded, setIsLoaded] = useState(false);
 
   // --- BEZPIECZNY SETTER DLA STAGE (KLAMROWANIE 1..4) ---
   const MIN_STAGE = 1;
@@ -254,6 +254,10 @@ const AppContextProvider = ({ children }) => {
     };
   }, [stage]);
 
+  useEffect(() => {
+    console.log(isMobile)
+  }, [isMobile]);
+
   //__________________________
 
   // PORTFOLIO
@@ -278,14 +282,13 @@ const AppContextProvider = ({ children }) => {
         breakpoint: 1400,
         settings: {
           slidesToShow: 2,
-          slidesToScroll: 1,
         },
       },
       {
         breakpoint: 1000,
         settings: {
           slidesToShow: 1,
-          slidesToScroll: 1,
+          initialSlide: 3,
         },
       },
     ],
