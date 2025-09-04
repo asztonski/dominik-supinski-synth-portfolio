@@ -93,6 +93,7 @@ const About = ({ id, observer }) => {
           <SkillsBox>
             {shuffledSkillsArray.map((shuffledSkills, id) => (
               <HorizontalTicker
+                key={id}
                 reverse={id === 1 ? true : false}
                 duration={20000}
               >
