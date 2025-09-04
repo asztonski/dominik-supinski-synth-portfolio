@@ -9,27 +9,41 @@ import AboutContent from "./About";
 import PortfolioContent from "./Portfolio";
 
 const blurAnim = keyframes`
-from {
-    backdrop-filter: blur(0);
-}
-to {
-    backdrop-filter: blur(4px);
-}
+from { backdrop-filter: blur(0); }
+to { backdrop-filter: blur(4px); }
 `;
 
 const Modal = ({ selectedItem, style, setIsModalOpen, id, content }) => {
-  const { setIsModalRendered, isModalRendered, stage } = useContext(AppContext);
+  const { setIsModalRendered } = useContext(AppContext);
 
   const closeBtnHandler = () => {
     setIsModalOpen(false);
+    setTimeout(() => setIsModalRendered(false), 300);
+  };
 
-    setTimeout(() => {
-      setIsModalRendered(false);
-    }, 300);
+  // (optional) close on Esc
+  useEffect(() => {
+    const onKey = (e) => {
+      if (e.key === "Escape") closeBtnHandler();
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, []);
+
+  const onBackdropClick = (e) => {
+    // Only close if the user clicked the backdrop itself, not inside the modal
+    if (e.target === e.currentTarget) {
+      closeBtnHandler();
+    }
   };
 
   return (
-    <ItemModal style={style}>
+    <ItemModal
+      style={style}
+      onClick={onBackdropClick}
+      role="dialog"
+      aria-modal="true"
+    >
       <ModalWindow>
         <CloseBtn onClick={closeBtnHandler} />
         <ScrollableContainer>
