@@ -9,7 +9,7 @@ const AboutContent = ({ content }) => {
         <Container
           style={{
             borderBottom: `${
-              id === 0 ? `1px solid ${theme.colors.hover}` : ""
+              id === 0 || id === 1 ? `1px solid ${theme.colors.hover}` : ""
             }`,
           }}
           key={id}
@@ -17,16 +17,30 @@ const AboutContent = ({ content }) => {
           <Box>
             <Company>
               <p>
-                {job.company}
+                {job.companyUrl ? (
+                  <CompanyLink
+                    href={job.companyUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`${job.company} website`}
+                  >
+                    {job.company}
+                  </CompanyLink>
+                ) : (
+                  job.company
+                )}
                 <span>{job.location}</span>
               </p>
               <JobTitle>{job.title}</JobTitle>
             </Company>
             <p>{job.date}</p>
           </Box>
+
+          {job.summary && <Summary>{job.summary}</Summary>}
+
           <List>
-            {job.skills.map((line, id) => (
-              <li key={id}>{line}</li>
+            {job.skills.map((line, idx) => (
+              <li key={idx}>{line}</li>
             ))}
           </List>
         </Container>
@@ -48,7 +62,6 @@ const AboutModal = styled.div`
     text-align: center;
   }
   @media (max-width: ${theme.breakpoints.md}) {
-    padding: 0.5rem;
     padding: 1rem;
     align-items: flex-start;
     h3 {
@@ -75,7 +88,7 @@ const Container = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: centers;
+  justify-content: center;
   padding: 0.25rem;
   @media (max-width: ${theme.breakpoints.md}) {
     padding: 0;
@@ -102,9 +115,23 @@ const Company = styled.div`
   }
 `;
 
+const CompanyLink = styled.a`
+  text-decoration: none;
+  color: inherit;
+  &:hover,
+  &:focus {
+    text-decoration: underline;
+  }
+`;
+
 const JobTitle = styled.p`
   font-weight: normal !important;
   color: #9f9f9f;
+`;
+
+const Summary = styled.p`
+  margin: 0.75rem 0 0;
+  line-height: 1.7;
 `;
 
 const List = styled.ul`

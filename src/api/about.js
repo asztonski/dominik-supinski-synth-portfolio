@@ -1,38 +1,52 @@
-// export const aboutCopy = {
-//   title: "My story",
-//   content:
-//     "<h5 class='year'>Kresky - Digital Agency<br />2020 - 2022</h5><br />Through various courses, I honed my skills, and it was during this time that a close friend, a seasoned graphic designer with a decade of experience, approached me with an intriguing proposition. He asked if I would be interested in collaborating with him to form a freelancing team. Together, we undertook several commercial projects for clients hailing from Poland, Spain, and Austria. These experiences exposed me to the intricacies of collaborating with designers and effectively communicating with clients. It felt like diving into deep waters, but this plunge allowed me to grasp the art of creating pixel-perfect layouts based on the designs furnished by the designer.<br /><br /><h5 class='year'>GetSavvy - Marketing Agency<br />2022 - Present</h5><br />After approximately 18 months, I landed a full-time junior front-end position at a marketing company headquartered in England. This marked a significant milestone in my career, as it was the first time I collaborated with other developers and cross-functional teams. Right from the first day, I delved into working with the React.js framework, steering away from vanilla front-end technologies. I also acquired proficiency in tools like GIT, Adobe Photoshop, and Adobe Illustrator. Moreover, I embraced the agile workflow, seamlessly integrating it into my daily routine. My projects ranged from internal initiatives catering to the company's needs to maintaining and updating applications for other organizations, as well as undertaking marketing campaigns for esteemed British and international brands.",
-// };
-
 export const aboutCopy = {
   heading: "Experience",
   copy: [
     {
-      company: "EnjoyTravel | ",
-      location: "Remote, World",
-      title: "FrontEnd Developer",
-      date: "Jan 2024",
+      company: "EnjoyTravel.com | ",
+      companyUrl: "https://www.enjoytravel.com",
+      location: "Remote",
+      title: "Frontend Engineer",
+      date: "Jan 2024 – Aug 2025",
+      summary:
+        "Led front-end delivery across two products: built a reusable React/TypeScript + Tailwind design system with Storybook, integrated with a .NET backend, and improved performance and accessibility for a multi-locale booking experience.",
       skills: [
-        "Working collaboratively in two different teams with two different products;",
-        "Collaborating closely with backend developers and designers using scrum workflow;",
-        "Developing and exporting React.js components with Storybook and Tailwind, enhancing existing product performance and maintainability;",
-        "Maintaining and improving existing product written in Vue.js",
-        "Frontend expertise and advice.",
+        "Led end-to-end rebuild of the primary booking platform using React 18, TypeScript and Tailwind, integrated with a .NET backend;",
+        "Built and documented 50+ reusable components in Storybook to standardize the design system;",
+        "Optimized bundle size and load speed, improving UX for ~1.5K–3K daily users across 17 languages and 21 currencies;",
+        "Translated Figma designs into responsive, accessible UI and collaborated closely with backend engineers for API integrations;",
+        "Introduced automated testing with Jest and React Testing Library and improved repo structure and documentation.",
       ],
     },
     {
-      company: "GetSavvy | ",
-      location: "Leeds, England",
-      title: "FrontEnd Developer",
-      date: "Feb 2022 - Jan 2024",
+      company: "Savvy (GetSavvy) | ",
+      companyUrl: "https://www.getsavvy.com",
+      location: "Leeds, UK",
+      title: "Junior Frontend Developer",
+      date: "Feb 2022 – Jan 2024",
+      summary:
+        "Delivered React/Vue features for multiple brands, built headless WordPress + React apps, and shipped 3D/interactive experiences—working in agile teams and collaborating closely with designers and backend engineers.",
       skills: [
-        "Building web apps for various companies using React.js with Next.js, Tailwind, MUI etc;",
-        "Building headless React.js apps with wordpress API and login system alongside with backend developer;",
-        "Maintaining apps written in Vue.js using docker;",
-        "Working as a team member with other devs using agile workflow (JIRA, BitBucket, Teams);",
-        "3D projects using three.js and blender. Creating storybook UI components;",
-        "Working with SVG animations (minigames etc), Adobe XD, Photoshop, Illustrator;",
-        "Ability to work independently and collaboratively in a remote work system.",
+        "Developed React and Vue components for diverse clients, migrating legacy code and integrating forms, animations and UI flows;",
+        "Built headless WordPress + React solutions to enable faster content publishing;",
+        "Delivered 3D web showcases with Three.js and Blender;",
+        "Contributed to HTML email campaigns and UI/UX enhancements under tight deadlines;",
+        "Worked in agile teams (Jira, Bitbucket) and collaborated effectively in remote settings.",
+      ],
+    },
+    {
+      company: "Kresky | ",
+      companyUrl: 'https://kresky.pl/',
+      location: "Remote",
+      title: "Junior Frontend Developer (Freelance)",
+      date: "Nov 2020 – Feb 2022",
+      summary:
+        "Partnered with a senior designer to deliver pixel-perfect, responsive sites for clients in Poland, Spain, and Austria; handled client comms, estimates, and end-to-end delivery.",
+      skills: [
+        "Delivered pixel-perfect, responsive websites from designer-provided Figma/PSD files;",
+        "Collaborated closely with a senior graphic designer and handled client communication and feedback loops;",
+        "Built marketing sites and small web apps with HTML, SCSS and JavaScript (with early React where suitable);",
+        "Managed end-to-end delivery: scoping, estimates, repos and deployments;",
+        "Shipped projects for clients in Poland, Spain and Austria.",
       ],
     },
   ],
