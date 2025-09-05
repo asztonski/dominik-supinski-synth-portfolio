@@ -81,12 +81,13 @@ const About = ({ id, observer }) => {
         <InfoBox>
           <h2>About me</h2>
           <p>
-            I'm Dominik — I build production-ready websites and web apps.
-            <br />
-            I love exploring new digital horizons. Get to know me through my
-            work.&nbsp;
-            <br />
-            Let's create something exceptional together!
+            I'm Dominik — I build production-ready websites and web apps. I love
+            exploring new digital horizons. Get to know me through my work.
+            Let's create something exceptional together!{" "}
+            {/* <br className="desktop" /> */}
+            <a href="/reference_letter.pdf" download="Reference-letter.pdf">
+              [ Reference letter ]
+            </a>
           </p>
 
           {isMobile ? <PhotoBox /> : null}
@@ -168,6 +169,30 @@ const InfoBox = styled.div`
     /* margin: 3.5vh 0 6.5vh; */
     width: 85%;
     max-width: 800px;
+    a {
+      color: ${theme.colors.extra};
+      position: relative;
+      font-weight: bold;
+      font-style: italic;
+      /* text-decoration: underline; */
+      text-shadow: 1px 1px 1px ${theme.colors.accent};
+      text-transform: uppercase;
+      /* :after {
+        content: "";
+        height: 2px;
+        width: 0;
+        position: absolute;
+        left: 2px;
+        top: 135%;
+        transition: 0.74s ease;
+        background: ${theme.colors.extra};
+        z-index: 99;
+        opacity: 1 !important;
+      }
+      :hover:after {
+        width: 96%;
+      } */
+    }
   }
   @media (max-width: ${theme.breakpoints.md}) {
     gap: 1rem;
