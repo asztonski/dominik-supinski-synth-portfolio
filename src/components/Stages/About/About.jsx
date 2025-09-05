@@ -174,6 +174,7 @@ const InfoBox = styled.div`
       position: relative;
       font-weight: bold;
       font-style: italic;
+      white-space: nowrap;
       /* text-decoration: underline; */
       text-shadow: 1px 1px 1px ${theme.colors.accent};
       text-transform: uppercase;
@@ -200,6 +201,7 @@ const InfoBox = styled.div`
     p {
       margin: 2rem 0 0;
       width: auto;
+      padding-right: 4px;
     }
   }
 `;
