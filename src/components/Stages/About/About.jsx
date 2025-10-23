@@ -27,13 +27,13 @@ const SKILLS = [
   "Storybook",
   "Vite",
   "Git Flow",
-  "Node.js",
+  "Node.js / Express",
   "Figma",
-  "Scrum / Agile",
-  "Testing",
+  "Scrum / Agile / Kanban",
   "Architecture",
   "UI/UX",
-  "Three.js",
+  "Three.js / React Three Fiber",
+  "Jest, React Testing Library, Vitest",
 ];
 
 const shuffleArray = (array) => {

@@ -12,7 +12,7 @@ export const contactItems = [
     isLink: false,
     isMail: false,
     link: "",
-    text: "(+44) 07949694746",
+    text: "Whatsapp: +48531272438",
   },
   {
     name: "linkedin",
