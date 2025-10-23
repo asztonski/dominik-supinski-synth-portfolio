@@ -33,7 +33,7 @@ const SKILLS = [
   "Architecture",
   "UI/UX",
   "Three.js / React Three Fiber",
-  "Jest, React Testing Library, Vitest",
+  "Jest / React Testing Library / Vitest",
 ];
 
 const shuffleArray = (array) => {
