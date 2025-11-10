@@ -33,7 +33,7 @@ const BACKEND_SKILLS = [
 
 const OTHER_SKILLS = [
   "MongoDB",
-  "Testing: TDD, Jest, RTL, Vitest, A/B testing",
+  "Testing: TDD, A/B testing, Unit tests",
   "CI/CD",
   "Gitflow",
   "Agile: Scrum, Kanban",
