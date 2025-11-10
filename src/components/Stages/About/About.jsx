@@ -233,7 +233,7 @@ const SkillsBox = styled.div`
   gap: 3vh;
   @media (max-width: ${theme.breakpoints.md}) {
     div {
-      width: 200%;
+      width: 200% !important;
       max-width: unset;
       position: relative;
     }
