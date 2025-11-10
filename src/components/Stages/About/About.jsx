@@ -98,15 +98,24 @@ const About = ({ id, observer }) => {
           {isMobile ? <PhotoBox /> : null}
           <SkillsBox>
             {shuffledSkillsArray.map((shuffledSkills, id) => (
-              <HorizontalTicker
-                key={id}
-                reverse={id === 1 ? true : false}
-                duration={10000}
-              >
-                {shuffledSkills.map((singleSkill, index) => (
-                  <SingleSkill key={index}>{singleSkill}</SingleSkill>
-                ))}
-              </HorizontalTicker>
+              <SkillRow key={id}>
+                <p>
+                  {id === 0
+                    ? "frontend:"
+                    : id === 1
+                    ? "backend:"
+                    : "other skills:"}
+                </p>
+                <HorizontalTicker
+                  key={id}
+                  reverse={id === 1 ? true : false}
+                  duration={10000}
+                >
+                  {shuffledSkills.map((singleSkill, index) => (
+                    <SingleSkill key={index}>{singleSkill}</SingleSkill>
+                  ))}
+                </HorizontalTicker>
+              </SkillRow>
             ))}
           </SkillsBox>
           <ButtonsWrapper>
@@ -236,6 +245,24 @@ const SkillsBox = styled.div`
       width: 200% !important;
       max-width: unset;
       position: relative;
+    }
+  }
+`;
+
+const SkillRow = styled.div`
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  @media (max-width: ${theme.breakpoints.md}) {
+    gap: 0.35rem;
+  }
+  p {
+    width: auto;
+    white-space: nowrap;
+    text-transform: uppercase;
+    margin: 0;
+    @media (max-width: ${theme.breakpoints.md}) {
+      font-size: 0.65rem;
     }
   }
 `;
