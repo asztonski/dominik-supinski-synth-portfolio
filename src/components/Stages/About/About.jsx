@@ -11,29 +11,32 @@ import { aboutCopy } from "@/api/about";
 import { HorizontalTicker } from "react-infinite-ticker";
 import PhotoBox from "@/components/Layout/Container/PhotoBox";
 
-const SKILLS = [
-  "HTML",
-  "CSS",
-  "JavaScript",
-  "TypeScript",
+const FRONTEND_SKILLS = [
   "React",
-  "Next.js",
-  "SSR",
-  "Zustand",
+  "TypeScript",
   "Tailwind",
-  "Accessibility",
-  "GraphQL / REST",
-  "Performance",
-  "Storybook",
-  "Vite",
-  "Git Flow",
-  "Node.js / Express",
+  "Next.js",
   "Figma",
-  "Scrum / Agile / Kanban",
-  "Architecture",
-  "UI/UX",
-  "Three.js / React Three Fiber",
-  "Jest / React Testing Library / Vitest",
+  "Vite",
+  "Storybook",
+];
+
+const BACKEND_SKILLS = [
+  "Node.js",
+  "Express",
+  "Mongoose",
+  "REST",
+  "GraphQL",
+  "Node.js",
+  "Express",
+];
+
+const OTHER_SKILLS = [
+  "MongoDB",
+  "Testing: TDD, Jest, RTL, Vitest, A/B testing",
+  "CI/CD",
+  "Gitflow",
+  "Agile: Scrum, Kanban",
 ];
 
 const shuffleArray = (array) => {
@@ -48,7 +51,7 @@ const shuffleArray = (array) => {
   return shuffled;
 };
 
-const skillRows = Array.from({ length: 3 }, (_, id) => id);
+const SKILL_GROUPS = [FRONTEND_SKILLS, BACKEND_SKILLS, OTHER_SKILLS];
 
 const About = ({ id, observer }) => {
   const {
@@ -65,7 +68,9 @@ const About = ({ id, observer }) => {
   const [shuffledSkillsArray, setShuffledSkillsArray] = useState([]);
 
   useEffect(() => {
-    const newShuffledSkillsArray = skillRows.map(() => shuffleArray(SKILLS));
+    const newShuffledSkillsArray = SKILL_GROUPS.map((skillGroup) =>
+      shuffleArray(skillGroup)
+    );
     setShuffledSkillsArray(newShuffledSkillsArray);
   }, []);
 
@@ -81,8 +86,8 @@ const About = ({ id, observer }) => {
         <InfoBox>
           <h2>About me</h2>
           <p>
-            I'm Dominik — I build production-ready websites and web apps. I love
-            exploring new digital horizons. Get to know me through my work.
+            I'm Dominik — I build production-ready SAAS apps and websites. I
+            love exploring new digital horizons. Get to know me through my work.
             Let's create something exceptional together!{" "}
             {/* <br className="desktop" /> */}
             <a href="/reference_letter.pdf" download="Reference-letter.pdf">
@@ -96,7 +101,7 @@ const About = ({ id, observer }) => {
               <HorizontalTicker
                 key={id}
                 reverse={id === 1 ? true : false}
-                duration={20000}
+                duration={10000}
               >
                 {shuffledSkills.map((singleSkill, index) => (
                   <SingleSkill key={index}>{singleSkill}</SingleSkill>
@@ -227,10 +232,6 @@ const SkillsBox = styled.div`
   flex-direction: column;
   gap: 3vh;
   @media (max-width: ${theme.breakpoints.md}) {
-    width: unset !important;
-    max-width: unset !important;
-    margin: 0 auto 4rem;
-    gap: 1rem;
     div {
       width: 200%;
       max-width: unset;
@@ -250,5 +251,8 @@ const SingleSkill = styled.span`
   text-shadow: 1px 1px 1px ${theme.colors.hover};
   @media (max-width: ${theme.breakpoints.md}) {
     font-size: 1rem;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
   }
 `;
