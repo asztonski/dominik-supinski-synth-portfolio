@@ -37,7 +37,7 @@ const NavBar = ({ style }) => {
 
   const navUpArrowLinkHandler = () => {
     if (stage === 2) {
-      return "";
+      return "#home";
     }
     if (stage === 3) {
       return "#about";
