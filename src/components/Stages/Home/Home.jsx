@@ -140,6 +140,7 @@ export default Home;
 
 const HomeSection = styled.section`
   height: 100%;
+  max-height: 656px;
   h1 {
     position: relative;
     height: 100%;

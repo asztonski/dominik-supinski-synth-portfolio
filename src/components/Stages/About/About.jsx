@@ -175,12 +175,11 @@ const InfoBox = styled.div`
   flex-direction: column;
   z-index: 3;
   width: 50%;
-  gap: 5vh;
+  gap: 2.5rem;
   h2 {
     white-space: nowrap;
   }
   p {
-    /* margin: 3.5vh 0 6.5vh; */
     width: 85%;
     max-width: 800px;
     a {
@@ -236,10 +235,10 @@ const ButtonsWrapper = styled.div`
 `;
 
 const SkillsBox = styled.div`
-  margin-bottom: 6.5vh;
+  margin-bottom: 3.25rem;
   display: flex;
   flex-direction: column;
-  gap: 3vh;
+  gap: 1.5rem;
   @media (max-width: ${theme.breakpoints.md}) {
     div {
       width: 200% !important;
@@ -257,7 +256,7 @@ const SkillRow = styled.div`
     gap: 0.35rem;
   }
   p {
-    width: auto;
+    width: auto !important;
     white-space: nowrap;
     text-transform: uppercase;
     margin: 0;
