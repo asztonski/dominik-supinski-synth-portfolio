@@ -88,12 +88,18 @@ const About = ({ id, observer }) => {
         <InfoBox>
           <h2>About me</h2>
           <p>
-            I'm Dominik — I build production-ready SAAS apps and websites. I
+            I'm Dominik — I build production-ready SaaS apps and websites. I
             love exploring new digital horizons. Get to know me through my work.
             Let's create something exceptional together!{" "}
             {/* <br className="desktop" /> */}
             <a href="/reference_letter.pdf" download="Reference-letter.pdf">
               [ Reference letter ]
+            </a>
+            <a
+              href="Dominik_Supinski_-_CV_-_2026.pdf"
+              download="Dominik_Supinski_-_CV_-_2026.pdf"
+            >
+              [ Resume ]
             </a>
           </p>
 
@@ -208,6 +214,9 @@ const InfoBox = styled.div`
       :hover:after {
         width: 96%;
       } */
+      :nth-child(2) {
+        margin-left: 0.5rem;
+      }
     }
   }
   @media (max-width: ${theme.breakpoints.md}) {
