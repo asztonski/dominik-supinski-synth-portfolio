@@ -18,7 +18,7 @@ export const aboutCopy = {
       ],
     },
     {
-      company: "Savvy (GetSavvy) | ",
+      company: "Savvy | ",
       companyUrl: "https://www.getsavvy.com",
       location: "Leeds, UK",
       title: "Junior Frontend Developer",
