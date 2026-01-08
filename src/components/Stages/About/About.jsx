@@ -29,14 +29,16 @@ const BACKEND_SKILLS = [
   "GraphQL",
   "Node.js",
   "Express",
+  "CQRS",
 ];
 
 const OTHER_SKILLS = [
   "MongoDB",
-  "Testing: TDD, A/B testing, Unit tests",
+  "Testing: TDD, A/B testing, Unit tests, Integration tests",
   "CI/CD",
   "Gitflow",
   "Agile: Scrum, Kanban",
+  "AI tools",
 ];
 
 const shuffleArray = (array) => {
