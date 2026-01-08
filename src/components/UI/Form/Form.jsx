@@ -181,7 +181,7 @@ export default Form;
 const FormContainer = styled.form`
   display: flex;
   flex-direction: column;
-  gap: 2.5rem;
+  gap: 2rem;
   width: 100%;
   div {
     position: relative;

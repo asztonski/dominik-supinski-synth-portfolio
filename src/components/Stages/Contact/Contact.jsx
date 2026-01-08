@@ -120,7 +120,7 @@ const ContactLink = styled.div`
   width: inherit;
   justify-content: space-between;
   text-transform: uppercase;
-  gap: 2.5rem;
+  gap: 2rem;
   span {
     min-width: 4rem;
   }
