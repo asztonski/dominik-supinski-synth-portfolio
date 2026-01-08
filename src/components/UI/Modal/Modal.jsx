@@ -70,7 +70,7 @@ const ItemModal = styled.div`
   padding: 2rem;
   z-index: 10;
   backdrop-filter: blur(0);
-  animation: ${blurAnim} 0.3s ease-in forwards;
+  animation: ${blurAnim} 0s ease-in forwards;
   transition: opacity 0.2s ease-in-out;
   overflow: hidden;
   @media (max-width: ${theme.breakpoints.md}) {
