@@ -6,7 +6,7 @@ import { useContext } from "react";
 import { keyframes, css } from "@emotion/react";
 import { theme } from "@/api/theme";
 import Wrapper from "@/components/Layout/Wrapper/Wrapper";
-import GlitchSquare from "@/components/Decor/Square/GlitchSquare";
+// import GlitchSquare from "@/components/Decor/Square/GlitchSquare";
 
 const Home = ({ id, observer }) => {
   const { mouseHomeCoord } = useContext(AppContext);
@@ -119,7 +119,7 @@ const Home = ({ id, observer }) => {
           `}
           className="pulse-title"
         >
-          front end developer
+          full stack engineer
         </h2>
       </Wrapper>
       {/* <GlitchSquare translateX={50} translateY={80} order={1} />
