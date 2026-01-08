@@ -22,7 +22,7 @@ export const aboutCopy = {
       companyUrl: "https://www.getsavvy.com",
       location: "Leeds, UK",
       title: "Junior Frontend Developer",
-      date: "Feb 2022 – Jan 2024",
+      date: "Feb 2021 – Jan 2024",
       summary:
         "Delivered React/Vue features for multiple brands, built headless WordPress + React apps, and shipped 3D/interactive experiences—working in agile teams and collaborating closely with designers and backend engineers.",
       skills: [
@@ -38,7 +38,7 @@ export const aboutCopy = {
       companyUrl: 'https://kresky.pl/',
       location: "Remote",
       title: "Junior Frontend Developer (Freelance)",
-      date: "Nov 2020 – Feb 2022",
+      date: "Nov 2020 – Feb 2021",
       summary:
         "Partnered with a senior designer to deliver pixel-perfect, responsive sites for clients in Poland, Spain, and Austria; handled client comms, estimates, and end-to-end delivery.",
       skills: [
