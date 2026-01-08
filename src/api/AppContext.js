@@ -297,9 +297,7 @@ const AppContextProvider = ({ children }) => {
   // Modal Handler
   const modalHandler = () => {
     setIsModalRendered(true);
-    setTimeout(() => {
-      setIsModalOpen(true);
-    }, 200);
+    setIsModalOpen(true);
   };
 
   return (
