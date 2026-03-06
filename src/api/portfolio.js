@@ -1,5 +1,16 @@
 export const carouselItems = [
   {
+    name: "wheretheyleave",
+    address: "https://www.wheretheyleave.com/",
+    about:
+      "Privacy-first funnel analysis tool that runs entirely in the browser — raw data never leaves the client. Built as a micro-SaaS with file parsing, multi-step analysis pipeline, and interactive drop-off reports.",
+    technologies:
+      "Next.js 15, React 19, TypeScript, Tailwind, Zustand, Chart.js, Framer Motion, n18n",
+    asset: "/images/portfolio/wtl.jpg",
+    alt: "Screenshot of WhereTheyLeave.com",
+    year: "(2026)",
+  },
+  {
     name: "enjoytravel",
     address: "https://www.enjoytravel.com/",
     about:
