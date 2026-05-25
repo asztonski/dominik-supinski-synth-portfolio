@@ -8,6 +8,7 @@ import { AppContext } from "@/api/AppContext";
 import Wrapper from "@/components/Layout/Wrapper/Wrapper";
 import Modal from "@/components/UI/Modal/Modal";
 import { aboutCopy } from "@/api/about";
+import * as gtag from "@/lib/gtag";
 import { HorizontalTicker } from "react-infinite-ticker";
 import PhotoBox from "@/components/Layout/Container/PhotoBox";
 
@@ -92,12 +93,23 @@ const About = ({ id, observer }) => {
             love exploring new digital horizons. Get to know me through my work.
             Let's create something exceptional together!{" "}
             {/* <br className="desktop" /> */}
-            <a href="/reference_letter.pdf" download="Reference-letter.pdf">
+            <a
+              href="/reference_letter.pdf"
+              download="Reference-letter.pdf"
+              onClick={() =>
+                gtag.event("file_download", {
+                  file_name: "Reference Letter",
+                })
+              }
+            >
               [ Reference letter ]
             </a>
             <a
               href="Dominik_Supinski_-_CV_-_2026.pdf"
               download="Dominik_Supinski_-_CV_-_2026.pdf"
+              onClick={() =>
+                gtag.event("file_download", { file_name: "CV" })
+              }
             >
               [ Resume ]
             </a>

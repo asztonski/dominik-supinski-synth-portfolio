@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import CustomButton from "../Button/Button";
 import { formItems } from "@/api/contact";
 import { theme } from "@/api/theme";
+import * as gtag from "@/lib/gtag";
 import {
   validateName,
   validateEmail,
@@ -118,6 +119,7 @@ const Form = () => {
   const handleFormSubmit = () => {
     errorHandlerForAllInputs();
     if (isFormValid) {
+      gtag.event("generate_lead", { method: "contact_form" });
       generateMail();
     }
   };

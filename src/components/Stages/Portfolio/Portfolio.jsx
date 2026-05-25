@@ -7,6 +7,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { carouselItems } from "@/api/portfolio";
 import { AppContext } from "@/api/AppContext";
+import * as gtag from "@/lib/gtag";
 import { useContext, useEffect, useState } from "react";
 import Modal from "@/components/UI/Modal/Modal";
 
@@ -36,7 +37,14 @@ const Portfolio = ({ id, observer }) => {
           <Slider {...sliderSettings}>
             {carouselItems.map((item, id) => (
               <CarouselItem
-                onClick={() => (modalHandler(item), setSelectedItem(item))}
+                onClick={() => {
+                  gtag.event("select_content", {
+                    content_type: "portfolio_item",
+                    item_id: item.title,
+                  });
+                  modalHandler(item);
+                  setSelectedItem(item);
+                }}
                 className="carousel-item"
                 key={id}
               >

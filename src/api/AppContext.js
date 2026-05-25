@@ -3,6 +3,7 @@ import ArrowBtn from "@/components/UI/Button/ArrowBtn";
 import { theme } from "./theme";
 import Container from "@/components/Layout/Container/Container";
 import { useRouter } from "next/router";
+import * as gtag from "@/lib/gtag";
 
 export const AppContext = createContext();
 
@@ -75,6 +76,13 @@ const AppContextProvider = ({ children }) => {
     }
   }, [stage, isMobile]);
   // --------- KONIEC ZMIENIONEJ SEKCJI ---------
+
+  // GA4: virtual pageview przy zmianie sekcji
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const pagePath = stageToHash(stage) || "/";
+    gtag.pageview(pagePath);
+  }, [stage]);
 
   // Scroll the page after refresh
   const path = router.asPath;
